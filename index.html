@@ -4,8 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Satyam Jha</title>
+    <style>
+        body {
+            font-family: system;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-top: 20px;
+            object-fit: cover;
+        }
+        
+        .about {
+            font-size: 1.2em;
+            color: #333;
+            margin-top: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    I am student currently pursuing B.Tech from CSE Department who is dwelling deep into this current development ocean.
+    <div class="container">
+       	<img src="me.png" alt="Your Photo" class="profile-picture">
+	    <div class="lead">
+	        <h1>Satyam Jha</h1>
+	        <p>Welcome to my personal page!</p>
+	    </div>
+
+        <div class="about">
+            <p>Hi, I'm Satyam Jha. I'm a YouTube Watcher who loves Watching YouTube. Feel free to explore my page!</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Satyam Jha. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
