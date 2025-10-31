@@ -1,68 +1,184 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Satyam Jha</title>
-    <style>
-        body {
-            font-family: system;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-        }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Satyam Kumar - Portfolio</title>
+        <link rel="stylesheet" href="style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        />
+    </head>
+    <body>
+        <nav>
+            <div class="nav-container">
+                <a href="#home" class="nav-logo">Satyam Kumar</a>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
 
-        .profile-picture {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin-top: 20px;
-            object-fit: cover;
-        }
+        <header id="home" class="section">
+            <img src="Prof.jpg" alt="Satyam Kumar" class="profile-picture" />
+            <h1>Satyam Kumar
+            <p class="subtitle">
+                Computer Science Student & Aspiring Developer
+            </p>
+            <div class="social-links">
+                <a
+                    href="https://github.com/dev-satyamjha"
+                    target="_blank"
+                    title="GitHub"
+                    ><i class="fa-brands fa-github"></i
+                ></a>
+                <a
+                    href="https://www.linkedin.com/in/satyam-jha-online/"
+                    target="_blank"
+                    title="LinkedIn"
+                    ><i class="fa-brands fa-linkedin"></i
+                ></a>
+                <a
+                    href="https://leetcode.com/u/dev-satyamjha/"
+                    target="_blank"
+                    title="LeetCode"
+                    ><i class="fa-solid fa-code"></i
+                ></a>
+                <a
+                    href="https://www.instagram.com/the_one_satyam/"
+                    target="_blank"
+                    title="Instagram"
+                    ><i class="fa-brands fa-instagram"></i
+                ></a>
+            </div>
+        </header>
 
-        .about {
-            font-size: 1.2em;
-            color: #333;
-            margin-top: 20px;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-       	<img src="me.png" alt="Your Photo" class="profile-picture">
-	    <div class="lead">
-	        <h1>Satyam Jha</h1>
-	        <p>Welcome to the one of the rarest previews of this page</p>
-	    </div>
-
-        <div class="about">
-            <p>Hi, I'm Satyam Jha. This page is in building process just like me, so you are welcomed to be the part of my journey😊 <br>Welcome to Day 119!!</p><br>
-            <p>Today i.e. 09/09/2025, I have made a great progress as i have created 3 new repos on github, hoping for some more speedy progress</p>
+        <div class="main-container">
+            <section id="about" class="section card">
+                <h2>About Me</h2>
+                <p>
+                    I am a dedicated and passionate Computer Science and
+                    Engineering student at the
+                    <strong>Birla Institute of Technology, Mesra</strong> of Batch 2023-2027.
+                    My foundation lies in programming languages including Python,
+                    C/C++, and JAVA, along with practical experience in web
+                    development and email marketing. I am a problem-solver with strong communication skills, always
+                    eager to learn and apply new technologies to real-world challenges.<br>
+                    <strong>**Note: This is a WIP portfolio, i am occupied in some other works so i keep updating this
+                    whenever i get time.
+                    Please don't judge it much, hope to make it look better soon🥹</strong>
                 </p>
-        </div>
-    </div>
+            </section>
 
-    <footer>
-        <p>&copy; 2025 Satyam Jha. All Rights Reserved.</p>
-    </footer>
-</body>
+            <section id="experience" class="section card">
+                <h2>Work Experience</h2>
+                <div class="experience-item">
+                    <h3>Email Marketing Intern
+                    <p class="item-subtitle">
+                        <strong>GEMA Education Technology, Dubai</strong>
+                    </p>
+                    <p class="item-date">April 2025 - May 2025
+                    <ul>
+                        <li>
+                            Worked as an Email Marketing Intern for 2 Months.
+
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="education" class="section card">
+                <h2>Education</h2>
+                <div class="education-item">
+                    <h3>
+                        B.Tech in Computer Science
+                    </h3>
+                    <p class="item-subtitle">
+                        Birla Institute of Technology, Mesra
+                    </p>
+                    <p class="item-date">
+                        August 2023 - December 2027
+                    </p>
+                    <p>
+                        <strong>Relevant Coursework:</strong> Linear algebra,
+                        Discrete Mathematics, Operating Systems, Data
+                        Structures, Algorithms, Python , C , SQL , Data Communications ,
+                        Computer Organisation & Architecture
+                    </p>
+                </div>
+                <div class="education-item">
+                    <h3>AISSCE (Class XII)</h3>
+                    <p class="item-subtitle">
+                        D.A.V Public School, N.I.T Campus
+                    </p>
+                    <p class="item-date">April 2021 - April 2022
+                </div>
+                <div class="education-item">
+                    <h3>AISSE (Class X)</h3>
+                    <p class="item-subtitle">
+                        D.A.V Public School, N.I.T Campus
+                    </p>
+                    <p class="item-date">April 2019 - March 2020
+                </div>
+            </section>
+
+            <section id="skills" class="section card">
+                <h2>Skills
+                <p>Here are some of the technologies and skills I work with:</p>
+                <div class="skills-container">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">C/C++</span>
+                    <span class="skill-tag">JAVA</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">Linux</span>
+                    <span class="skill-tag">Bash Scripting</span>
+                    <span class="skill-tag">DSA</span>
+                    <span class="skill-tag">AIML</span>
+                    <span class="skill-tag">Problem Solving</span>
+                    <span class="skill-tag">Web Development</span>
+                    <span class="skill-tag">Web Scraping</span>
+                    <span class="skill-tag">Email Marketing</span>
+                    <span class="skill-tag">Canva</span>
+                    <span class="skill-tag">Photo/Video Editing</span>
+                    <span class="skill-tag">Communication Skills</span>
+                </div>
+            </section>
+
+            <section id="contact" class="section card">
+                <h2>Get In Touch</h2>
+                <p>
+                    I'm always open to discussing new opportunities and creative
+                    ideas.
+                </p>
+                <ul class="contact-list">
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <a href="mailto:satyamjha.me@gmail.com"
+                            >satyamjha.me@gmail.com</a
+                        >
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        +919973659477
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i> Jamshedpur,
+                        Jharkhand, India
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Satyam Kumar. All Rights Reserved.</p>
+        </footer>
+    </body>
 </html>
