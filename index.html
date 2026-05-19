@@ -1,184 +1,404 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Satyam Kumar - Portfolio</title>
-        <link rel="stylesheet" href="style.css" />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        />
-    </head>
-    <body>
-        <nav>
-            <div class="nav-container">
-                <a href="#home" class="nav-logo">Satyam Kumar</a>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </nav>
 
-        <header id="home" class="section">
-            <img src="Prof.jpg" alt="Satyam Kumar" class="profile-picture" />
-            <h1>Satyam Kumar
-            <p class="subtitle">
-                Computer Science Student & Aspiring Developer
-            </p>
-            <div class="social-links">
-                <a
-                    href="https://github.com/dev-satyamjha"
-                    target="_blank"
-                    title="GitHub"
-                    ><i class="fa-brands fa-github"></i
-                ></a>
-                <a
-                    href="https://www.linkedin.com/in/satyam-jha-online/"
-                    target="_blank"
-                    title="LinkedIn"
-                    ><i class="fa-brands fa-linkedin"></i
-                ></a>
-                <a
-                    href="https://leetcode.com/u/dev-satyamjha/"
-                    target="_blank"
-                    title="LeetCode"
-                    ><i class="fa-solid fa-code"></i
-                ></a>
-                <a
-                    href="https://www.instagram.com/the_one_satyam/"
-                    target="_blank"
-                    title="Instagram"
-                    ><i class="fa-brands fa-instagram"></i
-                ></a>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Satyam Kumar | Terminal</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐧</text></svg>" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+
+<body>
+    <nav class="terminal-nav">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">satyam@hypr-satyam:~#</a>
+            <ul>
+                <li>
+                    <a href="#about"><i class="fa-solid fa-user-astronaut"></i>
+                        ./about.sh</a>
+                </li>
+                <li>
+                    <a href="#experience"><i class="fa-solid fa-briefcase"></i>
+                        ./experience.sh</a>
+                </li>
+                <li>
+                    <a href="#projects"><i class="fa-solid fa-code-branch"></i>
+                        ./projects.sh</a>
+                </li>
+                <li>
+                    <a href="#education"><i class="fa-solid fa-graduation-cap"></i>
+                        ./education.sh</a>
+                </li>
+                <li>
+                    <a href="#skills"><i class="fa-solid fa-terminal"></i> ./skills.sh</a>
+                </li>
+                <li>
+                    <a href="#contact"><i class="fa-solid fa-network-wired"></i>
+                        ./contact.sh</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <header id="home" class="terminal-window">
+            <canvas id="matrix-bg"></canvas>
+            <div class="window-header">
+                <span class="btn close"></span>
+                <span class="btn min"></span>
+                <span class="btn max"></span>
+                <span class="window-title">satyam@hypr-satyam: ~</span>
+            </div>
+            <div class="window-body relative-body">
+                <div class="profile-section">
+                    <img src="Assets/Profile.jpg" alt="Satyam Kumar" class="profile-picture" />
+
+                    <div class="profile-text">
+                        <div class="cli-prompt center-prompt">
+                            <div>
+                                <span class="cli-dash">─</span>
+                                <span class="cli-user">satyam</span><span class="cli-at">@</span><span
+                                    class="cli-host">hypr-satyam</span>
+                                <span class="cli-in">in</span>
+                                <span class="cli-dir">~</span>
+                            </div>
+                            <div class="cli-line-2">
+                                <span class="cli-dash">─</span>
+                                <span class="cli-icon">🐧</span>
+                                <span class="header-name">Satyam Kumar</span><span class="cursor">_</span>
+                            </div>
+                        </div>
+
+                        <p class="subtitle">
+                            Full Stack Developer & Open Source Contributor
+                        </p>
+
+                        <div class="social-links">
+                            <a href="https://github.com/dev-satyamjha" target="_blank" title="GitHub"><i
+                                    class="fa-brands fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/satyam-jha-online/" target="_blank" title="LinkedIn"><i
+                                    class="fa-brands fa-linkedin"></i></a>
+                            <a href="https://leetcode.com/u/dev-satyamjha/" target="_blank" title="LeetCode"><i
+                                    class="fa-solid fa-code"></i></a>
+                            <a href="Assets/Resume.pdf" target="_blank" title="Download Resume" class="resume-btn"><i
+                                    class="fa-solid fa-file-pdf"></i>
+                                Resume.pdf</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
 
-        <div class="main-container">
-            <section id="about" class="section card">
-                <h2>About Me</h2>
-                <p>
-                    I am a dedicated and passionate Computer Science and
-                    Engineering student at the
-                    <strong>Birla Institute of Technology, Mesra</strong> of Batch 2023-2027.
-                    My foundation lies in programming languages including Python,
-                    C/C++, and JAVA, along with practical experience in web
-                    development and email marketing. I am a problem-solver with strong communication skills, always
-                    eager to learn and apply new technologies to real-world challenges.<br>
-                    <strong>**Note: This is a WIP portfolio, i am occupied in some other works so i keep updating this
-                    whenever i get time.
-                    Please don't judge it much, hope to make it look better soon🥹</strong>
-                </p>
-            </section>
-
-            <section id="experience" class="section card">
-                <h2>Work Experience</h2>
-                <div class="experience-item">
-                    <h3>Email Marketing Intern
-                    <p class="item-subtitle">
-                        <strong>GEMA Education Technology, Dubai</strong>
+        <section id="about" class="terminal-window">
+            <div class="window-header">
+                <span class="btn close"></span><span class="btn min"></span><span class="btn max"></span>
+                <span class="window-title">bash - cat about.txt</span>
+            </div>
+            <div class="window-body">
+                <div class="cli-prompt">
+                    <div>
+                        <span class="cli-dash">─</span>
+                        <span class="cli-user">satyam</span><span class="cli-at">@</span><span
+                            class="cli-host">hypr-satyam</span>
+                        <span class="cli-in">in</span>
+                        <span class="cli-dir">~</span>
+                    </div>
+                    <div class="cli-line-2">
+                        <span class="cli-dash">─</span>
+                        <span class="cli-icon">🐧</span>
+                        <span class="type-text" data-text="cat about.txt"></span>
+                    </div>
+                </div>
+                <div class="output hide-initially">
+                    <p>
+                        It started with a love-hate relationship. Initially,
+                        I couldn't stand Linux and swore I'd never use it.
+                        But as I dove deeper into the environment and
+                        discovered the endless world of customization, I was
+                        hooked—now, it's my primary OS.
+                        <em>(Fun fact: I once got so lost in ricing my
+                            setup that I spent 45 minutes picking a single
+                            terminal icon I barely even look at
+                            anymore.)</em>
                     </p>
-                    <p class="item-date">April 2025 - May 2025
+                    <br />
+                    <p>
+                        Beyond the terminal, I am a 3rd-year Computer
+                        Science and Engineering undergraduate at the
+                        <strong>Birla Institute of Technology, Mesra</strong>
+                        (Batch 2023-2027), proudly hailing from Jamshedpur,
+                        Jharkhand. I specialize in architecting and shipping
+                        production software across Linux, Windows, web, and
+                        mobile platforms.
+                    </p>
+                    <br />
+                    <p>
+                        With a strong foundation in Full Stack Development,
+                        Object-Oriented Programming, and cross-platform
+                        deployment, I am actively seeking SDE, DevOps, or
+                        Full Stack Developer internships to bring my
+                        execution and open-source collaboration skills to a
+                        professional environment.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="terminal-window">
+            <div class="window-header">
+                <span class="btn close"></span><span class="btn min"></span><span class="btn max"></span>
+                <span class="window-title">bash - ./experience.sh</span>
+            </div>
+            <div class="window-body">
+                <div class="cli-prompt">
+                    <div>
+                        <span class="cli-dash">─</span>
+                        <span class="cli-user">satyam</span><span class="cli-at">@</span><span
+                            class="cli-host">hypr-satyam</span>
+                        <span class="cli-in">in</span>
+                        <span class="cli-dir">~/experience</span>
+                    </div>
+                    <div class="cli-line-2">
+                        <span class="cli-dash">─</span>
+                        <span class="cli-icon">🐧</span>
+                        <span class="type-text" data-text="./experience.sh"></span>
+                    </div>
+                </div>
+                <div class="output list-item hide-initially">
+                    <h3>
+                        [+] Email Marketing Intern | GEMA Education
+                        Technology
+                    </h3>
+                    <p class="item-date">March 2025 - May 2025 | Remote</p>
                     <ul>
                         <li>
-                            Worked as an Email Marketing Intern for 2 Months.
-
+                            > Executed targeted email campaigns reaching
+                            25,000+ users using SendGrid and MailMeteor.
+                        </li>
+                        <li>
+                            > Improved email open rates by 5% through
+                            data-driven audience segmentation and
+                            optimization strategies.
                         </li>
                     </ul>
                 </div>
-            </section>
 
-            <section id="education" class="section card">
-                <h2>Education</h2>
-                <div class="education-item">
-                    <h3>
-                        B.Tech in Computer Science
-                    </h3>
-                    <p class="item-subtitle">
-                        Birla Institute of Technology, Mesra
-                    </p>
-                    <p class="item-date">
-                        August 2023 - December 2027
-                    </p>
-                    <p>
-                        <strong>Relevant Coursework:</strong> Linear algebra,
-                        Discrete Mathematics, Operating Systems, Data
-                        Structures, Algorithms, Python , C , SQL , Data Communications ,
-                        Computer Organisation & Architecture
-                    </p>
+                <div class="cli-prompt search-prompt hide-initially">
+                    <br />
+                    <div>
+                        <span class="cli-dash">─</span>
+                        <span class="cli-user">satyam</span><span class="cli-at">@</span><span
+                            class="cli-host">hypr-satyam</span>
+                        <span class="cli-in">in</span>
+                        <span class="cli-dir">~/experience</span>
+                    </div>
+                    <div class="cli-line-2">
+                        <span class="cli-dash">─</span>
+                        <span class="cli-icon">🐧</span>
+                        <span>find /market -name "*internship*" -type f -exec
+                            apply {} +</span>
+                    </div>
+                    <div class="status-output">
+                        [✓] Active process running: Actively seeking SDE,
+                        DevOps, and Full Stack opportunities...
+                    </div>
                 </div>
-                <div class="education-item">
-                    <h3>AISSCE (Class XII)</h3>
-                    <p class="item-subtitle">
-                        D.A.V Public School, N.I.T Campus
-                    </p>
-                    <p class="item-date">April 2021 - April 2022
-                </div>
-                <div class="education-item">
-                    <h3>AISSE (Class X)</h3>
-                    <p class="item-subtitle">
-                        D.A.V Public School, N.I.T Campus
-                    </p>
-                    <p class="item-date">April 2019 - March 2020
-                </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="skills" class="section card">
-                <h2>Skills
-                <p>Here are some of the technologies and skills I work with:</p>
-                <div class="skills-container">
+        <section id="projects" class="terminal-window">
+            <div class="window-header">
+                <span class="btn close"></span><span class="btn min"></span><span class="btn max"></span>
+                <span class="window-title">bash - ls -la ./projects/</span>
+            </div>
+            <div class="window-body">
+                <div class="cli-prompt">
+                    <div>
+                        <span class="cli-dash">─</span>
+                        <span class="cli-user">satyam</span><span class="cli-at">@</span><span
+                            class="cli-host">hypr-satyam</span>
+                        <span class="cli-in">in</span>
+                        <span class="cli-dir">~/projects</span>
+                    </div>
+                    <div class="cli-line-2">
+                        <span class="cli-dash">─</span>
+                        <span class="cli-icon">🐧</span>
+                        <span class="type-text" data-text="ls -la"></span>
+                    </div>
+                </div>
+                <div class="output hide-initially">
+                    <div class="project-item">
+                        <h3>
+                            > ISM+
+                            <span class="tech-stack">[C#, .NET]</span>
+                        </h3>
+                        <p>
+                            Architected a native Windows network monitor,
+                            deploying a freemium Pro version to the
+                            Microsoft Store. Implemented real-time data
+                            visualization via a custom taskbar speedometer,
+                            floating widgets, and daily analytics.
+                        </p>
+                    </div>
+                    <div class="project-item">
+                        <h3>
+                            > The Cave of Maya
+                            <span class="tech-stack">[Python, Ren'Py]</span>
+                        </h3>
+                        <p>
+                            Engineered a cross-platform visual novel game
+                            deployed on Web, Windows, Linux, and Android.
+                            Designed a 7-level game inspired by Hindu
+                            philosophy, integrating dialogue-driven ciphers
+                            and riddles.
+                        </p>
+                    </div>
+                    <div class="project-item">
+                        <h3>
+                            > NPTEL Quiz App
+                            <span class="tech-stack">[JavaScript, HTML/CSS]</span>
+                        </h3>
+                        <p>
+                            Engineered a frontend-only platform delivering
+                            structured, week-wise practice sets for multiple
+                            NPTEL courses. Developed a real-time mock exam
+                            simulator with integrated countdown timers and
+                            instant analytics.
+                        </p>
+                    </div>
+                    <div class="project-item">
+                        <h3>
+                            > SysGlance
+                            <span class="tech-stack">[PowerShell]</span>
+                        </h3>
+                        <p>
+                            Built a CLI alternative to Windows systeminfo
+                            aggregating 15+ system metrics. Reduced system
+                            information retrieval time by 30%.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="terminal-window">
+            <div class="window-header">
+                <span class="btn close"></span><span class="btn min"></span><span class="btn max"></span>
+                <span class="window-title">bash - tree /education/</span>
+            </div>
+            <div class="window-body">
+                <div class="cli-prompt">
+                    <div>
+                        <span class="cli-dash">─</span>
+                        <span class="cli-user">satyam</span><span class="cli-at">@</span><span
+                            class="cli-host">hypr-satyam</span>
+                        <span class="cli-in">in</span>
+                        <span class="cli-dir">/</span>
+                    </div>
+                    <div class="cli-line-2">
+                        <span class="cli-dash">─</span>
+                        <span class="cli-icon">🐧</span>
+                        <span class="type-text" data-text="tree /education/"></span>
+                    </div>
+                </div>
+                <div class="output hide-initially">
+                    <p><strong>/education/</strong></p>
+                    <p>├── <strong>B.Tech_Computer_Science.deg</strong></p>
+                    <p>│ ├── Birla Institute of Technology, Mesra</p>
+                    <p>│ └── [Aug 2023 - May 2027] (CGPA: 8+)</p>
+                    <p>├── <strong>AISSCE_Class_XII.cert</strong></p>
+                    <p>│ ├── D.A.V Public School, N.I.T Campus</p>
+                    <p>│ └── [2022] (80%)</p>
+                    <p>└── <strong>AISSE_Class_X.cert</strong></p>
+                    <p>├── D.A.V Public School, N.I.T Campus</p>
+                    <p>└── [2020] (90%)</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="terminal-window">
+            <div class="window-header">
+                <span class="btn close"></span><span class="btn min"></span><span class="btn max"></span>
+                <span class="window-title">bash - neofetch --skills</span>
+            </div>
+            <div class="window-body">
+                <div class="cli-prompt">
+                    <div>
+                        <span class="cli-dash">─</span>
+                        <span class="cli-user">satyam</span><span class="cli-at">@</span><span
+                            class="cli-host">hypr-satyam</span>
+                        <span class="cli-in">in</span>
+                        <span class="cli-dir">~</span>
+                    </div>
+                    <div class="cli-line-2">
+                        <span class="cli-dash">─</span>
+                        <span class="cli-icon">🐧</span>
+                        <span class="type-text" data-text="neofetch --skills"></span>
+                    </div>
+                </div>
+                <div class="output skills-container hide-initially">
                     <span class="skill-tag">Python</span>
                     <span class="skill-tag">C/C++</span>
                     <span class="skill-tag">JAVA</span>
                     <span class="skill-tag">SQL</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">HTML</span>
-                    <span class="skill-tag">CSS</span>
-                    <span class="skill-tag">Linux</span>
-                    <span class="skill-tag">Bash Scripting</span>
-                    <span class="skill-tag">DSA</span>
-                    <span class="skill-tag">AIML</span>
-                    <span class="skill-tag">Problem Solving</span>
-                    <span class="skill-tag">Web Development</span>
-                    <span class="skill-tag">Web Scraping</span>
-                    <span class="skill-tag">Email Marketing</span>
-                    <span class="skill-tag">Canva</span>
-                    <span class="skill-tag">Photo/Video Editing</span>
-                    <span class="skill-tag">Communication Skills</span>
+                    <span class="skill-tag">Go</span>
+                    <span class="skill-tag">JavaScript / React</span>
+                    <span class="skill-tag">Linux / Arch / WSL</span>
+                    <span class="skill-tag">Bash / PowerShell</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Git / GitHub</span>
+                    <span class="skill-tag">AI / ML</span>
+                    <span class="skill-tag">Ren'Py</span>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="contact" class="section card">
-                <h2>Get In Touch</h2>
-                <p>
-                    I'm always open to discussing new opportunities and creative
-                    ideas.
-                </p>
-                <ul class="contact-list">
+        <section id="contact" class="terminal-window">
+            <div class="window-header">
+                <span class="btn close"></span><span class="btn min"></span><span class="btn max"></span>
+                <span class="window-title">bash - ping contact</span>
+            </div>
+            <div class="window-body">
+                <div class="cli-prompt">
+                    <div>
+                        <span class="cli-dash">─</span>
+                        <span class="cli-user">satyam</span><span class="cli-at">@</span><span
+                            class="cli-host">hypr-satyam</span>
+                        <span class="cli-in">in</span>
+                        <span class="cli-dir">~</span>
+                    </div>
+                    <div class="cli-line-2">
+                        <span class="cli-dash">─</span>
+                        <span class="cli-icon">🐧</span>
+                        <span class="type-text" data-text="ping -c 3 user"></span>
+                    </div>
+                </div>
+                <ul class="output contact-list hide-initially">
                     <li>
-                        <i class="fa-solid fa-envelope"></i>
-                        <a href="mailto:satyamjha.me@gmail.com"
-                            >satyamjha.me@gmail.com</a
-                        >
+                        > EMAIL:
+                        <a href="mailto:satyamjha.me@gmail.com">satyamjha.me@gmail.com</a>
                     </li>
                     <li>
-                        <i class="fa-solid fa-phone"></i>
-                        +919973659477
+                        > PHONE:
+                        <a href="tel:+919973659477">+91 9973659477</a>
                     </li>
-                    <li>
-                        <i class="fa-solid fa-location-dot"></i> Jamshedpur,
-                        Jharkhand, India
-                    </li>
+                    <li>> LOC: Jamshedpur, India</li>
                 </ul>
-            </section>
-        </div>
+            </div>
+        </section>
+    </div>
 
-        <footer>
-            <p>&copy; 2025 Satyam Kumar. All Rights Reserved.</p>
-        </footer>
-    </body>
+    <footer>
+        <p>System halt. &copy; 2026 Satyam Kumar.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
 </html>
