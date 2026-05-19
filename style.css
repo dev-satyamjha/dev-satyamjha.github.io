@@ -153,6 +153,7 @@ ul {
     overflow: hidden;
     position: relative;
     height: max-content;
+    scroll-margin-top: 100px;
 }
 
 .window-header {
