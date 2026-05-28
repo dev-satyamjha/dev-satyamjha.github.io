@@ -355,7 +355,7 @@ ul {
     margin-top: 25px;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 25px;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -420,7 +420,7 @@ ul {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 15px;
+    gap: 55px;
     flex-wrap: nowrap;
 }
 
