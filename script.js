@@ -7,6 +7,20 @@ document.addEventListener("DOMContentLoaded", () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
+    function updateClock() {
+      const clockElements = document.querySelectorAll(".live-clock");
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, "0");
+      const minutes = String(now.getMinutes()).padStart(2, "0");
+      const seconds = String(now.getSeconds()).padStart(2, "0");
+      const timeString = `${hours}:${minutes}:${seconds}`;
+
+      clockElements.forEach((clock) => {
+        clock.textContent = timeString;
+      });
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
@@ -62,17 +76,20 @@ document.addEventListener("DOMContentLoaded", () => {
         if (entry.isIntersecting && !entry.target.classList.contains("typed")) {
           const element = entry.target;
           const textToType = element.getAttribute("data-text");
-          const windowBody = element.closest(".window-body");
+
+          const promptGroup =
+            element.closest(".prompt-group") || element.closest(".window-body");
 
           element.classList.add("typed");
 
           typeText(element, textToType, () => {
-            const outputDiv = windowBody.querySelector(".output");
+            const outputDiv = promptGroup.querySelector(".output");
             if (outputDiv) {
               outputDiv.classList.add("fade-in");
             }
 
-            const searchPrompts = windowBody.querySelectorAll(".search-prompt");
+            const searchPrompts =
+              promptGroup.querySelectorAll(".search-prompt");
             searchPrompts.forEach((prompt, index) => {
               setTimeout(
                 () => {
