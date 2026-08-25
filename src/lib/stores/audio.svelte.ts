@@ -28,13 +28,8 @@ class AudioManager {
 
 	private getContext(): AudioContext | null {
 		if (typeof window === 'undefined') return null;
-		if (!this.audioContext) {
-			const AudioContextClass =
-				window.AudioContext ||
-				(window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-			if (AudioContextClass) {
-				this.audioContext = new AudioContextClass();
-			}
+		if (!this.audioContext && typeof window.AudioContext !== 'undefined') {
+			this.audioContext = new window.AudioContext();
 		}
 		if (this.audioContext && this.audioContext.state === 'suspended') {
 			this.audioContext.resume();

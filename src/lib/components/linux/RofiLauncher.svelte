@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { onMount, tick } from 'svelte';
+	import { tick } from 'svelte';
 	import { hyprland } from '$lib/themes/linux/HyprlandConfig.svelte';
 	import { notifications } from '$lib/stores/notifications.svelte';
 	import { audioManager } from '$lib/stores/audio.svelte';
 	import { goto } from '$app/navigation';
-	import type { WindowId } from '$lib/types/window';
 
 	interface RofiApp {
 		id: string;
@@ -61,7 +60,12 @@
 			category: 'portfolio',
 			action: () => {
 				hyprland.openWindow('experience');
-				notifications.notify('Htop Launched', 'Monitoring background internships', 'info', '\uf080');
+				notifications.notify(
+					'Htop Launched',
+					'Monitoring background internships',
+					'info',
+					'\uf080'
+				);
 			}
 		},
 		{
@@ -216,7 +220,9 @@
 		<div
 			class="relative z-10 w-full max-w-xl rounded-3xl border-2 border-[#cba6f7] bg-[#181825] shadow-2xl p-4 sm:p-6 font-mono space-y-4"
 		>
-			<div class="relative flex items-center bg-[#11111b] border border-[#313244] rounded-2xl px-4 py-2.5">
+			<div
+				class="relative flex items-center bg-[#11111b] border border-[#313244] rounded-2xl px-4 py-2.5"
+			>
 				<span class="nf text-sm text-[#cba6f7] mr-3">{'\uf002'}</span>
 				<input
 					bind:this={searchInput}
@@ -228,7 +234,9 @@
 					autocomplete="off"
 					spellcheck="false"
 				/>
-				<span class="text-[10px] text-[#a6adc8] font-mono px-2 py-0.5 rounded bg-[#313244]">rofi -drun</span>
+				<span class="text-[10px] text-[#a6adc8] font-mono px-2 py-0.5 rounded bg-[#313244]"
+					>rofi -drun</span
+				>
 			</div>
 
 			<div class="max-h-[340px] overflow-y-auto space-y-1.5 pr-1">
@@ -261,7 +269,9 @@
 								</span>
 								<div class="truncate space-y-0.5">
 									<div class="text-xs truncate">{app.name}</div>
-									<div class={`text-[10px] truncate font-normal ${selectedIndex === index ? 'text-[#11111b]/80' : 'text-[#a6adc8]'}`}>
+									<div
+										class={`text-[10px] truncate font-normal ${selectedIndex === index ? 'text-[#11111b]/80' : 'text-[#a6adc8]'}`}
+									>
 										{app.desc}
 									</div>
 								</div>
@@ -281,9 +291,17 @@
 				{/if}
 			</div>
 
-			<div class="pt-2 border-t border-[#313244] flex items-center justify-between text-[10px] text-[#a6adc8]">
-				<span>Navigate with <kbd class="px-1 py-0.5 bg-[#313244] text-white rounded">↑</kbd> <kbd class="px-1 py-0.5 bg-[#313244] text-white rounded">↓</kbd></span>
-				<span>Press <kbd class="px-1.5 py-0.5 bg-[#313244] text-white rounded">Enter</kbd> to launch &bull; <kbd class="px-1.5 py-0.5 bg-[#313244] text-white rounded">Esc</kbd> to close</span>
+			<div
+				class="pt-2 border-t border-[#313244] flex items-center justify-between text-[10px] text-[#a6adc8]"
+			>
+				<span
+					>Navigate with <kbd class="px-1 py-0.5 bg-[#313244] text-white rounded">↑</kbd>
+					<kbd class="px-1 py-0.5 bg-[#313244] text-white rounded">↓</kbd></span
+				>
+				<span
+					>Press <kbd class="px-1.5 py-0.5 bg-[#313244] text-white rounded">Enter</kbd> to launch
+					&bull; <kbd class="px-1.5 py-0.5 bg-[#313244] text-white rounded">Esc</kbd> to close</span
+				>
 			</div>
 		</div>
 	</div>

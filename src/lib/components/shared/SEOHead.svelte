@@ -33,9 +33,7 @@
 
 	let canonicalUrl = $derived(`${SITE_CONFIG.siteUrl}${pathname}`);
 
-	let imageUrl = $derived(
-		image.startsWith('http') ? image : `${SITE_CONFIG.siteUrl}${image}`
-	);
+	let imageUrl = $derived(image.startsWith('http') ? image : `${SITE_CONFIG.siteUrl}${image}`);
 
 	let schemaJson = $derived(
 		JSON.stringify(
@@ -70,8 +68,6 @@
 						image: imageUrl,
 						jobTitle: PORTFOLIO_DATA.profile.title,
 						description: metaDescription,
-						email: SITE_CONFIG.email,
-						telephone: SITE_CONFIG.phone,
 						sameAs: PORTFOLIO_DATA.socials.map((s) => s.url)
 					}
 		)
@@ -99,6 +95,5 @@
 	<meta name="twitter:description" content={metaDescription} />
 	<meta name="twitter:image" content={imageUrl} />
 	<meta name="twitter:creator" content={`@${SITE_CONFIG.handle}`} />
-
-	{@html `<script type="application/ld+json">${schemaJson}</script>`}
+	{@html '<' + 'script type="application/ld+json">' + schemaJson + '<' + '/script>'}
 </svelte:head>

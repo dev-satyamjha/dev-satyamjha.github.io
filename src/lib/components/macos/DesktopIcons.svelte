@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { macos, type MacAppId } from '$lib/themes/macos/MacOSConfig.svelte';
+	import { macos } from '$lib/themes/macos/MacOSConfig.svelte';
 	import { audioManager } from '$lib/stores/audio.svelte';
 	import { PORTFOLIO_DATA } from '$lib/data/portfolio';
 
@@ -79,7 +79,9 @@
 			<span class={`nf text-3xl sm:text-4xl drop-shadow-md ${item.color}`}>
 				{item.icon}
 			</span>
-			<span class="text-[11px] font-sans font-medium text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] line-clamp-2 leading-tight">
+			<span
+				class="text-[11px] font-sans font-medium text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] line-clamp-2 leading-tight"
+			>
 				{item.name}
 			</span>
 		</button>

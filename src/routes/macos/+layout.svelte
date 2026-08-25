@@ -22,8 +22,12 @@
 
 <svelte:window onkeydown={handleGlobalKeyDown} />
 
-<div class="fixed inset-0 overflow-hidden flex flex-col select-none font-sans bg-gradient-to-br from-[#0f172a] via-[#1e1b4b] to-[#311042] text-white">
-	<div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(56,189,248,0.15),transparent_40%),radial-gradient(circle_at_80%_80%,rgba(244,63,94,0.15),transparent_40%),radial-gradient(circle_at_50%_50%,rgba(168,85,247,0.12),transparent_50%)] pointer-events-none"></div>
+<div
+	class="fixed inset-0 overflow-hidden flex flex-col select-none font-sans bg-gradient-to-br from-[#0f172a] via-[#1e1b4b] to-[#311042] text-white"
+>
+	<div
+		class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(56,189,248,0.15),transparent_40%),radial-gradient(circle_at_80%_80%,rgba(244,63,94,0.15),transparent_40%),radial-gradient(circle_at_50%_50%,rgba(168,85,247,0.12),transparent_50%)] pointer-events-none"
+	></div>
 
 	<Menubar />
 

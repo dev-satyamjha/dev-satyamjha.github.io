@@ -25,8 +25,13 @@
 	}
 </script>
 
-<div class="w-full bg-[#030712]/70 backdrop-blur-md border-b border-cyan-500/20 px-3 py-2 overflow-x-auto select-none">
-	<nav class="flex items-center justify-center gap-2 min-w-max mx-auto" aria-label="Space Station Sector Navigation">
+<div
+	class="w-full bg-[#030712]/70 backdrop-blur-md border-b border-cyan-500/20 px-3 py-2 overflow-x-auto select-none"
+>
+	<nav
+		class="flex items-center justify-center gap-2 min-w-max mx-auto"
+		aria-label="Space Station Sector Navigation"
+	>
 		{#each SECTORS as sector}
 			<button
 				type="button"
@@ -37,7 +42,9 @@
 						: 'bg-[#0b1329]/40 border-cyan-500/20 text-cyan-400/70 hover:bg-cyan-950/50 hover:text-cyan-200'
 				}`}
 			>
-				<span class={`nf text-sm ${activeSector === sector.id ? 'text-cyan-300' : 'text-cyan-500'}`}>
+				<span
+					class={`nf text-sm ${activeSector === sector.id ? 'text-cyan-300' : 'text-cyan-500'}`}
+				>
 					{sector.icon}
 				</span>
 				<div class="text-left">

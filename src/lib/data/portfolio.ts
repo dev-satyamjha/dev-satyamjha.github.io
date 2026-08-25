@@ -7,16 +7,16 @@ import type {
 	Achievement,
 	PortfolioData
 } from '$lib/types/portfolio';
+import { SITE_CONFIG } from './site-config';
 import { SOCIAL_LINKS } from './social-links';
 
 export const PROFILE: Profile = {
-	name: 'Satyam Kumar',
+	name: SITE_CONFIG.name,
 	title: 'Full Stack Developer & Open Source Contributor',
 	summary:
 		'Full Stack engineer and Computer Science undergraduate specializing in scalable web and desktop applications using React, SvelteKit, Python, Go, and C#.NET. Proficient in backend API design, system automation, RAG frameworks, and CI/CD pipelines to deliver cross-platform software across Web, Windows, Linux, and Android.',
-	email: 'satyamjha.me@gmail.com',
-	phone: '+91 9973659477',
-	location: 'Jamshedpur, India',
+	email: SITE_CONFIG.email,
+	location: SITE_CONFIG.location,
 	avatar: '/images/profile_picture.jpeg',
 	resumeUrl: 'https://drive.google.com/file/d/1igqMMGKn7GXNGfDmDonmNQNoBZMoFEKI',
 	bio: [

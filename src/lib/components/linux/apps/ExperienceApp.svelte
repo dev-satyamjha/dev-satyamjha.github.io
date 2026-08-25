@@ -34,9 +34,7 @@
 		}
 	];
 
-	let selectedProcess = $derived(
-		processes.find((p) => p.pid === selectedPid) ?? processes[0]
-	);
+	let selectedProcess = $derived(processes.find((p) => p.pid === selectedPid) ?? processes[0]);
 
 	let filteredProcesses = $derived(
 		processes.filter(
@@ -54,8 +52,12 @@
 	}
 </script>
 
-<div class="w-full h-full p-3 sm:p-4 font-mono text-xs text-[#cdd6f4] bg-[#11111b] flex flex-col justify-between select-none overflow-y-auto space-y-4">
-	<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 rounded-2xl bg-[#181825] border border-[#313244] text-[11px]">
+<div
+	class="w-full h-full p-3 sm:p-4 font-mono text-xs text-[#cdd6f4] bg-[#11111b] flex flex-col justify-between select-none overflow-y-auto space-y-4"
+>
+	<div
+		class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 rounded-2xl bg-[#181825] border border-[#313244] text-[11px]"
+	>
 		<div class="space-y-1.5">
 			<div class="flex items-center gap-2">
 				<span class="text-[#89b4fa] font-bold">1 [|||||||||||||||| 32.4%]</span>
@@ -118,7 +120,9 @@
 						<td class="p-2">{proc.company}</td>
 						<td class="p-2">{proc.duration}</td>
 						<td class="p-2">{proc.cpu}</td>
-						<td class={`p-2 font-bold ${selectedPid === proc.pid ? 'text-[#11111b]' : proc.statusColor}`}>
+						<td
+							class={`p-2 font-bold ${selectedPid === proc.pid ? 'text-[#11111b]' : proc.statusColor}`}
+						>
 							{proc.status}
 						</td>
 					</tr>
@@ -128,14 +132,18 @@
 	</div>
 
 	{#if selectedProcess}
-		<div class="p-3.5 rounded-2xl bg-[#181825] border border-[#313244] space-y-2 select-text text-xs">
+		<div
+			class="p-3.5 rounded-2xl bg-[#181825] border border-[#313244] space-y-2 select-text text-xs"
+		>
 			<div class="flex items-center justify-between border-b border-[#313244] pb-2">
 				<div class="font-bold text-white">
 					<span>PID {selectedProcess.pid}:</span>
 					<span class="text-[#89b4fa]">{selectedProcess.role}</span>
 					<span class="text-[#a6adc8]">@ {selectedProcess.company}</span>
 				</div>
-				<span class="px-2 py-0.5 rounded bg-[#11111b] border border-[#313244] text-[10px] text-[#cba6f7]">
+				<span
+					class="px-2 py-0.5 rounded bg-[#11111b] border border-[#313244] text-[10px] text-[#cba6f7]"
+				>
 					{selectedProcess.duration}
 				</span>
 			</div>
@@ -148,7 +156,9 @@
 
 			<div class="pt-1.5 flex flex-wrap gap-1.5">
 				{#each selectedProcess.technologies as tech}
-					<span class="px-2 py-0.5 rounded bg-[#11111b] border border-[#313244] text-[10px] text-[#a6e3a1]">
+					<span
+						class="px-2 py-0.5 rounded bg-[#11111b] border border-[#313244] text-[10px] text-[#a6e3a1]"
+					>
 						{tech}
 					</span>
 				{/each}

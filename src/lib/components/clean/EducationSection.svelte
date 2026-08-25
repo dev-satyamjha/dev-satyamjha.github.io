@@ -15,14 +15,18 @@
 
 		<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 			<div class="lg:col-span-7 space-y-4">
-				<h3 class="text-sm font-mono uppercase tracking-wider text-[#a6adc8] flex items-center gap-2">
+				<h3
+					class="text-sm font-mono uppercase tracking-wider text-[#a6adc8] flex items-center gap-2"
+				>
 					<span class="nf text-xs text-[#89b4fa]">{'\uf19d'}</span>
 					<span>Academic Background</span>
 				</h3>
 
 				<div class="space-y-4">
 					{#each PORTFOLIO_DATA.education as edu}
-						<div class="rounded-3xl border border-[#27272a] bg-[#181825]/90 p-6 space-y-3 hover:border-[#89b4fa]/40 transition-colors">
+						<div
+							class="rounded-3xl border border-[#27272a] bg-[#181825]/90 p-6 space-y-3 hover:border-[#89b4fa]/40 transition-colors"
+						>
 							<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
 								<div>
 									<h4 class="text-base sm:text-lg font-bold text-white tracking-tight">
@@ -41,7 +45,9 @@
 							{#if edu.coursework && edu.coursework.length > 0}
 								<div class="pt-2 border-t border-[#27272a]/60 flex flex-wrap items-center gap-1.5">
 									{#each edu.coursework as course}
-										<span class="px-2 py-0.5 rounded-md bg-[#11111b] border border-[#313244] text-[10px] font-mono text-[#a6adc8]">
+										<span
+											class="px-2 py-0.5 rounded-md bg-[#11111b] border border-[#313244] text-[10px] font-mono text-[#a6adc8]"
+										>
 											{course}
 										</span>
 									{/each}
@@ -53,15 +59,21 @@
 			</div>
 
 			<div class="lg:col-span-5 space-y-4">
-				<h3 class="text-sm font-mono uppercase tracking-wider text-[#a6adc8] flex items-center gap-2">
+				<h3
+					class="text-sm font-mono uppercase tracking-wider text-[#a6adc8] flex items-center gap-2"
+				>
 					<span class="nf text-xs text-[#f9e2af]">{'\uf091'}</span>
 					<span>Honors & Certifications</span>
 				</h3>
 
 				<div class="space-y-3">
 					{#each PORTFOLIO_DATA.achievements as item}
-						<div class="rounded-2xl border border-[#27272a] bg-[#181825]/90 p-4.5 flex items-start gap-3.5 hover:border-[#f9e2af]/40 transition-colors">
-							<div class="w-8 h-8 rounded-xl bg-[#11111b] border border-[#313244] flex items-center justify-center shrink-0">
+						<div
+							class="rounded-2xl border border-[#27272a] bg-[#181825]/90 p-4.5 flex items-start gap-3.5 hover:border-[#f9e2af]/40 transition-colors"
+						>
+							<div
+								class="w-8 h-8 rounded-xl bg-[#11111b] border border-[#313244] flex items-center justify-center shrink-0"
+							>
 								<span class="nf text-xs text-[#f9e2af]">
 									{item.type === 'competition' ? '\uf091' : '\uf0a3'}
 								</span>

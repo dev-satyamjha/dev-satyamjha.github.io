@@ -35,8 +35,8 @@ export function getAllPosts(): BlogPost[] {
 	return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
-export function getAllTags(): string[] {
-	const posts = getAllPosts();
+export function getAllTags(existingPosts?: BlogPost[]): string[] {
+	const posts = existingPosts ?? getAllPosts();
 	const tagSet = new Set<string>();
 	posts.forEach((p) => p.tags.forEach((t) => tagSet.add(t)));
 	return Array.from(tagSet);

@@ -47,23 +47,35 @@
 
 		<div class="flex flex-wrap items-center gap-1.5 pt-1">
 			{#each meta.tags as tag}
-				<span class="px-2.5 py-1 rounded-md bg-[#181825] border border-[#313244] text-xs font-mono text-[#89b4fa]">
+				<span
+					class="px-2.5 py-1 rounded-md bg-[#181825] border border-[#313244] text-xs font-mono text-[#89b4fa]"
+				>
 					#{tag}
 				</span>
 			{/each}
 		</div>
 	</div>
 
-	<article class="prose-clean space-y-6 pt-6 border-t border-[#27272a] text-sm sm:text-base text-[#cdd6f4] leading-relaxed font-sans">
+	<article
+		class="prose-clean space-y-6 pt-6 border-t border-[#27272a] text-sm sm:text-base text-[#cdd6f4] leading-relaxed font-sans"
+	>
 		{#if ContentComponent}
 			<ContentComponent />
 		{/if}
 	</article>
 
-	<div class="pt-8 mt-12 border-t border-[#27272a] flex flex-col sm:flex-row items-center justify-between gap-4">
+	<div
+		class="pt-8 mt-12 border-t border-[#27272a] flex flex-col sm:flex-row items-center justify-between gap-4"
+	>
 		<div class="flex items-center gap-3">
 			<div class="w-10 h-10 rounded-full overflow-hidden border border-[#313244] bg-[#181825]">
-				<img src={PORTFOLIO_DATA.profile.avatar} alt={PORTFOLIO_DATA.profile.name} class="w-full h-full object-cover" />
+				<img
+					src={PORTFOLIO_DATA.profile.avatar}
+					alt={PORTFOLIO_DATA.profile.name}
+					width="40"
+					height="40"
+					class="w-full h-full object-cover"
+				/>
 			</div>
 			<div>
 				<div class="text-xs font-bold text-white font-mono">{PORTFOLIO_DATA.profile.name}</div>

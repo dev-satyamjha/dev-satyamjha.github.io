@@ -23,11 +23,15 @@
 	<div class="space-y-4">
 		<div class="flex items-center justify-between gap-2">
 			<div class="flex items-center gap-2">
-				<span class="px-2.5 py-1 rounded-full border border-[#313244] bg-[#11111b] text-[10px] font-mono uppercase tracking-wider text-[#89b4fa]">
+				<span
+					class="px-2.5 py-1 rounded-full border border-[#313244] bg-[#11111b] text-[10px] font-mono uppercase tracking-wider text-[#89b4fa]"
+				>
 					{project.category}
 				</span>
 				{#if project.featured}
-					<span class="px-2.5 py-1 rounded-full border border-[#f9e2af]/30 bg-[#f9e2af]/10 text-[10px] font-mono text-[#f9e2af] flex items-center gap-1">
+					<span
+						class="px-2.5 py-1 rounded-full border border-[#f9e2af]/30 bg-[#f9e2af]/10 text-[10px] font-mono text-[#f9e2af] flex items-center gap-1"
+					>
 						<span class="nf text-[10px]">{'\uf005'}</span>
 						<span>Featured</span>
 					</span>
@@ -52,7 +56,9 @@
 		</div>
 
 		<div class="space-y-1.5">
-			<h3 class="text-xl font-bold tracking-tight text-white group-hover:text-[#89b4fa] transition-colors">
+			<h3
+				class="text-xl font-bold tracking-tight text-white group-hover:text-[#89b4fa] transition-colors"
+			>
 				{project.name}
 			</h3>
 			<p class="text-xs font-mono text-[#89b4fa] font-medium">
@@ -67,7 +73,9 @@
 
 	<div class="pt-6 mt-4 border-t border-[#27272a]/60 flex flex-wrap items-center gap-1.5">
 		{#each project.technologies as tech}
-			<span class="px-2.5 py-1 rounded-lg bg-[#11111b] border border-[#313244] text-[10px] font-mono text-[#a6adc8]">
+			<span
+				class="px-2.5 py-1 rounded-lg bg-[#11111b] border border-[#313244] text-[10px] font-mono text-[#a6adc8]"
+			>
 				{tech}
 			</span>
 		{/each}

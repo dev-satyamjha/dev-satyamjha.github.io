@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onDestroy, onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { themeStore, THEME_REGISTRY } from '$lib/stores/theme.svelte';
 	import { audioManager } from '$lib/stores/audio.svelte';
@@ -11,15 +12,23 @@
 
 	let { class: customClass = '' }: Props = $props();
 	let isOpen = $state(false);
+	let containerRef: HTMLDivElement | null = null;
 
-	const THEME_GLYPHS: Record<ThemeKey, string> = {
-		portal: '\uf14e',
-		clean: '\uf108',
-		linux: '\uf303',
-		gaming: '\uf11b',
-		space: '\uf135',
-		macos: '\uf179'
-	};
+	function handleWindowClick(event: MouseEvent) {
+		if (isOpen && containerRef && !containerRef.contains(event.target as Node)) {
+			isOpen = false;
+		}
+	}
+
+	onMount(() => {
+		window.addEventListener('click', handleWindowClick);
+	});
+
+	onDestroy(() => {
+		if (typeof window !== 'undefined') {
+			window.removeEventListener('click', handleWindowClick);
+		}
+	});
 
 	function selectTheme(key: ThemeKey) {
 		audioManager.play('warp');
@@ -29,10 +38,11 @@
 	}
 </script>
 
-<div class={`relative inline-block ${customClass}`}>
+<div bind:this={containerRef} class={`relative inline-block ${customClass}`}>
 	<button
 		type="button"
-		onclick={() => {
+		onclick={(e) => {
+			e.stopPropagation();
 			audioManager.play('click');
 			isOpen = !isOpen;
 		}}
@@ -41,7 +51,7 @@
 		class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#45475a] bg-[#181825]/90 backdrop-blur text-xs font-mono text-[#cdd6f4] hover:border-[#89b4fa] hover:bg-[#313244] transition-all cursor-pointer select-none"
 	>
 		<span class="nf text-xs text-[#89b4fa]">
-			{THEME_GLYPHS[themeStore.current] ?? '\uf14e'}
+			{THEME_REGISTRY[themeStore.current]?.glyph ?? '\uf14e'}
 		</span>
 		<span>{THEME_REGISTRY[themeStore.current]?.name ?? 'Theme'}</span>
 		<span class="nf text-[10px] text-[#a6adc8]">{isOpen ? '\uf077' : '\uf078'}</span>
@@ -63,7 +73,7 @@
 					}`}
 				>
 					<span class="nf text-sm text-[#89b4fa] w-4 text-center">
-						{THEME_GLYPHS[theme.key]}
+						{theme.glyph}
 					</span>
 					<span class="flex-1">{theme.name}</span>
 					{#if themeStore.current === theme.key}

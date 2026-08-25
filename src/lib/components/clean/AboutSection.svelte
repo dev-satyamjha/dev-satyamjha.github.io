@@ -16,15 +16,21 @@
 		<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
 			<div class="lg:col-span-4 flex flex-col items-center sm:items-start space-y-4">
 				<div class="relative group">
-					<div class="w-48 h-48 sm:w-56 sm:h-56 rounded-3xl overflow-hidden border-2 border-[#313244] bg-[#181825] shadow-2xl">
+					<div
+						class="w-48 h-48 sm:w-56 sm:h-56 rounded-3xl overflow-hidden border-2 border-[#313244] bg-[#181825] shadow-2xl"
+					>
 						<img
 							src={PORTFOLIO_DATA.profile.avatar}
 							alt={PORTFOLIO_DATA.profile.name}
+							width="224"
+							height="224"
 							class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
 							loading="lazy"
 						/>
 					</div>
-					<div class="absolute -bottom-3 -right-3 px-3 py-1 rounded-xl bg-[#1e1e2e] border border-[#313244] text-[10px] font-mono text-[#a6e3a1] shadow-lg flex items-center gap-1.5">
+					<div
+						class="absolute -bottom-3 -right-3 px-3 py-1 rounded-xl bg-[#1e1e2e] border border-[#313244] text-[10px] font-mono text-[#a6e3a1] shadow-lg flex items-center gap-1.5"
+					>
 						<span class="w-1.5 h-1.5 rounded-full bg-[#a6e3a1]"></span>
 						<span>BIT Mesra '27</span>
 					</div>

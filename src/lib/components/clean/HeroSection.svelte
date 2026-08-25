@@ -1,22 +1,21 @@
 <script lang="ts">
 	import { PORTFOLIO_DATA } from '$lib/data/portfolio';
+	import { SOCIAL_GLYPHS } from '$lib/data/social-links';
 	import { localeStore } from '$lib/stores/locale.svelte';
 	import { audioManager } from '$lib/stores/audio.svelte';
-
-	const SOCIAL_GLYPHS: Record<string, string> = {
-		GitHub: '\uf09b',
-		LinkedIn: '\uf08c',
-		LeetCode: '\uf121',
-		Instagram: '\uf16d',
-		Keybase: '\uf084'
-	};
 </script>
 
 <section class="relative min-h-[75vh] flex flex-col justify-center py-12 sm:py-20">
 	<div class="space-y-6 max-w-3xl">
-		<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#27272a] bg-[#181825]/90 backdrop-blur text-xs font-mono text-[#a6e3a1]">
+		<div
+			class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#27272a] bg-[#181825]/90 backdrop-blur text-xs font-mono text-[#a6e3a1]"
+		>
 			<span class="w-2 h-2 rounded-full bg-[#a6e3a1] animate-ping"></span>
-			<span>{localeStore.current === 'en' ? 'Available for Full Stack Opportunities' : 'फुल स्टैक कार्य हेतु उपलब्ध'}</span>
+			<span
+				>{localeStore.current === 'en'
+					? 'Available for Full Stack Opportunities'
+					: 'फुल स्टैक कार्य हेतु उपलब्ध'}</span
+			>
 		</div>
 
 		<div class="space-y-2">

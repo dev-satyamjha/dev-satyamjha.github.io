@@ -1,82 +1,21 @@
 <script lang="ts">
+	import { onDestroy } from 'svelte';
 	import { SITE_CONFIG } from '$lib/data/site-config';
-	import { audioManager } from '$lib/stores/audio.svelte';
+	import { ContactFormManager } from '$lib/utils/contact-form.svelte';
 
-	let senderName = $state('');
-	let senderEmail = $state('');
-	let subject = $state('');
-	let message = $state('');
-	let botcheck = $state('');
+	const form = new ContactFormManager('Hyprland Mutt Transmission');
 
-	let isSending = $state(false);
-	let isSent = $state(false);
-	let errorText = $state('');
-	let cooldown = $state(0);
-
-	async function handleSend(e: SubmitEvent) {
-		e.preventDefault();
-		if (botcheck) return;
-
-		if (!senderName.trim() || !senderEmail.trim() || !message.trim()) {
-			errorText = 'mutt: All header fields and message body are required.';
-			audioManager.play('error');
-			return;
-		}
-
-		isSending = true;
-		errorText = '';
-		audioManager.play('click');
-
-		try {
-			const res = await fetch('https://api.web3forms.com/submit', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					Accept: 'application/json'
-				},
-				body: JSON.stringify({
-					access_key: SITE_CONFIG.web3FormsAccessKey,
-					name: senderName,
-					email: senderEmail,
-					subject: subject || 'Hyprland Mutt Transmission',
-					message,
-					from_name: 'Linux Hyprland Mutt Mailer'
-				})
-			});
-
-			const data = await res.json();
-
-			if (res.ok || data.success) {
-				isSent = true;
-				audioManager.play('notification');
-				senderName = '';
-				senderEmail = '';
-				subject = '';
-				message = '';
-				cooldown = 30;
-
-				const timer = setInterval(() => {
-					cooldown -= 1;
-					if (cooldown <= 0) {
-						clearInterval(timer);
-						isSent = false;
-					}
-				}, 1000);
-			} else {
-				errorText = data.message || 'Transmission failed. Verify connection.';
-				audioManager.play('error');
-			}
-		} catch {
-			errorText = 'Transmission failed. Verify connection.';
-			audioManager.play('error');
-		} finally {
-			isSending = false;
-		}
-	}
+	onDestroy(() => {
+		form.destroy();
+	});
 </script>
 
-<div class="w-full h-full p-4 font-mono text-xs text-[#cdd6f4] bg-[#11111b] overflow-y-auto space-y-4 select-text">
-	<div class="flex items-center justify-between border-b border-[#313244] pb-2 text-[11px] text-[#a6adc8]">
+<div
+	class="w-full h-full p-4 font-mono text-xs text-[#cdd6f4] bg-[#11111b] overflow-y-auto space-y-4 select-text"
+>
+	<div
+		class="flex items-center justify-between border-b border-[#313244] pb-2 text-[11px] text-[#a6adc8]"
+	>
 		<div class="flex items-center gap-2 text-[#89b4fa]">
 			<span class="nf text-sm">{'\uf0e0'}</span>
 			<span class="font-bold text-white">mutt: Compose Transmission</span>
@@ -84,60 +23,77 @@
 		<div class="text-[#a6e3a1]">[PGP: GPG-256 Valid]</div>
 	</div>
 
-	{#if isSent}
-		<div class="p-3 rounded-xl bg-[#a6e3a1]/10 border border-[#a6e3a1]/40 text-[#a6e3a1] text-xs space-y-1">
+	{#if form.isSent}
+		<div
+			class="p-3 rounded-xl bg-[#a6e3a1]/10 border border-[#a6e3a1]/40 text-[#a6e3a1] text-xs space-y-1"
+		>
 			<div class="font-bold">Transmission dispatched successfully to {SITE_CONFIG.email}.</div>
-			{#if cooldown > 0}
-				<div class="text-[10px] text-[#a6e3a1]/80">SMTP Rate cooldown active: {cooldown}s</div>
+			{#if form.cooldown > 0}
+				<div class="text-[10px] text-[#a6e3a1]/80">SMTP Rate cooldown active: {form.cooldown}s</div>
 			{/if}
 		</div>
 	{/if}
 
-	{#if errorText}
+	{#if form.errorText}
 		<div class="p-3 rounded-xl bg-[#f38ba8]/10 border border-[#f38ba8]/40 text-[#f38ba8] text-xs">
-			{errorText}
+			{form.errorText}
 		</div>
 	{/if}
 
-	<form onsubmit={handleSend} class="space-y-3">
-		<input type="text" name="botcheck" bind:value={botcheck} class="hidden" tabindex="-1" autocomplete="off" />
+	<form onsubmit={(e) => form.submit(e)} class="space-y-3">
+		<input
+			type="text"
+			name="botcheck"
+			bind:value={form.botcheck}
+			class="hidden"
+			tabindex="-1"
+			autocomplete="off"
+		/>
 
 		<div class="space-y-1">
-			<div class="flex items-center gap-2 bg-[#181825] border border-[#313244] rounded-xl px-3 py-1.5">
+			<div
+				class="flex items-center gap-2 bg-[#181825] border border-[#313244] rounded-xl px-3 py-1.5"
+			>
 				<span class="text-[#89b4fa] font-bold w-14 shrink-0">To:</span>
 				<span class="text-[#a6adc8] truncate">{SITE_CONFIG.email} (Satyam Kumar)</span>
 			</div>
 		</div>
 
 		<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-			<div class="flex items-center gap-2 bg-[#181825] border border-[#313244] rounded-xl px-3 py-1.5">
+			<div
+				class="flex items-center gap-2 bg-[#181825] border border-[#313244] rounded-xl px-3 py-1.5"
+			>
 				<span class="text-[#89b4fa] font-bold w-14 shrink-0">From:</span>
 				<input
 					type="text"
 					required
-					bind:value={senderName}
+					bind:value={form.name}
 					placeholder="Ada Lovelace"
 					class="w-full bg-transparent border-none outline-none text-white text-xs placeholder-[#45475a] focus:ring-0"
 				/>
 			</div>
 
-			<div class="flex items-center gap-2 bg-[#181825] border border-[#313244] rounded-xl px-3 py-1.5">
+			<div
+				class="flex items-center gap-2 bg-[#181825] border border-[#313244] rounded-xl px-3 py-1.5"
+			>
 				<span class="text-[#89b4fa] font-bold w-14 shrink-0">Email:</span>
 				<input
 					type="email"
 					required
-					bind:value={senderEmail}
+					bind:value={form.email}
 					placeholder="ada@lovelace.dev"
 					class="w-full bg-transparent border-none outline-none text-white text-xs placeholder-[#45475a] focus:ring-0"
 				/>
 			</div>
 		</div>
 
-		<div class="flex items-center gap-2 bg-[#181825] border border-[#313244] rounded-xl px-3 py-1.5">
+		<div
+			class="flex items-center gap-2 bg-[#181825] border border-[#313244] rounded-xl px-3 py-1.5"
+		>
 			<span class="text-[#89b4fa] font-bold w-14 shrink-0">Subject:</span>
 			<input
 				type="text"
-				bind:value={subject}
+				bind:value={form.subject}
 				placeholder="Transmission Inquiry"
 				class="w-full bg-transparent border-none outline-none text-white text-xs placeholder-[#45475a] focus:ring-0"
 			/>
@@ -147,7 +103,7 @@
 			<textarea
 				required
 				rows="6"
-				bind:value={message}
+				bind:value={form.message}
 				placeholder="Write your transmission payload here..."
 				class="w-full p-3 rounded-xl bg-[#181825] border border-[#313244] text-xs text-white placeholder-[#45475a] outline-none focus:border-[#cba6f7] transition-colors resize-y"
 			></textarea>
@@ -160,11 +116,11 @@
 
 			<button
 				type="submit"
-				disabled={isSending || cooldown > 0}
+				disabled={form.isSending || form.cooldown > 0}
 				class="px-4 py-2 rounded-xl bg-[#cba6f7] hover:bg-[#b4befe] text-[#11111b] font-bold text-xs transition-colors disabled:opacity-50 cursor-pointer flex items-center gap-1.5"
 			>
 				<span class="nf text-xs">{'\uf1d8'}</span>
-				<span>{isSending ? 'Transmitting...' : 'Send Message'}</span>
+				<span>{form.isSending ? 'Transmitting...' : 'Send Message'}</span>
 			</button>
 		</div>
 	</form>

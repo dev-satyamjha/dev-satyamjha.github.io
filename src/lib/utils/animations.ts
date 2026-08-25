@@ -5,7 +5,10 @@ export function isReducedMotion(): boolean {
 	return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-export function animateEntrance(elements: HTMLElement[] | NodeListOf<HTMLElement>, baseDelay = 0.08) {
+export function animateEntrance(
+	elements: HTMLElement[] | NodeListOf<HTMLElement>,
+	baseDelay = 0.08
+) {
 	if (isReducedMotion() || !elements || elements.length === 0) return;
 
 	elements.forEach((el, index) => {

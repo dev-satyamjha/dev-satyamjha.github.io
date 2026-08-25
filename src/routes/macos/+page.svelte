@@ -42,7 +42,9 @@
 		</MacWindow>
 	{/each}
 
-	<div class="absolute bottom-6 left-6 text-white/30 font-sans text-[11px] select-none pointer-events-none">
+	<div
+		class="absolute bottom-6 left-6 text-white/30 font-sans text-[11px] select-none pointer-events-none"
+	>
 		<div>macOS Sonoma 14.5 Developer Preview</div>
 		<div>Satyam's MacBook Pro (Apple Silicon)</div>
 	</div>

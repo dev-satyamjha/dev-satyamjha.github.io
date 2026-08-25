@@ -14,7 +14,9 @@
 </script>
 
 <div class="w-full h-full font-mono text-xs text-[#cdd6f4] bg-[#11111b] flex flex-col select-text">
-	<div class="h-8 bg-[#181825] border-b border-[#313244] px-2 flex items-center gap-1 overflow-x-auto select-none">
+	<div
+		class="h-8 bg-[#181825] border-b border-[#313244] px-2 flex items-center gap-1 overflow-x-auto select-none"
+	>
 		{#each posts as post, index}
 			<button
 				type="button"
@@ -45,7 +47,9 @@
 			</h2>
 			<div class="flex flex-wrap gap-1.5 pt-1">
 				{#each activePost.tags as tag}
-					<span class="px-2 py-0.5 rounded bg-[#181825] border border-[#313244] text-[10px] text-[#a6e3a1]">
+					<span
+						class="px-2 py-0.5 rounded bg-[#181825] border border-[#313244] text-[10px] text-[#a6e3a1]"
+					>
 						#{tag}
 					</span>
 				{/each}
@@ -54,7 +58,9 @@
 
 		<div class="text-xs text-[#cdd6f4] leading-relaxed font-sans space-y-3">
 			<p>{activePost.description}</p>
-			<div class="p-3 rounded-xl bg-[#181825] border border-[#313244] font-mono text-[11px] text-[#89b4fa]">
+			<div
+				class="p-3 rounded-xl bg-[#181825] border border-[#313244] font-mono text-[11px] text-[#89b4fa]"
+			>
 				View full formatted article on Clean Blog:
 				<a href={`/clean/blog/${activePost.slug}`} class="text-[#cba6f7] underline ml-1">
 					/clean/blog/{activePost.slug}
@@ -63,7 +69,9 @@
 		</div>
 	</div>
 
-	<div class="h-6 bg-[#181825] border-t border-[#313244] px-3 flex items-center justify-between text-[10px] text-[#a6adc8] select-none font-bold">
+	<div
+		class="h-6 bg-[#181825] border-t border-[#313244] px-3 flex items-center justify-between text-[10px] text-[#a6adc8] select-none font-bold"
+	>
 		<div class="flex items-center gap-2">
 			<span class="px-1.5 py-0.2 bg-[#cba6f7] text-[#11111b] rounded text-[9px]">NORMAL</span>
 			<span>{activePost.slug}.md</span>

@@ -55,10 +55,35 @@
 			}
 		}
 
-		const player = { r: 15, c: 8, x: 8 * tileSize + 10, y: 15 * tileSize + 10, dirX: 0, dirY: 0, nextDirX: 0, nextDirY: 0 };
+		const player = {
+			r: 15,
+			c: 8,
+			x: 8 * tileSize + 10,
+			y: 15 * tileSize + 10,
+			dirX: 0,
+			dirY: 0,
+			nextDirX: 0,
+			nextDirY: 0
+		};
 		const ghosts = [
-			{ r: 7, c: 8, x: 8 * tileSize + 10, y: 7 * tileSize + 10, dirX: 1, dirY: 0, color: '#f43f5e' },
-			{ r: 7, c: 10, x: 10 * tileSize + 10, y: 7 * tileSize + 10, dirX: -1, dirY: 0, color: '#38bdf8' }
+			{
+				r: 7,
+				c: 8,
+				x: 8 * tileSize + 10,
+				y: 7 * tileSize + 10,
+				dirX: 1,
+				dirY: 0,
+				color: '#f43f5e'
+			},
+			{
+				r: 7,
+				c: 10,
+				x: 10 * tileSize + 10,
+				y: 7 * tileSize + 10,
+				dirX: -1,
+				dirY: 0,
+				color: '#38bdf8'
+			}
 		];
 
 		function onKeyDown(e: KeyboardEvent) {
@@ -94,7 +119,13 @@
 
 				const targetR = player.r + player.dirY;
 				const targetC = player.c + player.dirX;
-				if (targetR >= 0 && targetR < rows && targetC >= 0 && targetC < cols && map[targetR][targetC] !== 1) {
+				if (
+					targetR >= 0 &&
+					targetR < rows &&
+					targetC >= 0 &&
+					targetC < cols &&
+					map[targetR][targetC] !== 1
+				) {
 					player.r = targetR;
 					player.c = targetC;
 					player.x = player.c * tileSize + 10;
@@ -202,11 +233,17 @@
 	});
 </script>
 
-<div class="w-full h-full flex flex-col justify-between p-3 font-mono text-xs text-white select-none">
-	<div class="flex items-center justify-between px-3 py-1 bg-zinc-900/80 rounded-xl border border-zinc-800">
+<div
+	class="w-full h-full flex flex-col justify-between p-3 font-mono text-xs text-white select-none"
+>
+	<div
+		class="flex items-center justify-between px-3 py-1 bg-zinc-900/80 rounded-xl border border-zinc-800"
+	>
 		<div class="flex items-center gap-3">
 			<span class="text-emerald-400 font-bold">CODE-MAN MAZE</span>
-			<span class="text-zinc-400 text-[11px]">SCORE: <strong class="text-amber-400">{score}</strong></span>
+			<span class="text-zinc-400 text-[11px]"
+				>SCORE: <strong class="text-amber-400">{score}</strong></span
+			>
 		</div>
 
 		<div class="flex items-center gap-4">
@@ -233,9 +270,13 @@
 		></canvas>
 
 		{#if gameState === 'gameover'}
-			<div class="absolute inset-0 bg-black/85 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center gap-3 animate-in fade-in">
+			<div
+				class="absolute inset-0 bg-black/85 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center gap-3 animate-in fade-in"
+			>
 				<div class="text-2xl font-bold text-rose-500 tracking-widest uppercase">CAUGHT BY BUG!</div>
-				<div class="text-xs text-zinc-400">Final Score: <span class="text-amber-400 font-bold">{score}</span></div>
+				<div class="text-xs text-zinc-400">
+					Final Score: <span class="text-amber-400 font-bold">{score}</span>
+				</div>
 				<button
 					type="button"
 					onclick={onExit}
@@ -245,9 +286,15 @@
 				</button>
 			</div>
 		{:else if gameState === 'won'}
-			<div class="absolute inset-0 bg-black/85 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center gap-3 animate-in fade-in">
-				<div class="text-2xl font-bold text-emerald-400 tracking-widest uppercase">MAZE CLEARED!</div>
-				<div class="text-xs text-zinc-400">All Code Tokens Ingested! Score: <span class="text-amber-400 font-bold">{score}</span></div>
+			<div
+				class="absolute inset-0 bg-black/85 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center gap-3 animate-in fade-in"
+			>
+				<div class="text-2xl font-bold text-emerald-400 tracking-widest uppercase">
+					MAZE CLEARED!
+				</div>
+				<div class="text-xs text-zinc-400">
+					All Code Tokens Ingested! Score: <span class="text-amber-400 font-bold">{score}</span>
+				</div>
 				<button
 					type="button"
 					onclick={onExit}
@@ -260,6 +307,10 @@
 	</div>
 
 	<div class="text-center text-[10px] text-zinc-400">
-		Controls: <kbd class="px-1.5 py-0.5 bg-zinc-800 text-white rounded">W</kbd> <kbd class="px-1.5 py-0.5 bg-zinc-800 text-white rounded">A</kbd> <kbd class="px-1.5 py-0.5 bg-zinc-800 text-white rounded">S</kbd> <kbd class="px-1.5 py-0.5 bg-zinc-800 text-white rounded">D</kbd> or <kbd class="px-1.5 py-0.5 bg-zinc-800 text-white rounded">Arrow Keys</kbd> to Navigate Maze
+		Controls: <kbd class="px-1.5 py-0.5 bg-zinc-800 text-white rounded">W</kbd>
+		<kbd class="px-1.5 py-0.5 bg-zinc-800 text-white rounded">A</kbd>
+		<kbd class="px-1.5 py-0.5 bg-zinc-800 text-white rounded">S</kbd>
+		<kbd class="px-1.5 py-0.5 bg-zinc-800 text-white rounded">D</kbd>
+		or <kbd class="px-1.5 py-0.5 bg-zinc-800 text-white rounded">Arrow Keys</kbd> to Navigate Maze
 	</div>
 </div>

@@ -50,18 +50,13 @@
 </script>
 
 <div bind:this={container} class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 sm:gap-4 lg:gap-6">
+	<div
+		class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 sm:gap-4 lg:gap-6"
+	>
 		{#each PORTAL_THEMES as theme, index (theme.key)}
-			<PortalDoor
-				{theme}
-				{index}
-				onselect={handleThemeSelect}
-			/>
+			<PortalDoor {theme} {index} onselect={handleThemeSelect} />
 		{/each}
 	</div>
 </div>
 
-<PortalTransition
-	activeTheme={targetTheme}
-	{isTransitioning}
-/>
+<PortalTransition activeTheme={targetTheme} {isTransitioning} />

@@ -19,10 +19,7 @@
 />
 
 <main id="main-content" class="w-full h-full flex flex-col overflow-hidden">
-	<SpaceNavigation
-		{activeSector}
-		onSelectSector={(sec) => (activeSector = sec)}
-	/>
+	<SpaceNavigation {activeSector} onSelectSector={(sec) => (activeSector = sec)} />
 
 	<div class="flex-1 p-3 sm:p-6 overflow-y-auto">
 		{#if activeSector === 'bridge'}

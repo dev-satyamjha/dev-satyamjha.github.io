@@ -1,6 +1,11 @@
 <script lang="ts">
 	import { onMount, tick } from 'svelte';
-	import { executeCommand, AUTOCOMPLETE_COMMANDS, VIRTUAL_FILES, type CommandOutput } from '$lib/themes/linux/CommandParser';
+	import {
+		executeCommand,
+		AUTOCOMPLETE_COMMANDS,
+		VIRTUAL_FILES,
+		type CommandOutput
+	} from '$lib/themes/linux/CommandParser';
 	import { audioManager } from '$lib/stores/audio.svelte';
 
 	let inputVal = $state('');
@@ -25,7 +30,8 @@
 			{
 				id: 'welcome',
 				command: '',
-				output: '<div class="text-[#a6adc8] text-[11px]">Welcome to Satyam\'s Arch Linux environment. Type <span class="text-[#89b4fa] font-bold">help</span> to list commands, <span class="text-[#a6e3a1] font-bold">open projects</span> to view GUI, or <span class="text-[#f9e2af] font-bold">ls</span> to browse virtual filesystem.</div>',
+				output:
+					'<div class="text-[#a6adc8] text-[11px]">Welcome to Satyam\'s Arch Linux environment. Type <span class="text-[#89b4fa] font-bold">help</span> to list commands, <span class="text-[#a6e3a1] font-bold">open projects</span> to view GUI, or <span class="text-[#f9e2af] font-bold">ls</span> to browse virtual filesystem.</div>',
 				isHtml: true,
 				timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
 			}
@@ -134,7 +140,9 @@
 			{/if}
 
 			{#if item.output}
-				<div class={`leading-relaxed pl-1 sm:pl-2 ${item.isError ? 'text-[#f38ba8]' : 'text-[#cdd6f4]'}`}>
+				<div
+					class={`leading-relaxed pl-1 sm:pl-2 ${item.isError ? 'text-[#f38ba8]' : 'text-[#cdd6f4]'}`}
+				>
 					{#if item.isHtml}
 						{@html item.output}
 					{:else}

@@ -13,7 +13,9 @@
 <button
 	type="button"
 	onclick={() => audioManager.toggleMute()}
-	aria-label={audioManager.isMuted ? localeStore.dict.common.soundOff : localeStore.dict.common.soundOn}
+	aria-label={audioManager.isMuted
+		? localeStore.dict.common.soundOff
+		: localeStore.dict.common.soundOn}
 	class={`inline-flex items-center justify-center transition-all cursor-pointer select-none ${
 		variant === 'pill'
 			? 'gap-2 px-3 py-1.5 rounded-full border border-[#45475a] bg-[#181825]/80 hover:bg-[#313244] text-xs font-mono text-[#cdd6f4]'
@@ -26,6 +28,10 @@
 		{audioManager.isMuted ? '\uf026' : '\uf028'}
 	</span>
 	{#if variant === 'pill'}
-		<span>{audioManager.isMuted ? localeStore.dict.common.soundOff : localeStore.dict.common.soundOn}</span>
+		<span
+			>{audioManager.isMuted
+				? localeStore.dict.common.soundOff
+				: localeStore.dict.common.soundOn}</span
+		>
 	{/if}
 </button>

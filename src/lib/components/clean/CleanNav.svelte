@@ -24,14 +24,18 @@
 	}
 </script>
 
-<header class="sticky top-0 z-40 w-full border-b border-[#27272a]/80 bg-[#09090b]/80 backdrop-blur-md transition-colors">
+<header
+	class="sticky top-0 z-40 w-full border-b border-[#27272a]/80 bg-[#09090b]/80 backdrop-blur-md transition-colors"
+>
 	<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
 		<a
 			href="/clean"
 			onclick={handleLinkClick}
 			class="flex items-center gap-2.5 font-mono text-sm font-bold text-white hover:text-[#89b4fa] transition-colors"
 		>
-			<span class="w-8 h-8 rounded-lg bg-[#181825] border border-[#313244] flex items-center justify-center text-[#89b4fa] text-xs">
+			<span
+				class="w-8 h-8 rounded-lg bg-[#181825] border border-[#313244] flex items-center justify-center text-[#89b4fa] text-xs"
+			>
 				SK
 			</span>
 			<span class="hidden sm:inline-block tracking-tight">{PORTFOLIO_DATA.profile.name}</span>
@@ -43,7 +47,8 @@
 					href={item.href}
 					onclick={handleLinkClick}
 					class={`px-3 py-1.5 rounded-lg hover:text-white hover:bg-[#181825] transition-all ${
-						page.url.pathname === item.href || (item.href.includes('#') && page.url.hash === item.href.slice(item.href.indexOf('#')))
+						page.url.pathname === item.href ||
+						(item.href.includes('#') && page.url.hash === item.href.slice(item.href.indexOf('#')))
 							? 'text-[#89b4fa] bg-[#181825]'
 							: ''
 					}`}
@@ -84,7 +89,9 @@
 	</div>
 
 	{#if isMobileMenuOpen}
-		<div class="md:hidden border-b border-[#27272a] bg-[#11111b]/95 backdrop-blur-xl px-4 py-4 space-y-2 animate-in fade-in duration-150">
+		<div
+			class="md:hidden border-b border-[#27272a] bg-[#11111b]/95 backdrop-blur-xl px-4 py-4 space-y-2 animate-in fade-in duration-150"
+		>
 			{#each navItems as item}
 				<a
 					href={item.href}

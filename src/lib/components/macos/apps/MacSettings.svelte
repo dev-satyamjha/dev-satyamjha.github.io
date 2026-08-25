@@ -10,10 +10,18 @@
 	}
 </script>
 
-<div class="w-full h-full p-6 font-sans text-xs text-white bg-[#181825]/90 overflow-y-auto space-y-6 select-none">
+<div
+	class="w-full h-full p-6 font-sans text-xs text-white bg-[#181825]/90 overflow-y-auto space-y-6 select-none"
+>
 	<div class="flex items-center gap-4 border-b border-white/10 pb-4">
 		<div class="w-14 h-14 rounded-full overflow-hidden border-2 border-blue-500 shrink-0">
-			<img src={PORTFOLIO_DATA.profile.avatar} alt={PORTFOLIO_DATA.profile.name} class="w-full h-full object-cover" />
+			<img
+				src={PORTFOLIO_DATA.profile.avatar}
+				alt={PORTFOLIO_DATA.profile.name}
+				width="56"
+				height="56"
+				class="w-full h-full object-cover"
+			/>
 		</div>
 		<div>
 			<h3 class="text-base font-bold text-white">{PORTFOLIO_DATA.profile.name}</h3>
@@ -94,7 +102,9 @@
 		<div class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/10">
 			<div>
 				<div class="font-medium text-white text-xs">Display Language</div>
-				<div class="text-[10px] text-white/50">{localeStore.current === 'en' ? 'English (US)' : 'हिन्दी (Hindi)'}</div>
+				<div class="text-[10px] text-white/50">
+					{localeStore.current === 'en' ? 'English (US)' : 'हिन्दी (Hindi)'}
+				</div>
 			</div>
 			<button
 				type="button"
