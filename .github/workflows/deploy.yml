@@ -35,9 +35,13 @@ jobs:
 
       - name: Type check
         run: bun run check
+        env:
+          PUBLIC_WEB3FORMS_KEY: ${{ secrets.PUBLIC_WEB3FORMS_KEY }}
 
       - name: Build static site
         run: bun run build
+        env:
+          PUBLIC_WEB3FORMS_KEY: ${{ secrets.PUBLIC_WEB3FORMS_KEY }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

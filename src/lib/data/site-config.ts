@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
 	siteUrl: 'https://satyamjha.is-a.dev',
 	defaultTheme: 'portal' as const,
 	defaultLocale: 'en' as const,
-	email: 'satyamjha.me@gmail.com',
+	email: 'realsatyam02@gmail.com',
 	location: 'Jamshedpur, India',
 	repository: 'https://github.com/dev-satyamjha/Portfolio',
 	web3FormsAccessKey: PUBLIC_WEB3FORMS_KEY ?? ''
