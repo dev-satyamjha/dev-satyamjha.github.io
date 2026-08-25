@@ -32,9 +32,7 @@
 		}
 	];
 
-	let selectedProcess = $derived(
-		processes.find((p) => p.pid === selectedPid) ?? processes[0]
-	);
+	let selectedProcess = $derived(processes.find((p) => p.pid === selectedPid) ?? processes[0]);
 
 	let filteredProcesses = $derived(
 		processes.filter(
@@ -52,7 +50,9 @@
 	}
 </script>
 
-<div class="w-full h-full flex flex-col font-sans text-xs text-white bg-[#181825]/90 select-none overflow-hidden">
+<div
+	class="w-full h-full flex flex-col font-sans text-xs text-white bg-[#181825]/90 select-none overflow-hidden"
+>
 	<div class="h-10 border-b border-white/10 px-4 flex items-center justify-between bg-white/5">
 		<div class="flex items-center gap-2">
 			<span class="nf text-sm text-emerald-400">{'\uf080'}</span>
@@ -84,7 +84,9 @@
 					<tr
 						onclick={() => selectProcess(proc.pid)}
 						class={`cursor-pointer border-t border-white/5 transition-colors ${
-							selectedPid === proc.pid ? 'bg-blue-600 text-white font-medium' : 'hover:bg-white/5 text-white/90'
+							selectedPid === proc.pid
+								? 'bg-blue-600 text-white font-medium'
+								: 'hover:bg-white/5 text-white/90'
 						}`}
 					>
 						<td class="p-2.5 font-medium">{proc.name}</td>
@@ -95,7 +97,9 @@
 						<td class="p-2.5">
 							<span
 								class={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
-									proc.status === 'Running' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-white/10 text-white/70'
+									proc.status === 'Running'
+										? 'bg-emerald-500/20 text-emerald-300'
+										: 'bg-white/10 text-white/70'
 								}`}
 							>
 								{proc.status}
@@ -110,7 +114,8 @@
 			<div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2 select-text text-xs">
 				<div class="flex items-center justify-between border-b border-white/10 pb-2">
 					<div class="font-bold text-white text-sm">
-						{selectedProcess.name} <span class="text-blue-400 font-normal">@ {selectedProcess.company}</span>
+						{selectedProcess.name}
+						<span class="text-blue-400 font-normal">@ {selectedProcess.company}</span>
 					</div>
 					<span class="text-xs text-white/60">{selectedProcess.duration}</span>
 				</div>
@@ -123,7 +128,9 @@
 
 				<div class="pt-2 flex flex-wrap gap-1.5">
 					{#each selectedProcess.technologies as tech}
-						<span class="px-2 py-0.5 rounded-md bg-white/10 text-emerald-300 text-[10px]">{tech}</span>
+						<span class="px-2 py-0.5 rounded-md bg-white/10 text-emerald-300 text-[10px]"
+							>{tech}</span
+						>
 					{/each}
 				</div>
 			</div>

@@ -12,7 +12,8 @@
 	onMount(() => {
 		function updateTime() {
 			const now = new Date();
-			clockString = now.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' }) +
+			clockString =
+				now.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' }) +
 				' ' +
 				now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true });
 		}
@@ -40,7 +41,9 @@
 	);
 </script>
 
-<header class="w-full h-7 bg-black/40 backdrop-blur-2xl border-b border-white/10 px-3 flex items-center justify-between text-xs text-white/90 font-sans select-none z-40">
+<header
+	class="w-full h-7 bg-black/40 backdrop-blur-2xl border-b border-white/10 px-3 flex items-center justify-between text-xs text-white/90 font-sans select-none z-40"
+>
 	<div class="flex items-center gap-4">
 		<div class="relative">
 			<button
@@ -128,7 +131,8 @@
 			<button type="button" class="hover:text-white transition-colors cursor-pointer">File</button>
 			<button type="button" class="hover:text-white transition-colors cursor-pointer">Edit</button>
 			<button type="button" class="hover:text-white transition-colors cursor-pointer">View</button>
-			<button type="button" class="hover:text-white transition-colors cursor-pointer">Window</button>
+			<button type="button" class="hover:text-white transition-colors cursor-pointer">Window</button
+			>
 			<button type="button" class="hover:text-white transition-colors cursor-pointer">Help</button>
 		</nav>
 	</div>

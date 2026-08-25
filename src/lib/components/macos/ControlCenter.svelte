@@ -36,7 +36,9 @@
 		class="fixed top-9 right-3 z-50 w-80 rounded-3xl bg-[#1e1e2e]/90 backdrop-blur-3xl border border-white/20 shadow-2xl p-3 font-sans text-xs text-white space-y-3 animate-in fade-in zoom-in-95 duration-100 select-none"
 	>
 		<div class="grid grid-cols-2 gap-2">
-			<div class="p-2.5 rounded-2xl bg-white/10 border border-white/10 space-y-2 flex flex-col justify-between">
+			<div
+				class="p-2.5 rounded-2xl bg-white/10 border border-white/10 space-y-2 flex flex-col justify-between"
+			>
 				<button
 					type="button"
 					onclick={toggleWifi}
@@ -51,7 +53,9 @@
 					</span>
 					<div class="truncate">
 						<div class="font-medium text-[11px]">Wi-Fi</div>
-						<div class="text-[10px] text-white/60 truncate">{isWifiActive ? 'BIT-Campus-5G' : 'Off'}</div>
+						<div class="text-[10px] text-white/60 truncate">
+							{isWifiActive ? 'BIT-Campus-5G' : 'Off'}
+						</div>
 					</div>
 				</button>
 
@@ -69,7 +73,9 @@
 					</span>
 					<div class="truncate">
 						<div class="font-medium text-[11px]">Bluetooth</div>
-						<div class="text-[10px] text-white/60 truncate">{isBluetoothActive ? 'AirPods Pro' : 'Off'}</div>
+						<div class="text-[10px] text-white/60 truncate">
+							{isBluetoothActive ? 'AirPods Pro' : 'Off'}
+						</div>
 					</div>
 				</button>
 			</div>
@@ -85,7 +91,9 @@
 					}`}
 				>
 					<span class="nf text-sm">{audioManager.isMuted ? '\uf026' : '\uf028'}</span>
-					<span class="text-[11px] font-medium">{audioManager.isMuted ? 'Muted' : 'Synthesizer'}</span>
+					<span class="text-[11px] font-medium"
+						>{audioManager.isMuted ? 'Muted' : 'Synthesizer'}</span
+					>
 				</button>
 
 				<button
@@ -128,7 +136,9 @@
 		</div>
 
 		<div class="p-3 rounded-2xl bg-white/10 border border-white/10 flex items-center gap-3">
-			<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shrink-0 shadow">
+			<div
+				class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shrink-0 shadow"
+			>
 				<span class="nf text-lg text-white">{'\uf001'}</span>
 			</div>
 			<div class="truncate space-y-0.5 flex-1">

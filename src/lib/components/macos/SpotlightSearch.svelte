@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { onMount, tick } from 'svelte';
-	import { macos, type MacAppId } from '$lib/themes/macos/MacOSConfig.svelte';
+	import { tick } from 'svelte';
+	import { macos } from '$lib/themes/macos/MacOSConfig.svelte';
 	import { PORTFOLIO_DATA } from '$lib/data/portfolio';
 	import { getAllPosts } from '$lib/utils/blog';
 	import { audioManager } from '$lib/stores/audio.svelte';
@@ -191,7 +191,8 @@
 		} else if (e.key === 'ArrowUp') {
 			e.preventDefault();
 			audioManager.play('click');
-			selectedIndex = (selectedIndex - 1 + filteredResults.length) % Math.max(1, filteredResults.length);
+			selectedIndex =
+				(selectedIndex - 1 + filteredResults.length) % Math.max(1, filteredResults.length);
 		} else if (e.key === 'Enter') {
 			e.preventDefault();
 			if (filteredResults[selectedIndex]) {
@@ -266,7 +267,9 @@
 								</span>
 								<div class="truncate space-y-0.5">
 									<div class="text-xs sm:text-sm truncate">{item.title}</div>
-									<div class={`text-[11px] truncate font-normal ${selectedIndex === index ? 'text-white/80' : 'text-white/50'}`}>
+									<div
+										class={`text-[11px] truncate font-normal ${selectedIndex === index ? 'text-white/80' : 'text-white/50'}`}
+									>
 										{item.subtitle}
 									</div>
 								</div>
@@ -274,9 +277,7 @@
 
 							<span
 								class={`text-[10px] px-2 py-0.5 rounded uppercase tracking-wider shrink-0 ${
-									selectedIndex === index
-										? 'bg-white/20 text-white'
-										: 'bg-white/5 text-white/50'
+									selectedIndex === index ? 'bg-white/20 text-white' : 'bg-white/5 text-white/50'
 								}`}
 							>
 								{item.category}
@@ -286,9 +287,14 @@
 				{/if}
 			</div>
 
-			<div class="pt-2 border-t border-white/10 px-2 flex items-center justify-between text-[11px] text-white/50">
+			<div
+				class="pt-2 border-t border-white/10 px-2 flex items-center justify-between text-[11px] text-white/50"
+			>
 				<span>Spotlight Search</span>
-				<span>Press <kbd class="px-1.5 py-0.5 bg-white/10 text-white rounded text-[10px]">Return</kbd> to open</span>
+				<span
+					>Press <kbd class="px-1.5 py-0.5 bg-white/10 text-white rounded text-[10px]">Return</kbd> to
+					open</span
+				>
 			</div>
 		</div>
 	</div>

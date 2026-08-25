@@ -7,6 +7,7 @@ export const THEME_REGISTRY: Record<ThemeKey, ThemeConfig> = {
 		titleKey: 'chooseDimension',
 		descKey: 'chooseDimension',
 		icon: 'nf-fa-compass',
+		glyph: '\uf14e',
 		route: '/',
 		accentColor: '#89b4fa',
 		previewClass: 'theme-portal'
@@ -17,6 +18,7 @@ export const THEME_REGISTRY: Record<ThemeKey, ThemeConfig> = {
 		titleKey: 'cleanTitle',
 		descKey: 'cleanDesc',
 		icon: 'nf-fa-laptop',
+		glyph: '\uf108',
 		route: '/clean',
 		accentColor: '#3b82f6',
 		previewClass: 'theme-clean'
@@ -27,6 +29,7 @@ export const THEME_REGISTRY: Record<ThemeKey, ThemeConfig> = {
 		titleKey: 'linuxTitle',
 		descKey: 'linuxDesc',
 		icon: 'nf-linux-archlinux',
+		glyph: '\uf303',
 		route: '/linux',
 		accentColor: '#cba6f7',
 		previewClass: 'theme-linux'
@@ -37,6 +40,7 @@ export const THEME_REGISTRY: Record<ThemeKey, ThemeConfig> = {
 		titleKey: 'gamingTitle',
 		descKey: 'gamingDesc',
 		icon: 'nf-fa-gamepad',
+		glyph: '\uf11b',
 		route: '/gaming',
 		accentColor: '#f38ba8',
 		previewClass: 'theme-gaming'
@@ -47,6 +51,7 @@ export const THEME_REGISTRY: Record<ThemeKey, ThemeConfig> = {
 		titleKey: 'spaceTitle',
 		descKey: 'spaceDesc',
 		icon: 'nf-fa-rocket',
+		glyph: '\uf135',
 		route: '/space',
 		accentColor: '#22d3ee',
 		previewClass: 'theme-space'
@@ -57,6 +62,7 @@ export const THEME_REGISTRY: Record<ThemeKey, ThemeConfig> = {
 		titleKey: 'macosTitle',
 		descKey: 'macosDesc',
 		icon: 'nf-fa-apple',
+		glyph: '\uf179',
 		route: '/macos',
 		accentColor: '#f9e2af',
 		previewClass: 'theme-macos'

@@ -1,1 +1,13 @@
-export {};
+export * from './types/portfolio';
+export * from './types/theme';
+export * from './types/window';
+export * from './types/blog';
+export * from './types/i18n';
+export * from './types/game';
+export { PORTFOLIO_DATA } from './data/portfolio';
+export { SITE_CONFIG } from './data/site-config';
+export { SOCIAL_LINKS, SOCIAL_GLYPHS } from './data/social-links';
+export { themeStore, THEME_REGISTRY } from './stores/theme.svelte';
+export { localeStore } from './stores/locale.svelte';
+export { audioManager } from './stores/audio.svelte';
+export { notifications } from './stores/notifications.svelte';

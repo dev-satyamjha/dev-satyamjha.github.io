@@ -1,89 +1,18 @@
 <script lang="ts">
+	import { onDestroy } from 'svelte';
 	import { PORTFOLIO_DATA } from '$lib/data/portfolio';
 	import { SITE_CONFIG } from '$lib/data/site-config';
+	import { SOCIAL_GLYPHS } from '$lib/data/social-links';
 	import { localeStore } from '$lib/stores/locale.svelte';
 	import { audioManager } from '$lib/stores/audio.svelte';
+	import { ContactFormManager } from '$lib/utils/contact-form.svelte';
 
-	let name = $state('');
-	let email = $state('');
-	let subject = $state('');
-	let message = $state('');
-	let botcheck = $state('');
-
-	let isSubmitting = $state(false);
-	let isSubmitted = $state(false);
-	let errorMessage = $state('');
-	let cooldown = $state(0);
+	const form = new ContactFormManager('Portfolio Contact Inquiry');
 	let copiedEmail = $state(false);
 
-	const SOCIAL_GLYPHS: Record<string, string> = {
-		GitHub: '\uf09b',
-		LinkedIn: '\uf08c',
-		LeetCode: '\uf121',
-		Instagram: '\uf16d',
-		Keybase: '\uf084'
-	};
-
-	async function handleSubmit(event: SubmitEvent) {
-		event.preventDefault();
-		if (botcheck) return;
-
-		if (!name.trim() || !email.trim() || !message.trim()) {
-			errorMessage = 'Please complete all required fields.';
-			audioManager.play('error');
-			return;
-		}
-
-		isSubmitting = true;
-		errorMessage = '';
-		audioManager.play('click');
-
-		try {
-			const response = await fetch('https://api.web3forms.com/submit', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					Accept: 'application/json'
-				},
-				body: JSON.stringify({
-					access_key: SITE_CONFIG.web3FormsAccessKey,
-					name,
-					email,
-					subject: subject || 'Portfolio Contact Inquiry',
-					message,
-					from_name: 'Portfolio Contact Form'
-				})
-			});
-
-			const data = await response.json();
-
-			if (response.ok || data.success) {
-				isSubmitted = true;
-				audioManager.play('notification');
-				name = '';
-				email = '';
-				subject = '';
-				message = '';
-				cooldown = 30;
-
-				const timer = setInterval(() => {
-					cooldown -= 1;
-					if (cooldown <= 0) {
-						clearInterval(timer);
-						isSubmitted = false;
-					}
-				}, 1000);
-			} else {
-				errorMessage = data.message || localeStore.dict.contact.errorMessage;
-				audioManager.play('error');
-			}
-		} catch {
-			errorMessage = localeStore.dict.contact.errorMessage;
-			audioManager.play('error');
-		} finally {
-			isSubmitting = false;
-		}
-	}
+	onDestroy(() => {
+		form.destroy();
+	});
 
 	function copyEmail() {
 		audioManager.play('click');
@@ -111,7 +40,9 @@
 			<div class="lg:col-span-5 space-y-6">
 				<div class="space-y-3">
 					<h3 class="text-xl font-bold text-white tracking-tight">
-						{localeStore.current === 'en' ? "Let's build something together" : 'आइए साथ मिलकर कुछ नया बनाएं'}
+						{localeStore.current === 'en'
+							? "Let's build something together"
+							: 'आइए साथ मिलकर कुछ नया बनाएं'}
 					</h3>
 					<p class="text-sm text-[#a6adc8] leading-relaxed font-sans">
 						{localeStore.current === 'en'
@@ -121,14 +52,20 @@
 				</div>
 
 				<div class="space-y-3 pt-2">
-					<div class="p-4 rounded-2xl bg-[#181825] border border-[#313244] flex items-center justify-between">
+					<div
+						class="p-4 rounded-2xl bg-[#181825] border border-[#313244] flex items-center justify-between"
+					>
 						<div class="flex items-center gap-3">
-							<div class="w-9 h-9 rounded-xl bg-[#11111b] border border-[#313244] flex items-center justify-center text-[#89b4fa]">
+							<div
+								class="w-9 h-9 rounded-xl bg-[#11111b] border border-[#313244] flex items-center justify-center text-[#89b4fa]"
+							>
 								<span class="nf text-sm">{'\uf0e0'}</span>
 							</div>
 							<div>
 								<div class="text-[10px] font-mono text-[#a6adc8]">Email</div>
-								<div class="text-xs font-mono font-medium text-white select-all">{SITE_CONFIG.email}</div>
+								<div class="text-xs font-mono font-medium text-white select-all">
+									{SITE_CONFIG.email}
+								</div>
 							</div>
 						</div>
 
@@ -143,7 +80,9 @@
 					</div>
 
 					<div class="p-4 rounded-2xl bg-[#181825] border border-[#313244] flex items-center gap-3">
-						<div class="w-9 h-9 rounded-xl bg-[#11111b] border border-[#313244] flex items-center justify-center text-[#a6e3a1]">
+						<div
+							class="w-9 h-9 rounded-xl bg-[#11111b] border border-[#313244] flex items-center justify-center text-[#a6e3a1]"
+						>
 							<span class="nf text-sm">{'\uf041'}</span>
 						</div>
 						<div>
@@ -174,29 +113,40 @@
 
 			<div class="lg:col-span-7">
 				<form
-					onsubmit={handleSubmit}
+					onsubmit={(e) => form.submit(e)}
 					class="rounded-3xl border border-[#27272a] bg-[#181825]/90 p-6 sm:p-8 space-y-4"
 				>
-					<input type="text" name="botcheck" bind:value={botcheck} class="hidden" tabindex="-1" autocomplete="off" />
+					<input
+						type="text"
+						name="botcheck"
+						bind:value={form.botcheck}
+						class="hidden"
+						tabindex="-1"
+						autocomplete="off"
+					/>
 
-					{#if isSubmitted}
-						<div class="p-4 rounded-2xl bg-[#a6e3a1]/10 border border-[#a6e3a1]/30 text-[#a6e3a1] text-xs font-mono space-y-1 animate-in fade-in duration-200">
+					{#if form.isSent}
+						<div
+							class="p-4 rounded-2xl bg-[#a6e3a1]/10 border border-[#a6e3a1]/30 text-[#a6e3a1] text-xs font-mono space-y-1 animate-in fade-in duration-200"
+						>
 							<div class="font-bold flex items-center gap-1.5">
 								<span class="nf">{'\uf00c'}</span>
 								<span>{localeStore.dict.contact.successMessage}</span>
 							</div>
-							{#if cooldown > 0}
+							{#if form.cooldown > 0}
 								<div class="text-[11px] text-[#a6e3a1]/80">
-									Form cooldown active: {cooldown}s
+									Form cooldown active: {form.cooldown}s
 								</div>
 							{/if}
 						</div>
 					{/if}
 
-					{#if errorMessage}
-						<div class="p-4 rounded-2xl bg-[#f38ba8]/10 border border-[#f38ba8]/30 text-[#f38ba8] text-xs font-mono flex items-center gap-1.5 animate-in fade-in duration-200">
+					{#if form.errorText}
+						<div
+							class="p-4 rounded-2xl bg-[#f38ba8]/10 border border-[#f38ba8]/30 text-[#f38ba8] text-xs font-mono flex items-center gap-1.5 animate-in fade-in duration-200"
+						>
 							<span class="nf">{'\uf06a'}</span>
-							<span>{errorMessage}</span>
+							<span>{form.errorText}</span>
 						</div>
 					{/if}
 
@@ -209,7 +159,7 @@
 								id="name"
 								type="text"
 								required
-								bind:value={name}
+								bind:value={form.name}
 								placeholder="Ada Lovelace"
 								class="w-full px-4 py-2.5 rounded-xl bg-[#11111b] border border-[#313244] text-xs font-mono text-white placeholder-[#45475a] focus:outline-none focus:border-[#89b4fa] focus:ring-1 focus:ring-[#89b4fa] transition-colors"
 							/>
@@ -223,7 +173,7 @@
 								id="email"
 								type="email"
 								required
-								bind:value={email}
+								bind:value={form.email}
 								placeholder="ada@lovelace.dev"
 								class="w-full px-4 py-2.5 rounded-xl bg-[#11111b] border border-[#313244] text-xs font-mono text-white placeholder-[#45475a] focus:outline-none focus:border-[#89b4fa] focus:ring-1 focus:ring-[#89b4fa] transition-colors"
 							/>
@@ -237,7 +187,7 @@
 						<input
 							id="subject"
 							type="text"
-							bind:value={subject}
+							bind:value={form.subject}
 							placeholder="Full Stack Engineering Inquiry"
 							class="w-full px-4 py-2.5 rounded-xl bg-[#11111b] border border-[#313244] text-xs font-mono text-white placeholder-[#45475a] focus:outline-none focus:border-[#89b4fa] focus:ring-1 focus:ring-[#89b4fa] transition-colors"
 						/>
@@ -251,7 +201,7 @@
 							id="message"
 							required
 							rows="5"
-							bind:value={message}
+							bind:value={form.message}
 							placeholder="Hello Satyam, I would like to discuss..."
 							class="w-full px-4 py-2.5 rounded-xl bg-[#11111b] border border-[#313244] text-xs font-mono text-white placeholder-[#45475a] focus:outline-none focus:border-[#89b4fa] focus:ring-1 focus:ring-[#89b4fa] transition-colors resize-y"
 						></textarea>
@@ -259,10 +209,14 @@
 
 					<button
 						type="submit"
-						disabled={isSubmitting || cooldown > 0}
+						disabled={form.isSending || form.cooldown > 0}
 						class="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#89b4fa] hover:bg-[#b4befe] text-[#11111b] font-mono text-xs font-bold transition-all shadow-lg hover:shadow-[#89b4fa]/20 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
 					>
-						<span>{isSubmitting ? localeStore.dict.contact.sending : localeStore.dict.contact.sendButton}</span>
+						<span
+							>{form.isSending
+								? localeStore.dict.contact.sending
+								: localeStore.dict.contact.sendButton}</span
+						>
 						<span class="nf text-xs">{'\uf1d8'}</span>
 					</button>
 				</form>

@@ -1,15 +1,9 @@
-import { audioManager } from '$lib/stores/audio.svelte';
 import type { Position, Size } from '$lib/types/window';
+import { audioManager } from '$lib/stores/audio.svelte';
+import { BaseWindowManager } from '$lib/utils/WindowManager.svelte';
 
 export type MacAppId =
-	| 'finder'
-	| 'terminal'
-	| 'projects'
-	| 'experience'
-	| 'skills'
-	| 'mail'
-	| 'notes'
-	| 'settings';
+	'finder' | 'terminal' | 'projects' | 'experience' | 'skills' | 'mail' | 'notes' | 'settings';
 
 export interface MacWindowState {
 	id: MacAppId;
@@ -114,59 +108,45 @@ export const INITIAL_MAC_APPS: Record<MacAppId, MacWindowState> = {
 	}
 };
 
-class MacOSManager {
-	activeAppId = $state<MacAppId>('finder');
+class MacOSManager extends BaseWindowManager<MacAppId, MacWindowState> {
 	isSpotlightOpen = $state(false);
 	isControlCenterOpen = $state(false);
 	isAppleMenuOpen = $state(false);
-	highestZIndex = $state(20);
-	apps = $state<Record<MacAppId, MacWindowState>>({ ...INITIAL_MAC_APPS });
+
+	constructor() {
+		super(INITIAL_MAC_APPS, 'finder');
+	}
+
+	get activeAppId(): MacAppId {
+		return this.activeId ?? 'finder';
+	}
+
+	set activeAppId(value: MacAppId) {
+		this.activeId = value;
+	}
+
+	get apps(): Record<MacAppId, MacWindowState> {
+		return this.windows;
+	}
 
 	openApp(id: MacAppId) {
-		audioManager.play('click');
-		this.highestZIndex += 1;
-		this.apps[id].isOpen = true;
-		this.apps[id].isMinimized = false;
-		this.apps[id].zIndex = this.highestZIndex;
-		this.activeAppId = id;
+		this.open(id);
 	}
 
 	closeApp(id: MacAppId) {
-		audioManager.play('click');
-		this.apps[id].isOpen = false;
-		if (this.activeAppId === id) {
-			const remaining = (Object.keys(this.apps) as MacAppId[]).filter(
-				(k) => this.apps[k].isOpen && !this.apps[k].isMinimized && k !== id
-			);
-			this.activeAppId = remaining.length > 0 ? remaining[remaining.length - 1] : 'finder';
-		}
+		this.close(id, 'finder');
 	}
 
 	focusApp(id: MacAppId) {
-		if (this.activeAppId === id && this.apps[id].zIndex === this.highestZIndex) return;
-		this.highestZIndex += 1;
-		this.apps[id].zIndex = this.highestZIndex;
-		this.apps[id].isMinimized = false;
-		this.activeAppId = id;
+		this.focus(id);
 	}
 
 	toggleMinimizeApp(id: MacAppId) {
-		audioManager.play('click');
-		this.apps[id].isMinimized = !this.apps[id].isMinimized;
-		if (this.apps[id].isMinimized && this.activeAppId === id) {
-			const remaining = (Object.keys(this.apps) as MacAppId[]).filter(
-				(k) => this.apps[k].isOpen && !this.apps[k].isMinimized && k !== id
-			);
-			this.activeAppId = remaining.length > 0 ? remaining[remaining.length - 1] : 'finder';
-		} else if (!this.apps[id].isMinimized) {
-			this.focusApp(id);
-		}
+		this.toggleMinimize(id, 'finder');
 	}
 
 	toggleMaximizeApp(id: MacAppId) {
-		audioManager.play('click');
-		this.apps[id].isMaximized = !this.apps[id].isMaximized;
-		this.focusApp(id);
+		this.toggleMaximize(id);
 	}
 
 	toggleSpotlight() {
@@ -197,11 +177,11 @@ class MacOSManager {
 	}
 
 	updateAppPosition(id: MacAppId, pos: Position) {
-		this.apps[id].position = pos;
+		this.updatePosition(id, pos);
 	}
 
 	updateAppSize(id: MacAppId, size: Size) {
-		this.apps[id].size = size;
+		this.updateSize(id, size);
 	}
 }
 

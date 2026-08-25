@@ -25,7 +25,15 @@
 				style={`border-color: ${activeTheme.accentColor}80; background: ${activeTheme.accentColor}15;`}
 			>
 				<span class="nf text-3xl" style={`color: ${activeTheme.accentColor};`}>
-					{activeTheme.key === 'linux' ? '\uf303' : activeTheme.key === 'gaming' ? '\uf11b' : activeTheme.key === 'space' ? '\uf135' : activeTheme.key === 'macos' ? '\uf179' : '\uf108'}
+					{activeTheme.key === 'linux'
+						? '\uf303'
+						: activeTheme.key === 'gaming'
+							? '\uf11b'
+							: activeTheme.key === 'space'
+								? '\uf135'
+								: activeTheme.key === 'macos'
+									? '\uf179'
+									: '\uf108'}
 				</span>
 			</div>
 		</div>

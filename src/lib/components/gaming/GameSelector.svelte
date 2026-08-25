@@ -71,10 +71,16 @@
 	}
 </script>
 
-<div class="w-full h-full p-4 sm:p-8 flex flex-col justify-between select-none font-mono text-xs text-white space-y-6">
+<div
+	class="w-full h-full p-4 sm:p-8 flex flex-col justify-between select-none font-mono text-xs text-white space-y-6"
+>
 	<div class="text-center space-y-1">
-		<div class="text-[10px] text-rose-400 tracking-widest uppercase font-bold">SELECT CARTRIDGE</div>
-		<h2 class="text-xl sm:text-2xl font-bold text-white tracking-wider drop-shadow">CHOOSE YOUR CHALLENGE</h2>
+		<div class="text-[10px] text-rose-400 tracking-widest uppercase font-bold">
+			SELECT CARTRIDGE
+		</div>
+		<h2 class="text-xl sm:text-2xl font-bold text-white tracking-wider drop-shadow">
+			CHOOSE YOUR CHALLENGE
+		</h2>
 	</div>
 
 	<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 max-w-3xl mx-auto w-full">
@@ -93,7 +99,9 @@
 						<span class="nf text-xl text-rose-400">{game.icon}</span>
 						<span class="font-bold text-sm text-white tracking-wide">{game.title}</span>
 					</div>
-					<span class="px-2 py-0.5 rounded text-[9px] font-bold tracking-widest uppercase border border-white/20 bg-black/40">
+					<span
+						class="px-2 py-0.5 rounded text-[9px] font-bold tracking-widest uppercase border border-white/20 bg-black/40"
+					>
 						{game.badge}
 					</span>
 				</div>

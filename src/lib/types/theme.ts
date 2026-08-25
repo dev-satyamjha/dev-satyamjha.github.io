@@ -6,6 +6,7 @@ export interface ThemeConfig {
 	titleKey: string;
 	descKey: string;
 	icon: string;
+	glyph: string;
 	route: string;
 	accentColor: string;
 	previewClass: string;

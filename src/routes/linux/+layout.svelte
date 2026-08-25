@@ -18,7 +18,9 @@
 	});
 </script>
 
-<div class="fixed inset-0 bg-[#1e1e2e] text-[#cdd6f4] font-mono overflow-hidden flex flex-col select-none selection:bg-[#cba6f7] selection:text-[#11111b]">
+<div
+	class="fixed inset-0 bg-[#1e1e2e] text-[#cdd6f4] font-mono overflow-hidden flex flex-col select-none selection:bg-[#cba6f7] selection:text-[#11111b]"
+>
 	<Waybar />
 
 	<div class="relative flex-1 w-full h-full overflow-hidden bg-radial from-[#1e1e2e] to-[#11111b]">

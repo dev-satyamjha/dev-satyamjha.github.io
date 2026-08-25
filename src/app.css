@@ -1,8 +1,8 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @font-face {
 	font-family: 'SymbolsNerdFont';
-	src: url('/fonts/SymbolsNerdFont-Regular.ttf') format('truetype');
+	src: url('/fonts/SymbolsNerdFont-Regular.woff2') format('woff2');
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
@@ -10,7 +10,7 @@
 
 @font-face {
 	font-family: 'SymbolsNerdFontMono';
-	src: url('/fonts/SymbolsNerdFontMono-Regular.ttf') format('truetype');
+	src: url('/fonts/SymbolsNerdFontMono-Regular.woff2') format('woff2');
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;

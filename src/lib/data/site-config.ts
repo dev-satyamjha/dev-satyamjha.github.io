@@ -1,3 +1,5 @@
+import { PUBLIC_WEB3FORMS_KEY } from '$env/static/public';
+
 export const SITE_CONFIG = {
 	name: 'Satyam Kumar',
 	handle: 'dev-satyamjha',
@@ -6,8 +8,7 @@ export const SITE_CONFIG = {
 	defaultTheme: 'portal' as const,
 	defaultLocale: 'en' as const,
 	email: 'satyamjha.me@gmail.com',
-	phone: '+91 9973659477',
 	location: 'Jamshedpur, India',
 	repository: 'https://github.com/dev-satyamjha/Portfolio',
-	web3FormsAccessKey: 'YOUR_ACCESS_KEY'
+	web3FormsAccessKey: PUBLIC_WEB3FORMS_KEY ?? ''
 };

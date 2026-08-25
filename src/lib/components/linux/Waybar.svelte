@@ -12,7 +12,12 @@
 	onMount(() => {
 		function updateClock() {
 			const now = new Date();
-			timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+			timeString = now.toLocaleTimeString([], {
+				hour: '2-digit',
+				minute: '2-digit',
+				second: '2-digit',
+				hour12: false
+			});
 			dateString = now.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
 		}
 		updateClock();
@@ -25,7 +30,9 @@
 	);
 </script>
 
-<header class="w-full h-10 bg-[#11111b]/95 backdrop-blur-md border-b border-[#313244] px-3 flex items-center justify-between font-mono text-xs text-[#cdd6f4] select-none z-30">
+<header
+	class="w-full h-10 bg-[#11111b]/95 backdrop-blur-md border-b border-[#313244] px-3 flex items-center justify-between font-mono text-xs text-[#cdd6f4] select-none z-30"
+>
 	<div class="flex items-center gap-2">
 		<button
 			type="button"
@@ -55,14 +62,18 @@
 		</div>
 
 		{#if activeWindow}
-			<div class="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#181825] border border-[#313244] text-[11px] text-[#a6adc8]">
+			<div
+				class="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#181825] border border-[#313244] text-[11px] text-[#a6adc8]"
+			>
 				<span class="nf text-xs text-[#cba6f7]">{activeWindow.icon}</span>
 				<span class="max-w-[200px] truncate text-white">{activeWindow.title}</span>
 			</div>
 		{/if}
 	</div>
 
-	<div class="hidden md:flex items-center gap-2 px-3 py-1 rounded-lg bg-[#181825] border border-[#313244] text-xs text-[#cdd6f4]">
+	<div
+		class="hidden md:flex items-center gap-2 px-3 py-1 rounded-lg bg-[#181825] border border-[#313244] text-xs text-[#cdd6f4]"
+	>
 		<span class="nf text-xs text-[#89b4fa]">{'\uf017'}</span>
 		<span class="font-bold text-white">{timeString}</span>
 		<span class="text-[#a6adc8]">&bull;</span>

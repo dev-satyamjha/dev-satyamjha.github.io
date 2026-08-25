@@ -1,8 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import { macos, type MacWindowState, type MacAppId } from '$lib/themes/macos/MacOSConfig.svelte';
+	import { macos, type MacWindowState } from '$lib/themes/macos/MacOSConfig.svelte';
 	import type { Position, Size } from '$lib/types/window';
-	import { audioManager } from '$lib/stores/audio.svelte';
 
 	interface Props {
 		appState: MacWindowState;
@@ -126,19 +125,15 @@
 		aria-label={appState.title}
 		onpointerdown={() => macos.focusApp(appState.id)}
 		class={`flex flex-col rounded-2xl overflow-hidden border shadow-2xl transition-all duration-150 font-sans ${
-			appState.isMaximized
-				? 'fixed inset-x-2 top-8 bottom-20 rounded-2xl z-40'
-				: 'absolute'
+			appState.isMaximized ? 'fixed inset-x-2 top-8 bottom-20 rounded-2xl z-40' : 'absolute'
 		} ${
 			isFocused
 				? 'border-white/30 shadow-2xl shadow-black/60 bg-[#1e1e2e]/95 backdrop-blur-3xl'
 				: 'border-white/10 opacity-95 shadow-lg bg-[#181825]/90 backdrop-blur-xl'
 		}`}
-		style={
-			!appState.isMaximized
-				? `left: ${appState.position.x}px; top: ${appState.position.y}px; width: ${appState.size.width}px; height: ${appState.size.height}px; z-index: ${appState.zIndex};`
-				: `z-index: ${appState.zIndex};`
-		}
+		style={!appState.isMaximized
+			? `left: ${appState.position.x}px; top: ${appState.position.y}px; width: ${appState.size.width}px; height: ${appState.size.height}px; z-index: ${appState.zIndex};`
+			: `z-index: ${appState.zIndex};`}
 	>
 		<header
 			role="presentation"
@@ -155,7 +150,9 @@
 					aria-label="Close window"
 					class="group w-3 h-3 rounded-full bg-[#ff5f56] hover:bg-[#ff5f56]/80 flex items-center justify-center cursor-pointer border border-[#e0443e]"
 				>
-					<span class="nf text-[8px] text-black/70 opacity-0 group-hover:opacity-100 transition-opacity leading-none">
+					<span
+						class="nf text-[8px] text-black/70 opacity-0 group-hover:opacity-100 transition-opacity leading-none"
+					>
 						{'\uf00d'}
 					</span>
 				</button>
@@ -166,7 +163,9 @@
 					aria-label="Minimize window"
 					class="group w-3 h-3 rounded-full bg-[#ffbd2e] hover:bg-[#ffbd2e]/80 flex items-center justify-center cursor-pointer border border-[#dea123]"
 				>
-					<span class="nf text-[8px] text-black/70 opacity-0 group-hover:opacity-100 transition-opacity leading-none">
+					<span
+						class="nf text-[8px] text-black/70 opacity-0 group-hover:opacity-100 transition-opacity leading-none"
+					>
 						{'\uf068'}
 					</span>
 				</button>
@@ -177,7 +176,9 @@
 					aria-label="Maximize window"
 					class="group w-3 h-3 rounded-full bg-[#27c93f] hover:bg-[#27c93f]/80 flex items-center justify-center cursor-pointer border border-[#1aab29]"
 				>
-					<span class="nf text-[8px] text-black/70 opacity-0 group-hover:opacity-100 transition-opacity leading-none">
+					<span
+						class="nf text-[8px] text-black/70 opacity-0 group-hover:opacity-100 transition-opacity leading-none"
+					>
 						{'\uf065'}
 					</span>
 				</button>

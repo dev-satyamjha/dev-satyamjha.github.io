@@ -35,7 +35,12 @@
 		},
 		{
 			text: 'What reactive primitives power state management in this portfolio application?',
-			options: ['Svelte 5 Runes ($state, $derived)', 'Redux Toolkit', 'MobX Observables', 'Vue Pinia'],
+			options: [
+				'Svelte 5 Runes ($state, $derived)',
+				'Redux Toolkit',
+				'MobX Observables',
+				'Vue Pinia'
+			],
 			answer: 0,
 			fact: '100% architected with modern Svelte 5 Runes without virtual DOM overhead.'
 		},
@@ -107,8 +112,12 @@
 	}
 </script>
 
-<div class="w-full h-full p-4 sm:p-8 flex flex-col justify-between select-none font-mono text-xs text-white">
-	<div class="flex items-center justify-between px-3 py-2 bg-zinc-900/80 rounded-xl border border-zinc-800">
+<div
+	class="w-full h-full p-4 sm:p-8 flex flex-col justify-between select-none font-mono text-xs text-white"
+>
+	<div
+		class="flex items-center justify-between px-3 py-2 bg-zinc-900/80 rounded-xl border border-zinc-800"
+	>
 		<div class="flex items-center gap-2">
 			<span class="nf text-amber-400">{'\uf059'}</span>
 			<span class="font-bold text-white uppercase tracking-wider">PORTFOLIO TRIVIA</span>
@@ -128,7 +137,9 @@
 
 	{#if !isFinished}
 		<div class="max-w-2xl mx-auto w-full my-auto space-y-6">
-			<div class="flex items-center justify-between text-[11px] text-zinc-400 border-b border-zinc-800 pb-2">
+			<div
+				class="flex items-center justify-between text-[11px] text-zinc-400 border-b border-zinc-800 pb-2"
+			>
 				<span>QUESTION {currentIndex + 1} OF {QUESTIONS.length}</span>
 				<span class="text-amber-400 font-bold">+{score} PTS</span>
 			</div>
@@ -165,7 +176,9 @@
 			</div>
 
 			{#if isAnswered}
-				<div class="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs font-sans space-y-1">
+				<div
+					class="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs font-sans space-y-1"
+				>
 					<div class="font-bold font-mono text-[10px] uppercase text-amber-400">DID YOU KNOW?</div>
 					<div>{currentQuestion.fact}</div>
 				</div>
@@ -182,7 +195,9 @@
 			{/if}
 		</div>
 	{:else}
-		<div class="max-w-md mx-auto w-full text-center my-auto space-y-4 p-6 rounded-3xl bg-zinc-900 border border-zinc-800">
+		<div
+			class="max-w-md mx-auto w-full text-center my-auto space-y-4 p-6 rounded-3xl bg-zinc-900 border border-zinc-800"
+		>
 			<div class="text-3xl font-bold text-amber-400">QUIZ COMPLETE!</div>
 			<div class="text-xs text-zinc-400">
 				Final Accuracy: <strong class="text-white">{score / 1000} / {QUESTIONS.length}</strong> Correct

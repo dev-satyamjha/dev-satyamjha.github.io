@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { audioManager } from '$lib/stores/audio.svelte';
-	import type { MacAppId } from '$lib/themes/macos/MacOSConfig.svelte';
 
 	interface Props {
-		id: string;
+		id?: string;
 		name: string;
 		icon: string;
 		color: string;
@@ -13,7 +12,7 @@
 		onclick: () => void;
 	}
 
-	let { id, name, icon, color, isOpen, isActive, scale = 1, onclick }: Props = $props();
+	let { id: _id, name, icon, color, isOpen, isActive, scale = 1, onclick }: Props = $props();
 
 	let isHovered = $state(false);
 	let isBouncing = $state(false);

@@ -1,21 +1,28 @@
 <script lang="ts">
 	import { PORTFOLIO_DATA } from '$lib/data/portfolio';
-	import { localeStore } from '$lib/stores/locale.svelte';
 	import { audioManager } from '$lib/stores/audio.svelte';
 </script>
 
-<div class="w-full h-full p-4 sm:p-6 font-mono text-xs text-[#cdd6f4] bg-[#181825] overflow-y-auto space-y-6 select-text">
+<div
+	class="w-full h-full p-4 sm:p-6 font-mono text-xs text-[#cdd6f4] bg-[#181825] overflow-y-auto space-y-6 select-text"
+>
 	<div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
 		<div class="md:col-span-4 flex flex-col items-center space-y-4">
-			<div class="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden border-2 border-[#cba6f7] bg-[#11111b] shadow-xl">
+			<div
+				class="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden border-2 border-[#cba6f7] bg-[#11111b] shadow-xl"
+			>
 				<img
 					src={PORTFOLIO_DATA.profile.avatar}
 					alt={PORTFOLIO_DATA.profile.name}
+					width="160"
+					height="160"
 					class="w-full h-full object-cover"
 				/>
 			</div>
 
-			<div class="w-full p-3 rounded-xl bg-[#11111b] border border-[#313244] text-[11px] space-y-1.5">
+			<div
+				class="w-full p-3 rounded-xl bg-[#11111b] border border-[#313244] text-[11px] space-y-1.5"
+			>
 				<div class="flex items-center justify-between">
 					<span class="text-[#89b4fa]">Host</span>
 					<span class="text-white">BIT Mesra Workstation</span>
@@ -39,7 +46,8 @@
 			<div class="border-b border-[#313244] pb-3">
 				<h2 class="text-xl font-bold text-white tracking-tight flex items-center gap-2">
 					<span class="text-[#cba6f7]">{PORTFOLIO_DATA.profile.name}</span>
-					<span class="text-xs px-2 py-0.5 rounded bg-[#313244] text-[#a6e3a1]">Active Session</span>
+					<span class="text-xs px-2 py-0.5 rounded bg-[#313244] text-[#a6e3a1]">Active Session</span
+					>
 				</h2>
 				<div class="text-xs text-[#89b4fa] mt-0.5">{PORTFOLIO_DATA.profile.title}</div>
 			</div>

@@ -3,6 +3,15 @@ import { hyprland } from '$lib/themes/linux/HyprlandConfig.svelte';
 import { goto } from '$app/navigation';
 import type { WindowId } from '$lib/types/window';
 
+function escapeHtml(str: string): string {
+	return str
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;')
+		.replace(/'/g, '&#039;');
+}
+
 export interface CommandOutput {
 	id: string;
 	command: string;
@@ -112,7 +121,9 @@ export function executeCommand(
 	}
 
 	if (cmd === 'pwd') {
-		return { output: currentDir === '~' ? '/home/satyam' : `/home/satyam/${currentDir.replace('~/', '')}` };
+		return {
+			output: currentDir === '~' ? '/home/satyam' : `/home/satyam/${currentDir.replace('~/', '')}`
+		};
 	}
 
 	if (cmd === 'cd') {
@@ -166,7 +177,10 @@ export function executeCommand(
 		}
 		if (target === 'projects.txt' || target === 'projects') {
 			const text = PORTFOLIO_DATA.projects
-				.map((p) => `* [${p.category.toUpperCase()}] ${p.name} — ${p.tagline}\n  Stack: ${p.technologies.join(', ')}\n  Link: ${p.links[0]?.url || 'N/A'}`)
+				.map(
+					(p) =>
+						`* [${p.category.toUpperCase()}] ${p.name} — ${p.tagline}\n  Stack: ${p.technologies.join(', ')}\n  Link: ${p.links[0]?.url || 'N/A'}`
+				)
 				.join('\n\n');
 			return { output: text };
 		}
@@ -177,19 +191,25 @@ export function executeCommand(
 		}
 		if (target === 'experience.txt' || target === 'experience') {
 			const expText = PORTFOLIO_DATA.experience
-				.map((e) => `[${e.duration}] ${e.role} @ ${e.company} (${e.mode})\n${e.highlights.map((h) => `  - ${h}`).join('\n')}`)
+				.map(
+					(e) =>
+						`[${e.duration}] ${e.role} @ ${e.company} (${e.mode})\n${e.highlights.map((h) => `  - ${h}`).join('\n')}`
+				)
 				.join('\n\n');
 			return { output: expText };
 		}
 		if (target === 'education.txt' || target === 'education') {
 			const eduText = PORTFOLIO_DATA.education
-				.map((ed) => `${ed.institution}\nDegree: ${ed.degree} (${ed.duration})\nGrade: ${ed.grade}\nCoursework: ${ed.coursework?.join(', ') || 'N/A'}`)
+				.map(
+					(ed) =>
+						`${ed.institution}\nDegree: ${ed.degree} (${ed.duration})\nGrade: ${ed.grade}\nCoursework: ${ed.coursework?.join(', ') || 'N/A'}`
+				)
 				.join('\n\n');
 			return { output: eduText };
 		}
 		if (target === 'contact.sh') {
 			return {
-				output: `#!/bin/bash\n# Direct Transmission\nEMAIL="${PORTFOLIO_DATA.profile.email}"\nLOCATION="${PORTFOLIO_DATA.profile.location}"\nPHONE="${PORTFOLIO_DATA.profile.phone}"\ncurl -X POST https://api.web3forms.com/submit`
+				output: `#!/bin/bash\n# Direct Transmission\nEMAIL="${PORTFOLIO_DATA.profile.email}"\nLOCATION="${PORTFOLIO_DATA.profile.location}"\ncurl -X POST https://api.web3forms.com/submit`
 			};
 		}
 		if (target === 'resume.pdf') {
@@ -343,9 +363,8 @@ export function executeCommand(
 			output: `
 <div class="space-y-2 font-mono text-xs">
   <div class="text-[#cba6f7] font-bold">Direct Transmission Coordinates:</div>
-  <div><span class="text-[#89b4fa]">Email:</span> <a href="mailto:${PORTFOLIO_DATA.profile.email}" class="text-white underline">${PORTFOLIO_DATA.profile.email}</a></div>
-  <div><span class="text-[#89b4fa]">Phone:</span> ${PORTFOLIO_DATA.profile.phone}</div>
-  <div><span class="text-[#89b4fa]">Location:</span> ${PORTFOLIO_DATA.profile.location}</div>
+  <div><span class="text-[#89b4fa]">Email:</span> <a href="mailto:${escapeHtml(PORTFOLIO_DATA.profile.email)}" class="text-white underline">${escapeHtml(PORTFOLIO_DATA.profile.email)}</a></div>
+  <div><span class="text-[#89b4fa]">Location:</span> ${escapeHtml(PORTFOLIO_DATA.profile.location)}</div>
   <div class="pt-1 text-[#a6adc8]">Type <span class="text-[#a6e3a1]">open contact</span> to launch GUI compose transmission window.</div>
 </div>`
 		};
@@ -353,7 +372,12 @@ export function executeCommand(
 
 	if (cmd === 'open') {
 		const rawTarget = (args[0] || '').toLowerCase();
-		if (!rawTarget) return { output: 'open: missing target. Usage: open <app|terminal|projects|experience|skills|contact|blog>', isError: true };
+		if (!rawTarget)
+			return {
+				output:
+					'open: missing target. Usage: open <app|terminal|projects|experience|skills|contact|blog>',
+				isError: true
+			};
 
 		if (rawTarget === 'resume' || rawTarget === 'resume.pdf') {
 			if (typeof window !== 'undefined') window.open(PORTFOLIO_DATA.profile.resumeUrl, '_blank');
@@ -370,7 +394,11 @@ export function executeCommand(
 
 	if (cmd === 'theme') {
 		const target = (args[0] || '').toLowerCase();
-		if (!target) return { output: 'theme: missing parameter. Usage: theme <clean|gaming|space|macos|portal>', isError: true };
+		if (!target)
+			return {
+				output: 'theme: missing parameter. Usage: theme <clean|gaming|space|macos|portal>',
+				isError: true
+			};
 
 		if (target === 'clean') {
 			goto('/clean');
@@ -392,7 +420,10 @@ export function executeCommand(
 			goto('/');
 			return { output: 'Returning to Gateway Portal...' };
 		}
-		return { output: `theme: unknown theme "${target}". Options: clean, gaming, space, macos, portal`, isError: true };
+		return {
+			output: `theme: unknown theme "${target}". Options: clean, gaming, space, macos, portal`,
+			isError: true
+		};
 	}
 
 	if (cmd === 'fortune') {
@@ -401,7 +432,7 @@ export function executeCommand(
 	}
 
 	if (cmd === 'cowsay') {
-		const msg = args.join(' ') || 'Arch Linux + Hyprland is peak developer experience!';
+		const msg = escapeHtml(args.join(' ') || 'Arch Linux + Hyprland is peak developer experience!');
 		const line = '-'.repeat(msg.length + 2);
 		return {
 			output: ` ${line}

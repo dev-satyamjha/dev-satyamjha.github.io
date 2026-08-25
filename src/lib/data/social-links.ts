@@ -32,3 +32,11 @@ export const SOCIAL_LINKS: SocialLink[] = [
 		username: 'satyamjha'
 	}
 ];
+
+export const SOCIAL_GLYPHS: Record<string, string> = {
+	GitHub: '\uf09b',
+	LinkedIn: '\uf08c',
+	LeetCode: '\uf121',
+	Instagram: '\uf16d',
+	Keybase: '\uf084'
+};

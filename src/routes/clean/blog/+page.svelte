@@ -39,7 +39,11 @@
 <main id="main-content" class="py-12 sm:py-16 space-y-10">
 	<div class="space-y-4">
 		<div class="flex items-center gap-2 text-xs font-mono text-[#89b4fa]">
-			<a href="/clean" onclick={() => audioManager.play('click')} class="hover:underline flex items-center gap-1">
+			<a
+				href="/clean"
+				onclick={() => audioManager.play('click')}
+				class="hover:underline flex items-center gap-1"
+			>
 				<span class="nf">{'\uf060'}</span>
 				<span>Clean Portfolio</span>
 			</a>
@@ -57,7 +61,9 @@
 
 	<div class="space-y-4 pt-2">
 		<div class="relative w-full max-w-md">
-			<span class="nf absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[#89b4fa] pointer-events-none">
+			<span
+				class="nf absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[#89b4fa] pointer-events-none"
+			>
 				{'\uf002'}
 			</span>
 			<input
@@ -98,7 +104,9 @@
 
 	<div class="space-y-6">
 		{#if filteredPosts.length === 0}
-			<div class="p-8 rounded-3xl border border-[#27272a] bg-[#181825] text-center space-y-2 font-mono text-xs text-[#a6adc8]">
+			<div
+				class="p-8 rounded-3xl border border-[#27272a] bg-[#181825] text-center space-y-2 font-mono text-xs text-[#a6adc8]"
+			>
 				<span class="nf text-2xl text-[#f38ba8] block">{'\uf06a'}</span>
 				<div>No articles found matching "{searchQuery}".</div>
 				<button
@@ -118,7 +126,9 @@
 					<article
 						class="group rounded-3xl border border-[#27272a] bg-[#181825]/90 p-6 sm:p-8 space-y-4 transition-all duration-300 hover:border-[#89b4fa]/60 hover:-translate-y-1 hover:shadow-2xl"
 					>
-						<div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-[#a6adc8]">
+						<div
+							class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-[#a6adc8]"
+						>
 							<div class="flex items-center gap-3">
 								<span class="flex items-center gap-1.5 text-[#89b4fa]">
 									<span class="nf text-xs">{'\uf073'}</span>
@@ -133,14 +143,18 @@
 
 							<div class="flex flex-wrap items-center gap-1.5">
 								{#each post.tags as tag}
-									<span class="px-2 py-0.5 rounded-md bg-[#11111b] border border-[#313244] text-[10px] text-[#89b4fa]">
+									<span
+										class="px-2 py-0.5 rounded-md bg-[#11111b] border border-[#313244] text-[10px] text-[#89b4fa]"
+									>
 										#{tag}
 									</span>
 								{/each}
 							</div>
 						</div>
 
-						<h2 class="text-xl sm:text-2xl font-bold tracking-tight text-white group-hover:text-[#89b4fa] transition-colors">
+						<h2
+							class="text-xl sm:text-2xl font-bold tracking-tight text-white group-hover:text-[#89b4fa] transition-colors"
+						>
 							<a href={`/clean/blog/${post.slug}`} onclick={() => audioManager.play('click')}>
 								{post.title}
 							</a>

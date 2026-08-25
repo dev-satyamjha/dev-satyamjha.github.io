@@ -131,16 +131,10 @@
 				: hyprland.isTiled
 					? 'relative w-full h-full min-h-[380px]'
 					: 'absolute'
-		} ${
-			isFocused
-				? 'border-[#cba6f7] shadow-[#cba6f7]/10'
-				: 'border-[#313244] opacity-95'
-		}`}
-		style={
-			!windowState.isMaximized && !hyprland.isTiled
-				? `left: ${windowState.position.x}px; top: ${windowState.position.y}px; width: ${windowState.size.width}px; height: ${windowState.size.height}px; z-index: ${windowState.zIndex};`
-				: `z-index: ${windowState.zIndex};`
-		}
+		} ${isFocused ? 'border-[#cba6f7] shadow-[#cba6f7]/10' : 'border-[#313244] opacity-95'}`}
+		style={!windowState.isMaximized && !hyprland.isTiled
+			? `left: ${windowState.position.x}px; top: ${windowState.position.y}px; width: ${windowState.size.width}px; height: ${windowState.size.height}px; z-index: ${windowState.zIndex};`
+			: `z-index: ${windowState.zIndex};`}
 	>
 		<header
 			role="presentation"

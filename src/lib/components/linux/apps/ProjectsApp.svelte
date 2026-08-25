@@ -22,7 +22,9 @@
 </script>
 
 <div class="w-full h-full font-mono text-xs text-[#cdd6f4] bg-[#11111b] flex flex-col select-none">
-	<div class="h-8 bg-[#181825] border-b border-[#313244] px-3 flex items-center justify-between text-[11px] text-[#a6adc8]">
+	<div
+		class="h-8 bg-[#181825] border-b border-[#313244] px-3 flex items-center justify-between text-[11px] text-[#a6adc8]"
+	>
 		<div class="flex items-center gap-1.5 text-[#89b4fa]">
 			<span class="nf text-xs">{'\uf07c'}</span>
 			<span>ranger: ~/projects/</span>
@@ -32,8 +34,12 @@
 	</div>
 
 	<div class="flex-1 grid grid-cols-1 md:grid-cols-12 overflow-hidden">
-		<div class="hidden sm:block md:col-span-3 border-r border-[#313244] bg-[#181825]/50 p-3 space-y-1 overflow-y-auto">
-			<div class="text-[10px] uppercase tracking-wider text-[#a6adc8] px-2 py-1 font-bold">Bookmarks</div>
+		<div
+			class="hidden sm:block md:col-span-3 border-r border-[#313244] bg-[#181825]/50 p-3 space-y-1 overflow-y-auto"
+		>
+			<div class="text-[10px] uppercase tracking-wider text-[#a6adc8] px-2 py-1 font-bold">
+				Bookmarks
+			</div>
 			<div class="px-2 py-1.5 rounded-lg bg-[#313244] text-[#cba6f7] flex items-center gap-2">
 				<span class="nf">{'\uf07c'}</span>
 				<span>projects/</span>
@@ -78,7 +84,9 @@
 			<div class="border-b border-[#313244] pb-3 space-y-1">
 				<div class="flex items-center justify-between">
 					<h3 class="text-base font-bold text-white">{currentProject.name}</h3>
-					<span class="px-2 py-0.5 rounded bg-[#11111b] border border-[#313244] text-[10px] text-[#89b4fa] uppercase">
+					<span
+						class="px-2 py-0.5 rounded bg-[#11111b] border border-[#313244] text-[10px] text-[#89b4fa] uppercase"
+					>
 						{currentProject.category}
 					</span>
 				</div>
@@ -93,7 +101,9 @@
 				<div class="text-[10px] uppercase text-[#a6adc8] font-bold">Tech Stack</div>
 				<div class="flex flex-wrap gap-1.5">
 					{#each currentProject.technologies as tech}
-						<span class="px-2 py-0.5 rounded-md bg-[#11111b] border border-[#313244] text-[10px] text-[#a6e3a1]">
+						<span
+							class="px-2 py-0.5 rounded-md bg-[#11111b] border border-[#313244] text-[10px] text-[#a6e3a1]"
+						>
 							{tech}
 						</span>
 					{/each}

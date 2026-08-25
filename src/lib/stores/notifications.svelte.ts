@@ -12,10 +12,24 @@ export interface NotificationItem {
 class NotificationManager {
 	items = $state<NotificationItem[]>([]);
 
-	notify(title: string, message: string, type: 'info' | 'success' | 'warning' | 'error' = 'info', icon?: string) {
-		const id = String(Date.now() + Math.random());
+	notify(
+		title: string,
+		message: string,
+		type: 'info' | 'success' | 'warning' | 'error' = 'info',
+		icon?: string
+	) {
+		const id =
+			typeof crypto !== 'undefined' && crypto.randomUUID
+				? crypto.randomUUID()
+				: `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 		const defaultIcon =
-			type === 'success' ? '\uf00c' : type === 'warning' ? '\uf071' : type === 'error' ? '\uf06a' : '\uf05a';
+			type === 'success'
+				? '\uf00c'
+				: type === 'warning'
+					? '\uf071'
+					: type === 'error'
+						? '\uf06a'
+						: '\uf05a';
 
 		const item: NotificationItem = {
 			id,
@@ -23,7 +37,11 @@ class NotificationManager {
 			message,
 			type,
 			icon: icon || defaultIcon,
-			timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
+			timestamp: new Date().toLocaleTimeString([], {
+				hour: '2-digit',
+				minute: '2-digit',
+				second: '2-digit'
+			})
 		};
 
 		this.items = [...this.items, item];

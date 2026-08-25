@@ -1,5 +1,6 @@
-import type { WindowId, WindowState, Position, Size } from '$lib/types/window';
+import type { WindowId, WindowState } from '$lib/types/window';
 import { audioManager } from '$lib/stores/audio.svelte';
+import { BaseWindowManager } from '$lib/utils/WindowManager.svelte';
 
 export interface WorkspaceConfig {
 	id: number;
@@ -106,16 +107,24 @@ export const INITIAL_WINDOWS: Record<WindowId, WindowState> = {
 	}
 };
 
-class HyprlandManager {
+class HyprlandManager extends BaseWindowManager<WindowId, WindowState> {
 	activeWorkspace = $state(1);
-	activeWindowId = $state<WindowId | null>('terminal');
 	isTiled = $state(true);
 	isRofiOpen = $state(false);
 	isPowerMenuOpen = $state(false);
 	isCheatsheetOpen = $state(false);
-	highestZIndex = $state(20);
 
-	windows = $state<Record<WindowId, WindowState>>({ ...INITIAL_WINDOWS });
+	constructor() {
+		super(INITIAL_WINDOWS, 'terminal');
+	}
+
+	get activeWindowId(): WindowId | null {
+		return this.activeId;
+	}
+
+	set activeWindowId(value: WindowId | null) {
+		this.activeId = value;
+	}
 
 	switchWorkspace(id: number) {
 		if (id < 1 || id > 5 || this.activeWorkspace === id) return;
@@ -123,60 +132,28 @@ class HyprlandManager {
 		this.activeWorkspace = id;
 
 		if (id === 1 && !this.windows.terminal.isOpen) {
-			this.openWindow('terminal');
+			this.open('terminal');
 		} else if (id === 2 && !this.windows.projects.isOpen) {
-			this.openWindow('projects');
+			this.open('projects');
 		} else if (id === 3 && !this.windows.experience.isOpen) {
-			this.openWindow('experience');
+			this.open('experience');
 		} else if (id === 4 && !this.windows.skills.isOpen) {
-			this.openWindow('skills');
+			this.open('skills');
 		} else if (id === 5 && !this.windows.blog.isOpen) {
-			this.openWindow('blog');
+			this.open('blog');
 		}
 	}
 
 	openWindow(id: WindowId) {
-		audioManager.play('click');
-		this.highestZIndex += 1;
-		this.windows[id].isOpen = true;
-		this.windows[id].isMinimized = false;
-		this.windows[id].zIndex = this.highestZIndex;
-		this.activeWindowId = id;
+		this.open(id);
 	}
 
 	closeWindow(id: WindowId) {
-		audioManager.play('click');
-		this.windows[id].isOpen = false;
-		if (this.activeWindowId === id) {
-			const remainingOpen = (Object.keys(this.windows) as WindowId[]).filter(
-				(k) => this.windows[k].isOpen && !this.windows[k].isMinimized && k !== id
-			);
-			this.activeWindowId = remainingOpen.length > 0 ? remainingOpen[remainingOpen.length - 1] : null;
-		}
+		this.close(id);
 	}
 
 	focusWindow(id: WindowId) {
-		if (this.activeWindowId === id && this.windows[id].zIndex === this.highestZIndex) return;
-		this.highestZIndex += 1;
-		this.windows[id].zIndex = this.highestZIndex;
-		this.windows[id].isMinimized = false;
-		this.activeWindowId = id;
-	}
-
-	toggleMinimize(id: WindowId) {
-		audioManager.play('click');
-		this.windows[id].isMinimized = !this.windows[id].isMinimized;
-		if (this.windows[id].isMinimized && this.activeWindowId === id) {
-			this.activeWindowId = null;
-		} else if (!this.windows[id].isMinimized) {
-			this.focusWindow(id);
-		}
-	}
-
-	toggleMaximize(id: WindowId) {
-		audioManager.play('click');
-		this.windows[id].isMaximized = !this.windows[id].isMaximized;
-		this.focusWindow(id);
+		this.focus(id);
 	}
 
 	toggleTile() {
@@ -197,14 +174,6 @@ class HyprlandManager {
 	toggleCheatsheet() {
 		audioManager.play('click');
 		this.isCheatsheetOpen = !this.isCheatsheetOpen;
-	}
-
-	updatePosition(id: WindowId, pos: Position) {
-		this.windows[id].position = pos;
-	}
-
-	updateSize(id: WindowId, size: Size) {
-		this.windows[id].size = size;
 	}
 }
 

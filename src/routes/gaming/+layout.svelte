@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { audioManager } from '$lib/stores/audio.svelte';
-	import { localeStore } from '$lib/stores/locale.svelte';
 	import { goto } from '$app/navigation';
 	import LanguageToggle from '$lib/components/shared/LanguageToggle.svelte';
 	import AudioToggle from '$lib/components/shared/AudioToggle.svelte';
@@ -13,10 +12,16 @@
 	}
 </script>
 
-<div class="fixed inset-0 overflow-y-auto flex flex-col font-mono bg-[#09090b] text-white selection:bg-rose-500 selection:text-white">
-	<div class="fixed inset-0 bg-[radial-gradient(ellipse_at_top,rgba(244,63,94,0.12),transparent_60%),radial-gradient(ellipse_at_bottom,rgba(192,132,252,0.08),transparent_60%)] pointer-events-none"></div>
+<div
+	class="fixed inset-0 overflow-y-auto flex flex-col font-mono bg-[#09090b] text-white selection:bg-rose-500 selection:text-white"
+>
+	<div
+		class="fixed inset-0 bg-[radial-gradient(ellipse_at_top,rgba(244,63,94,0.12),transparent_60%),radial-gradient(ellipse_at_bottom,rgba(192,132,252,0.08),transparent_60%)] pointer-events-none"
+	></div>
 
-	<header class="relative z-30 w-full bg-zinc-950/80 backdrop-blur-xl border-b border-rose-500/30 px-3 sm:px-6 py-3 flex items-center justify-between text-xs select-none">
+	<header
+		class="relative z-30 w-full bg-zinc-950/80 backdrop-blur-xl border-b border-rose-500/30 px-3 sm:px-6 py-3 flex items-center justify-between text-xs select-none"
+	>
 		<div class="flex items-center gap-3">
 			<a
 				href="/"
@@ -24,7 +29,9 @@
 				class="flex items-center gap-2 hover:opacity-80 transition-opacity"
 			>
 				<span class="nf text-rose-400 text-lg">{'\uf11b'}</span>
-				<span class="font-bold tracking-widest uppercase text-white hidden sm:inline">ARCADE REALM</span>
+				<span class="font-bold tracking-widest uppercase text-white hidden sm:inline"
+					>ARCADE REALM</span
+				>
 			</a>
 		</div>
 

@@ -14,8 +14,12 @@
 	}
 </script>
 
-<div class="w-full h-full p-4 font-mono text-xs text-[#cdd6f4] bg-[#11111b] overflow-y-auto space-y-4 select-text">
-	<div class="flex items-center justify-between border-b border-[#313244] pb-2 text-[11px] text-[#a6adc8]">
+<div
+	class="w-full h-full p-4 font-mono text-xs text-[#cdd6f4] bg-[#11111b] overflow-y-auto space-y-4 select-text"
+>
+	<div
+		class="flex items-center justify-between border-b border-[#313244] pb-2 text-[11px] text-[#a6adc8]"
+	>
 		<div class="flex items-center gap-2">
 			<span class="nf text-sm text-[#cba6f7]">{'\uf0e4'}</span>
 			<span class="font-bold text-white">btop — Technical Resource & Arsenal Monitor</span>
@@ -26,7 +30,9 @@
 	<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 		{#each categories as cat}
 			<div class="p-3.5 rounded-2xl bg-[#181825] border border-[#313244] space-y-3">
-				<div class="flex items-center justify-between border-b border-[#313244] pb-1.5 text-xs font-bold text-white">
+				<div
+					class="flex items-center justify-between border-b border-[#313244] pb-1.5 text-xs font-bold text-white"
+				>
 					<span>{cat.label}</span>
 					<span class="text-[#89b4fa] text-[10px]">{getSkills(cat.id).length} units</span>
 				</div>

@@ -268,11 +268,17 @@
 	});
 </script>
 
-<div class="w-full h-full flex flex-col justify-between p-3 font-mono text-xs text-white select-none">
-	<div class="flex items-center justify-between px-3 py-1 bg-zinc-900/80 rounded-xl border border-zinc-800">
+<div
+	class="w-full h-full flex flex-col justify-between p-3 font-mono text-xs text-white select-none"
+>
+	<div
+		class="flex items-center justify-between px-3 py-1 bg-zinc-900/80 rounded-xl border border-zinc-800"
+	>
 		<div class="flex items-center gap-3">
 			<span class="text-rose-400 font-bold">CYBER-RUNNER 2D</span>
-			<span class="text-zinc-400 text-[11px]">SCORE: <strong class="text-amber-400 font-mono">{score}</strong></span>
+			<span class="text-zinc-400 text-[11px]"
+				>SCORE: <strong class="text-amber-400 font-mono">{score}</strong></span
+			>
 		</div>
 
 		<div class="flex items-center gap-4">
@@ -299,9 +305,13 @@
 		></canvas>
 
 		{#if gameState === 'gameover'}
-			<div class="absolute inset-0 bg-black/85 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center gap-3 animate-in fade-in">
+			<div
+				class="absolute inset-0 bg-black/85 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center gap-3 animate-in fade-in"
+			>
 				<div class="text-2xl font-bold text-rose-500 tracking-widest uppercase">GAME OVER</div>
-				<div class="text-xs text-zinc-400">Final Score: <span class="text-amber-400 font-bold">{score}</span></div>
+				<div class="text-xs text-zinc-400">
+					Final Score: <span class="text-amber-400 font-bold">{score}</span>
+				</div>
 				<button
 					type="button"
 					onclick={onExit}
@@ -311,9 +321,16 @@
 				</button>
 			</div>
 		{:else if gameState === 'won'}
-			<div class="absolute inset-0 bg-black/85 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center gap-3 animate-in fade-in">
-				<div class="text-2xl font-bold text-emerald-400 tracking-widest uppercase">STAGE CLEARED!</div>
-				<div class="text-xs text-zinc-400">All Starship Tokens Collected! Score: <span class="text-amber-400 font-bold">{score}</span></div>
+			<div
+				class="absolute inset-0 bg-black/85 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center gap-3 animate-in fade-in"
+			>
+				<div class="text-2xl font-bold text-emerald-400 tracking-widest uppercase">
+					STAGE CLEARED!
+				</div>
+				<div class="text-xs text-zinc-400">
+					All Starship Tokens Collected! Score: <span class="text-amber-400 font-bold">{score}</span
+					>
+				</div>
 				<button
 					type="button"
 					onclick={onExit}
@@ -326,7 +343,12 @@
 	</div>
 
 	<div class="flex items-center justify-between text-[10px] text-zinc-400 px-3">
-		<span>Controls: <kbd class="px-1.5 py-0.5 bg-zinc-800 text-white rounded">←</kbd> <kbd class="px-1.5 py-0.5 bg-zinc-800 text-white rounded">→</kbd> to Move &bull; <kbd class="px-1.5 py-0.5 bg-zinc-800 text-white rounded">Space</kbd> / <kbd class="px-1.5 py-0.5 bg-zinc-800 text-white rounded">↑</kbd> to Jump</span>
+		<span
+			>Controls: <kbd class="px-1.5 py-0.5 bg-zinc-800 text-white rounded">←</kbd>
+			<kbd class="px-1.5 py-0.5 bg-zinc-800 text-white rounded">→</kbd>
+			to Move &bull; <kbd class="px-1.5 py-0.5 bg-zinc-800 text-white rounded">Space</kbd> /
+			<kbd class="px-1.5 py-0.5 bg-zinc-800 text-white rounded">↑</kbd> to Jump</span
+		>
 		<span>Reach the blue Starship Portal</span>
 	</div>
 </div>

@@ -14,8 +14,18 @@
 		{ id: 'finder', name: 'Finder', icon: '\uf07b', color: 'from-blue-500 to-blue-600' },
 		{ id: 'terminal', name: 'Terminal', icon: '\uf120', color: 'from-slate-800 to-zinc-900' },
 		{ id: 'projects', name: 'Projects', icon: '\uf108', color: 'from-cyan-500 to-blue-600' },
-		{ id: 'experience', name: 'Activity Monitor', icon: '\uf080', color: 'from-emerald-500 to-teal-700' },
-		{ id: 'skills', name: 'System Information', icon: '\uf0e4', color: 'from-purple-500 to-indigo-700' },
+		{
+			id: 'experience',
+			name: 'Activity Monitor',
+			icon: '\uf080',
+			color: 'from-emerald-500 to-teal-700'
+		},
+		{
+			id: 'skills',
+			name: 'System Information',
+			icon: '\uf0e4',
+			color: 'from-purple-500 to-indigo-700'
+		},
 		{ id: 'mail', name: 'Mail', icon: '\uf0e0', color: 'from-sky-400 to-blue-600' },
 		{ id: 'notes', name: 'Notes', icon: '\uf249', color: 'from-amber-400 to-yellow-600' },
 		{ id: 'settings', name: 'System Settings', icon: '\uf013', color: 'from-slate-600 to-zinc-700' }
@@ -34,7 +44,7 @@
 		mouseX = null;
 	}
 
-	function calculateScale(index: number, total: number): number {
+	function calculateScale(index: number, _total: number): number {
 		if (mouseX === null) return 1;
 		const itemWidth = 56;
 		const itemCenter = index * itemWidth + itemWidth / 2;
@@ -65,7 +75,11 @@
 				isActive={macos.activeAppId === app.id}
 				scale={calculateScale(index, DOCK_APPS.length)}
 				onclick={() => {
-					if (macos.apps[app.id].isOpen && !macos.apps[app.id].isMinimized && macos.activeAppId === app.id) {
+					if (
+						macos.apps[app.id].isOpen &&
+						!macos.apps[app.id].isMinimized &&
+						macos.activeAppId === app.id
+					) {
 						macos.toggleMinimizeApp(app.id);
 					} else {
 						macos.openApp(app.id);

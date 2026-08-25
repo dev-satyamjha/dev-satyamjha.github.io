@@ -1,10 +1,10 @@
 ---
-title: "Architecting a Multi-Theme Portfolio with Svelte 5, Runes, and Tailwind v4"
-date: "2026-08-16"
-description: "How I designed and engineered a 5-dimension interactive portfolio combining Clean Modern, Linux Hyprland, Arcade Realm, Cosmic Voyage, and macOS Desktop in SvelteKit."
-tags: ["svelte", "sveltekit", "tailwindcss", "typescript", "architecture"]
-readingTime: "5 min"
-author: "Satyam Kumar"
+title: 'Architecting a Multi-Theme Portfolio with Svelte 5, Runes, and Tailwind v4'
+date: '2026-08-16'
+description: 'How I designed and engineered a 5-dimension interactive portfolio combining Clean Modern, Linux Hyprland, Arcade Realm, Cosmic Voyage, and macOS Desktop in SvelteKit.'
+tags: ['svelte', 'sveltekit', 'tailwindcss', 'typescript', 'architecture']
+readingTime: '5 min'
+author: 'Satyam Kumar'
 ---
 
 ## The Vision: Beyond Static Portfolios
@@ -16,32 +16,35 @@ When embarking on this portfolio redesign, I wanted something radically differen
 ## Core Architectural Pillars
 
 ### 1. Unified Canonical Data Layer
+
 Every theme imports from a single typed source of truth in `src/lib/data/portfolio.ts`. Whether you are browsing the Clean Modern layout, executing `cat projects.txt` inside the Linux terminal, or reviewing quest logs in the Arcade Realm, the underlying data remains identical.
 
 ```typescript
 export interface Project {
-  id: string;
-  name: string;
-  tagline: string;
-  description: string;
-  technologies: string[];
-  links: { label: string; url: string }[];
-  featured: boolean;
-  category: 'web' | 'desktop' | 'game' | 'cli' | 'ai';
+	id: string;
+	name: string;
+	tagline: string;
+	description: string;
+	technologies: string[];
+	links: { label: string; url: string }[];
+	featured: boolean;
+	category: 'web' | 'desktop' | 'game' | 'cli' | 'ai';
 }
 ```
 
 ### 2. Fine-Grained Reactivity with Svelte 5 Runes
+
 Svelte 5 introduces Runes (`$state`, `$derived`, `$props`, `$effect`), replacing compiler magic with explicit, fine-grained reactivity. This makes global state management—like our audio synthesizer, active theme router, and English/Hindi language store—completely lightweight without needing heavy external state libraries.
 
 ```svelte
 <script lang="ts">
-  let isHovered = $state(false);
-  let displayTitle = $derived(project.name.toUpperCase());
+	let isHovered = $state(false);
+	let displayTitle = $derived(project.name.toUpperCase());
 </script>
 ```
 
 ### 3. Tailwind CSS v4 CSS-First Styling
+
 With Tailwind CSS v4, we configure all theme color tokens (Catppuccin, Space Void, Retro Arcade) directly within CSS using `@theme` directives. Zero JavaScript configuration files, instant compilation, and maximum browser performance.
 
 ## The 5 Unique Dimensions

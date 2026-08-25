@@ -12,15 +12,6 @@
 	let { theme, index, onselect }: Props = $props();
 	let isHovered = $state(false);
 
-	const THEME_GLYPHS: Record<ThemeKey, string> = {
-		portal: '\uf14e',
-		clean: '\uf108',
-		linux: '\uf303',
-		gaming: '\uf11b',
-		space: '\uf135',
-		macos: '\uf179'
-	};
-
 	let title = $derived(
 		localeStore.dict.portal[theme.titleKey as keyof typeof localeStore.dict.portal] ?? theme.name
 	);
@@ -79,22 +70,28 @@
 			class="nf text-xl transition-all duration-300 group-hover:scale-125"
 			style={`color: ${theme.accentColor};`}
 		>
-			{THEME_GLYPHS[theme.key]}
+			{theme.glyph}
 		</span>
 	</div>
 
 	<div class="relative z-10 my-auto flex flex-col items-center justify-center text-center px-2">
 		{#if theme.key === 'clean'}
-			<div class="w-full max-w-[210px] h-24 rounded-2xl bg-[#1e1e2e] border border-[#313244] p-3 flex flex-col justify-between shadow-inner mb-3 transition-all duration-300 group-hover:border-[#89b4fa]/60">
+			<div
+				class="w-full max-w-[210px] h-24 rounded-2xl bg-[#1e1e2e] border border-[#313244] p-3 flex flex-col justify-between shadow-inner mb-3 transition-all duration-300 group-hover:border-[#89b4fa]/60"
+			>
 				<div class="flex items-center justify-between">
 					<div class="flex items-center gap-1.5">
 						<div class="w-2 h-2 rounded-full bg-[#89b4fa]"></div>
 						<div class="h-1.5 w-16 rounded bg-[#313244]"></div>
 					</div>
-					<span class="text-[9px] font-mono text-[#89b4fa] px-1.5 py-0.5 rounded bg-[#89b4fa]/10">UI/UX</span>
+					<span class="text-[9px] font-mono text-[#89b4fa] px-1.5 py-0.5 rounded bg-[#89b4fa]/10"
+						>UI/UX</span
+					>
 				</div>
 				<div class="space-y-1.5 text-left">
-					<div class="h-1.5 w-full rounded bg-[#45475a]/60 group-hover:bg-[#89b4fa]/40 transition-colors"></div>
+					<div
+						class="h-1.5 w-full rounded bg-[#45475a]/60 group-hover:bg-[#89b4fa]/40 transition-colors"
+					></div>
 					<div class="h-1.5 w-3/4 rounded bg-[#45475a]/40"></div>
 				</div>
 				<div class="flex items-center gap-1 text-[9px] font-mono text-[#a6adc8]">
@@ -103,8 +100,12 @@
 				</div>
 			</div>
 		{:else if theme.key === 'linux'}
-			<div class="w-full max-w-[210px] h-24 rounded-2xl bg-[#11111b] border border-[#313244] group-hover:border-[#cba6f7]/60 p-3 font-mono text-[10px] text-left shadow-inner mb-3 flex flex-col justify-between transition-all duration-300">
-				<div class="flex items-center justify-between border-b border-[#313244] pb-1 text-[#a6adc8]">
+			<div
+				class="w-full max-w-[210px] h-24 rounded-2xl bg-[#11111b] border border-[#313244] group-hover:border-[#cba6f7]/60 p-3 font-mono text-[10px] text-left shadow-inner mb-3 flex flex-col justify-between transition-all duration-300"
+			>
+				<div
+					class="flex items-center justify-between border-b border-[#313244] pb-1 text-[#a6adc8]"
+				>
 					<span class="text-[#cba6f7]">hyprland.conf</span>
 					<span class="nf text-[#cba6f7]">{'\uf303'}</span>
 				</div>
@@ -116,7 +117,9 @@
 				</div>
 			</div>
 		{:else if theme.key === 'gaming'}
-			<div class="w-full max-w-[210px] h-24 rounded-2xl bg-[#181825] border-2 border-dashed border-[#313244] group-hover:border-[#f38ba8]/70 p-3 font-mono text-[10px] shadow-inner mb-3 flex flex-col justify-between transition-all duration-300">
+			<div
+				class="w-full max-w-[210px] h-24 rounded-2xl bg-[#181825] border-2 border-dashed border-[#313244] group-hover:border-[#f38ba8]/70 p-3 font-mono text-[10px] shadow-inner mb-3 flex flex-col justify-between transition-all duration-300"
+			>
 				<div class="flex items-center justify-between text-[#fab387]">
 					<span>{isHovered ? 'CREDITS: 99' : 'SCORE: 9990'}</span>
 					<span class="nf text-[#f38ba8]">{'\uf11b'}</span>
@@ -130,7 +133,9 @@
 				</div>
 			</div>
 		{:else if theme.key === 'space'}
-			<div class="w-full max-w-[210px] h-24 rounded-2xl bg-[#05050f] border border-[#313244] group-hover:border-[#22d3ee]/60 p-3 font-mono text-[10px] shadow-inner mb-3 flex flex-col justify-between transition-all duration-300">
+			<div
+				class="w-full max-w-[210px] h-24 rounded-2xl bg-[#05050f] border border-[#313244] group-hover:border-[#22d3ee]/60 p-3 font-mono text-[10px] shadow-inner mb-3 flex flex-col justify-between transition-all duration-300"
+			>
 				<div class="flex items-center justify-between text-[#22d3ee]">
 					<span>ORBIT // 42°N</span>
 					<span class="nf">{'\uf135'}</span>
@@ -144,7 +149,9 @@
 				</div>
 			</div>
 		{:else if theme.key === 'macos'}
-			<div class="w-full max-w-[210px] h-24 rounded-2xl bg-[#1e1e2e]/90 border border-[#313244] group-hover:border-[#f9e2af]/60 p-3 shadow-inner mb-3 flex flex-col justify-between transition-all duration-300">
+			<div
+				class="w-full max-w-[210px] h-24 rounded-2xl bg-[#1e1e2e]/90 border border-[#313244] group-hover:border-[#f9e2af]/60 p-3 shadow-inner mb-3 flex flex-col justify-between transition-all duration-300"
+			>
 				<div class="flex items-center gap-1.5">
 					<div class="w-2.5 h-2.5 rounded-full bg-[#f38ba8]"></div>
 					<div class="w-2.5 h-2.5 rounded-full bg-[#f9e2af]"></div>
@@ -152,19 +159,23 @@
 					<span class="ml-auto text-[9px] font-mono text-[#a6adc8]">Finder</span>
 				</div>
 				<div class="flex items-center justify-center gap-2 pt-1">
-					<div class="w-6 h-6 rounded-lg bg-[#313244] group-hover:scale-110 transition-transform flex items-center justify-center text-[10px] text-[#89b4fa] font-mono shadow">
+					<div
+						class="w-6 h-6 rounded-lg bg-[#313244] group-hover:scale-110 transition-transform flex items-center justify-center text-[10px] text-[#89b4fa] font-mono shadow"
+					>
 						<span class="nf">{'\uf07b'}</span>
 					</div>
-					<div class="w-6 h-6 rounded-lg bg-[#313244] group-hover:scale-125 transition-transform flex items-center justify-center text-[10px] text-[#a6e3a1] font-mono shadow">
+					<div
+						class="w-6 h-6 rounded-lg bg-[#313244] group-hover:scale-125 transition-transform flex items-center justify-center text-[10px] text-[#a6e3a1] font-mono shadow"
+					>
 						<span class="nf">{'\uf120'}</span>
 					</div>
-					<div class="w-6 h-6 rounded-lg bg-[#313244] group-hover:scale-110 transition-transform flex items-center justify-center text-[10px] text-[#cba6f7] font-mono shadow">
+					<div
+						class="w-6 h-6 rounded-lg bg-[#313244] group-hover:scale-110 transition-transform flex items-center justify-center text-[10px] text-[#cba6f7] font-mono shadow"
+					>
 						<span class="nf">{'\uf003'}</span>
 					</div>
 				</div>
-				<div class="text-center text-[9px] font-mono text-[#a6adc8]">
-					macOS Sonoma Sim
-				</div>
+				<div class="text-center text-[9px] font-mono text-[#a6adc8]">macOS Sonoma Sim</div>
 			</div>
 		{/if}
 
@@ -176,7 +187,9 @@
 		</p>
 	</div>
 
-	<div class="relative z-10 pt-4 border-t border-[#313244] flex items-center justify-between text-xs font-mono">
+	<div
+		class="relative z-10 pt-4 border-t border-[#313244] flex items-center justify-between text-xs font-mono"
+	>
 		<span class="text-[#a6adc8]">{theme.route}</span>
 		<span
 			class="inline-flex items-center gap-1 font-semibold transition-transform duration-200 group-hover:translate-x-1"

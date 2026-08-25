@@ -20,18 +20,30 @@
 	description="The coordinates you requested lead to an uncharted sector of the void."
 />
 
-<div class="fixed inset-0 bg-[#05050f] flex flex-col items-center justify-center p-4 sm:p-8 font-mono text-cyan-300 selection:bg-rose-500 selection:text-white select-none overflow-y-auto">
-	<div class="fixed inset-0 bg-[radial-gradient(ellipse_at_center,rgba(244,63,94,0.15),transparent_70%)] pointer-events-none"></div>
-	<div class="fixed inset-0 bg-[linear-gradient(rgba(34,211,238,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.03)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none"></div>
+<div
+	class="fixed inset-0 bg-[#05050f] flex flex-col items-center justify-center p-4 sm:p-8 font-mono text-cyan-300 selection:bg-rose-500 selection:text-white select-none overflow-y-auto"
+>
+	<div
+		class="fixed inset-0 bg-[radial-gradient(ellipse_at_center,rgba(244,63,94,0.15),transparent_70%)] pointer-events-none"
+	></div>
+	<div
+		class="fixed inset-0 bg-[linear-gradient(rgba(34,211,238,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.03)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none"
+	></div>
 
-	<div class="relative z-10 max-w-2xl w-full p-6 sm:p-10 rounded-3xl bg-[#0b1329]/80 backdrop-blur-2xl border border-cyan-500/40 shadow-[0_0_50px_rgba(34,211,238,0.15)] space-y-6 text-center">
-		<div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rose-950/60 border border-rose-500/40 text-rose-300 text-xs tracking-widest uppercase animate-pulse">
+	<div
+		class="relative z-10 max-w-2xl w-full p-6 sm:p-10 rounded-3xl bg-[#0b1329]/80 backdrop-blur-2xl border border-cyan-500/40 shadow-[0_0_50px_rgba(34,211,238,0.15)] space-y-6 text-center"
+	>
+		<div
+			class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rose-950/60 border border-rose-500/40 text-rose-300 text-xs tracking-widest uppercase animate-pulse"
+		>
 			<span class="nf text-sm">{'\uf071'}</span>
 			<span>QUANTUM ANOMALY DETECTED</span>
 		</div>
 
 		<div class="space-y-2">
-			<h1 class="text-6xl sm:text-7xl font-bold text-white tracking-widest font-mono drop-shadow-[0_0_20px_rgba(244,63,94,0.6)]">
+			<h1
+				class="text-6xl sm:text-7xl font-bold text-white tracking-widest font-mono drop-shadow-[0_0_20px_rgba(244,63,94,0.6)]"
+			>
 				{status}
 			</h1>
 			<div class="text-base sm:text-lg font-bold text-cyan-300 uppercase tracking-wider">
@@ -42,8 +54,12 @@
 			</p>
 		</div>
 
-		<div class="p-4 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 text-left text-xs space-y-2">
-			<div class="text-[10px] text-white/50 uppercase tracking-widest font-bold">Emergency Telemetry</div>
+		<div
+			class="p-4 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 text-left text-xs space-y-2"
+		>
+			<div class="text-[10px] text-white/50 uppercase tracking-widest font-bold">
+				Emergency Telemetry
+			</div>
 			<div class="flex justify-between text-[11px]">
 				<span class="text-white/40">ANOMALOUS ROUTE:</span>
 				<span class="text-rose-400 font-bold">{page.url.pathname}</span>
@@ -55,7 +71,9 @@
 		</div>
 
 		<div class="space-y-3 pt-2">
-			<div class="text-[10px] text-white/40 uppercase tracking-widest font-bold">Select Rescue Destination</div>
+			<div class="text-[10px] text-white/40 uppercase tracking-widest font-bold">
+				Select Rescue Destination
+			</div>
 			<div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
 				<button
 					type="button"
