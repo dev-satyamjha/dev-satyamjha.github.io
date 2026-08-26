@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { PORTFOLIO_DATA } from '$lib/data/portfolio';
-	import { audioManager } from '$lib/stores/audio.svelte';
+	import { hyprland } from '$lib/themes/linux/HyprlandConfig.svelte';
 </script>
 
 <div
@@ -88,15 +88,14 @@
 					<span class="w-3 h-3 rounded-full bg-[#cba6f7]"></span>
 				</div>
 
-				<a
-					href={PORTFOLIO_DATA.profile.resumeUrl}
-					target="_blank"
-					onclick={() => audioManager.play('click')}
-					class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#cba6f7] hover:bg-[#b4befe] text-[#11111b] font-bold text-[11px] transition-colors"
+				<button
+					type="button"
+					onclick={() => hyprland.openWindow('resume')}
+					class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#cba6f7] hover:bg-[#b4befe] text-[#11111b] font-bold text-[11px] transition-colors cursor-pointer border-0"
 				>
 					<span class="nf text-xs">{'\uf15c'}</span>
-					<span>Download CV</span>
-				</a>
+					<span>View Resume</span>
+				</button>
 			</div>
 		</div>
 	</div>

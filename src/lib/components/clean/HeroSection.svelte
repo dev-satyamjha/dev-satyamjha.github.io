@@ -3,7 +3,21 @@
 	import { SOCIAL_GLYPHS } from '$lib/data/social-links';
 	import { localeStore } from '$lib/stores/locale.svelte';
 	import { audioManager } from '$lib/stores/audio.svelte';
+	import ResumeViewerModal from '$lib/components/shared/ResumeViewerModal.svelte';
+
+	let isResumeModalOpen = $state(false);
+
+	function openResumeModal() {
+		audioManager.play('click');
+		isResumeModalOpen = true;
+	}
 </script>
+
+<ResumeViewerModal
+	isOpen={isResumeModalOpen}
+	onclose={() => (isResumeModalOpen = false)}
+	themeStyle="clean"
+/>
 
 <section class="relative min-h-[75vh] flex flex-col justify-center py-12 sm:py-20">
 	<div class="space-y-6 max-w-3xl">
@@ -19,7 +33,9 @@
 		</div>
 
 		<div class="space-y-2">
-			<h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white">
+			<h1
+				class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white font-display"
+			>
 				{PORTFOLIO_DATA.profile.name}
 			</h1>
 			<p class="text-xl sm:text-2xl font-mono text-[#89b4fa]">
@@ -50,16 +66,14 @@
 				<span>{localeStore.dict.common.contactMe}</span>
 			</a>
 
-			<a
-				href={PORTFOLIO_DATA.profile.resumeUrl}
-				target="_blank"
-				rel="noopener noreferrer"
-				onclick={() => audioManager.play('click')}
-				class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[#313244] bg-[#181825] hover:bg-[#313244] hover:border-[#89b4fa] text-[#cdd6f4] font-mono text-xs font-medium transition-all cursor-pointer"
+			<button
+				type="button"
+				onclick={openResumeModal}
+				class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[#313244] bg-[#181825] hover:bg-[#313244] hover:border-[#89b4fa] text-[#cdd6f4] font-mono text-xs font-medium transition-all cursor-pointer border-0"
 			>
 				<span class="nf text-xs">{'\uf15c'}</span>
 				<span>{localeStore.dict.common.downloadResume}</span>
-			</a>
+			</button>
 		</div>
 
 		<div class="flex items-center gap-3 pt-4 border-t border-[#27272a]/60">

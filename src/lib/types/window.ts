@@ -1,5 +1,13 @@
 export type WindowId =
-	'terminal' | 'about' | 'projects' | 'experience' | 'skills' | 'contact' | 'settings' | 'blog';
+	| 'terminal'
+	| 'about'
+	| 'projects'
+	| 'experience'
+	| 'skills'
+	| 'contact'
+	| 'settings'
+	| 'blog'
+	| 'resume';
 
 export interface Position {
 	x: number;

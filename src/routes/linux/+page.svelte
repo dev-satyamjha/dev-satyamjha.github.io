@@ -10,6 +10,7 @@
 	import SkillsApp from '$lib/components/linux/apps/SkillsApp.svelte';
 	import ContactApp from '$lib/components/linux/apps/ContactApp.svelte';
 	import BlogApp from '$lib/components/linux/apps/BlogApp.svelte';
+	import ResumeApp from '$lib/components/linux/apps/ResumeApp.svelte';
 	import type { WindowId } from '$lib/types/window';
 
 	const openWindowKeys = $derived(
@@ -53,6 +54,8 @@
 				<ContactApp />
 			{:else if id === 'blog'}
 				<BlogApp />
+			{:else if id === 'resume'}
+				<ResumeApp />
 			{:else}
 				<div class="p-4 font-mono text-xs text-[#cdd6f4] space-y-2">
 					<div class="font-bold text-[#89b4fa]">{hyprland.windows[id].title}</div>

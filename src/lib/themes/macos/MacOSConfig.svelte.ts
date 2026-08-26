@@ -3,7 +3,15 @@ import { audioManager } from '$lib/stores/audio.svelte';
 import { BaseWindowManager } from '$lib/utils/WindowManager.svelte';
 
 export type MacAppId =
-	'finder' | 'terminal' | 'projects' | 'experience' | 'skills' | 'mail' | 'notes' | 'settings';
+	| 'finder'
+	| 'terminal'
+	| 'projects'
+	| 'experience'
+	| 'skills'
+	| 'mail'
+	| 'notes'
+	| 'settings'
+	| 'preview';
 
 export interface MacWindowState {
 	id: MacAppId;
@@ -105,6 +113,17 @@ export const INITIAL_MAC_APPS: Record<MacAppId, MacWindowState> = {
 		zIndex: 5,
 		position: { x: 200, y: 140 },
 		size: { width: 560, height: 380 }
+	},
+	preview: {
+		id: 'preview',
+		title: 'Preview - Satyam_Kumar_Resume.pdf',
+		icon: '\uf15c',
+		isOpen: false,
+		isMinimized: false,
+		isMaximized: false,
+		zIndex: 5,
+		position: { x: 110, y: 70 },
+		size: { width: 780, height: 530 }
 	}
 };
 
