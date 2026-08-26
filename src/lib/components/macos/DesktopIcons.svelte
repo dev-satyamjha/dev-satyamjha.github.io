@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { macos } from '$lib/themes/macos/MacOSConfig.svelte';
 	import { audioManager } from '$lib/stores/audio.svelte';
-	import { PORTFOLIO_DATA } from '$lib/data/portfolio';
 
 	interface DesktopIconItem {
 		id: string;
@@ -33,9 +32,7 @@
 			name: 'Resume.pdf',
 			icon: '\uf15c',
 			color: 'text-[#f87171]',
-			action: () => {
-				if (typeof window !== 'undefined') window.open(PORTFOLIO_DATA.profile.resumeUrl, '_blank');
-			}
+			action: () => macos.openApp('preview')
 		},
 		{
 			id: 'notes',

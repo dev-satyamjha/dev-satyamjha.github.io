@@ -9,6 +9,7 @@
 	import MacMail from '$lib/components/macos/apps/MacMail.svelte';
 	import MacSettings from '$lib/components/macos/apps/MacSettings.svelte';
 	import MacTerminal from '$lib/components/macos/apps/MacTerminal.svelte';
+	import MacPreview from '$lib/components/macos/apps/MacPreview.svelte';
 
 	const openAppKeys = $derived(
 		(Object.keys(macos.apps) as MacAppId[]).filter(
@@ -38,6 +39,8 @@
 				<MacTerminal />
 			{:else if id === 'settings'}
 				<MacSettings />
+			{:else if id === 'preview'}
+				<MacPreview />
 			{/if}
 		</MacWindow>
 	{/each}

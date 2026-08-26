@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { PORTFOLIO_DATA } from '$lib/data/portfolio';
 	import { audioManager } from '$lib/stores/audio.svelte';
+	import { macos } from '$lib/themes/macos/MacOSConfig.svelte';
 
 	type FinderTab = 'overview' | 'projects' | 'documents' | 'skills';
 
@@ -227,6 +228,7 @@
 									<a
 										href={link.url}
 										target="_blank"
+										rel="noopener noreferrer"
 										class="text-[10px] text-blue-400 hover:underline flex items-center gap-1"
 									>
 										<span>{link.label}</span>
@@ -240,23 +242,28 @@
 			{:else if activeTab === 'documents'}
 				<div class="space-y-4">
 					<div
-						class="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between"
+						class="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between hover:bg-white/10 transition-colors"
 					>
-						<div class="flex items-center gap-3">
+						<div
+							class="flex items-center gap-3 cursor-pointer"
+							onclick={() => macos.openApp('preview')}
+							role="button"
+							tabindex="0"
+							onkeydown={(e) => e.key === 'Enter' && macos.openApp('preview')}
+						>
 							<span class="nf text-3xl text-rose-400">{'\uf15c'}</span>
 							<div>
 								<div class="font-bold text-white text-xs">Satyam_Kumar_Resume.pdf</div>
 								<div class="text-[10px] text-white/60">PDF Document &bull; Updated 2026</div>
 							</div>
 						</div>
-						<a
-							href={PORTFOLIO_DATA.profile.resumeUrl}
-							target="_blank"
-							onclick={() => audioManager.play('click')}
-							class="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-colors cursor-pointer"
+						<button
+							type="button"
+							onclick={() => macos.openApp('preview')}
+							class="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-colors cursor-pointer border-0"
 						>
-							Download
-						</a>
+							Open Preview
+						</button>
 					</div>
 
 					<div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2">

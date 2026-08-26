@@ -380,8 +380,8 @@ export function executeCommand(
 			};
 
 		if (rawTarget === 'resume' || rawTarget === 'resume.pdf') {
-			if (typeof window !== 'undefined') window.open(PORTFOLIO_DATA.profile.resumeUrl, '_blank');
-			return { output: 'Opening resume in external viewer...' };
+			hyprland.openWindow('resume');
+			return { output: 'Launched in-window document viewer: zathura ~/documents/resume.pdf' };
 		}
 
 		const target = rawTarget as WindowId;

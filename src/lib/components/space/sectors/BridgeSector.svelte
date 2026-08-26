@@ -1,7 +1,21 @@
 <script lang="ts">
 	import { PORTFOLIO_DATA } from '$lib/data/portfolio';
 	import { audioManager } from '$lib/stores/audio.svelte';
+	import ResumeViewerModal from '$lib/components/shared/ResumeViewerModal.svelte';
+
+	let isDossierOpen = $state(false);
+
+	function openDossier() {
+		audioManager.play('click');
+		isDossierOpen = true;
+	}
 </script>
+
+<ResumeViewerModal
+	isOpen={isDossierOpen}
+	onclose={() => (isDossierOpen = false)}
+	themeStyle="space"
+/>
 
 <div
 	class="w-full max-w-5xl mx-auto space-y-6 animate-in fade-in duration-300 select-text font-mono text-xs text-cyan-300"
@@ -29,85 +43,84 @@
 			</div>
 
 			<div class="space-y-1">
-				<div class="text-[10px] text-cyan-400/60 uppercase tracking-widest">COMMANDING OFFICER</div>
-				<h2 class="text-lg font-bold text-white tracking-wide">{PORTFOLIO_DATA.profile.name}</h2>
-				<div class="text-xs text-cyan-300 font-medium">{PORTFOLIO_DATA.profile.title}</div>
+				<div class="text-lg font-bold text-white tracking-wider font-mono">
+					{PORTFOLIO_DATA.profile.name}
+				</div>
+				<div class="text-xs text-cyan-400 font-mono tracking-widest uppercase">
+					COMMANDER // PILOT
+				</div>
+				<div class="text-[10px] text-white/60">SECTOR 04 &bull; EARTH PRIME</div>
 			</div>
 
-			<div
-				class="pt-3 border-t border-cyan-500/20 text-[11px] space-y-1 text-left text-cyan-200/80"
-			>
-				<div class="flex justify-between">
-					<span class="text-white/40">STATION:</span>
-					<span>BIT Mesra Node</span>
+			<div class="p-3 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 text-left space-y-1.5">
+				<div class="flex items-center justify-between text-[11px]">
+					<span class="text-cyan-400">STATUS:</span>
+					<span class="text-emerald-400 font-bold">ONLINE (ORBITAL)</span>
 				</div>
-				<div class="flex justify-between">
-					<span class="text-white/40">SECTOR:</span>
-					<span>Earth &bull; IN</span>
+				<div class="flex items-center justify-between text-[11px]">
+					<span class="text-cyan-400">CALLSIGN:</span>
+					<span class="text-white">DEV-SATYAMJHA</span>
 				</div>
-				<div class="flex justify-between">
-					<span class="text-white/40">STATUS:</span>
-					<span class="text-emerald-400 font-bold">FLIGHT ACTIVE</span>
+				<div class="flex items-center justify-between text-[11px]">
+					<span class="text-cyan-400">SECURITY:</span>
+					<span class="text-purple-400">LEVEL 5 CLEARANCE</span>
 				</div>
 			</div>
 		</div>
 
-		<div class="md:col-span-8 space-y-6">
-			<div
-				class="p-6 rounded-3xl bg-[#0b1329]/80 backdrop-blur-2xl border border-cyan-500/40 shadow-2xl space-y-4 relative"
-			>
-				<div class="flex items-center justify-between border-b border-cyan-500/30 pb-3">
-					<div class="flex items-center gap-2">
-						<span class="nf text-base text-cyan-400">{'\uf135'}</span>
-						<span class="font-bold text-sm text-white tracking-wider uppercase"
-							>Captain's Log // Overview</span
-						>
-					</div>
-					<span
-						class="px-2.5 py-0.5 rounded-full bg-cyan-950/60 border border-cyan-500/40 text-[10px] text-cyan-300"
-					>
-						SEC-01 ACTIVE
-					</span>
+		<div
+			class="md:col-span-8 p-6 rounded-3xl bg-[#0b1329]/80 backdrop-blur-2xl border border-cyan-500/40 shadow-2xl shadow-cyan-500/10 space-y-5 relative overflow-hidden"
+		>
+			<div class="border-b border-cyan-500/30 pb-3 flex items-center justify-between">
+				<div>
+					<h2 class="text-lg font-bold text-white tracking-wider uppercase font-mono">
+						FLIGHT COMMAND TELEMETRY
+					</h2>
+					<div class="text-[11px] text-cyan-400 mt-0.5">{PORTFOLIO_DATA.profile.title}</div>
 				</div>
+				<span
+					class="px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text-[10px] tracking-widest uppercase animate-pulse font-mono"
+				>
+					STATION ACTIVE
+				</span>
+			</div>
 
-				<div class="space-y-3 font-sans text-xs leading-relaxed text-cyan-100/90">
-					{#each PORTFOLIO_DATA.profile.bio as para}
-						<p>{para}</p>
-					{/each}
+			<div class="space-y-3 text-xs leading-relaxed text-slate-300 font-sans">
+				{#each PORTFOLIO_DATA.profile.bio as para}
+					<p>{para}</p>
+				{/each}
+			</div>
+
+			<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+				<div class="p-3 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 text-center">
+					<div class="text-xl font-bold text-cyan-400 font-mono">400+</div>
+					<div class="text-[10px] text-white/50 tracking-wider">VESSEL CREW</div>
 				</div>
-
-				<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-					<div class="p-3 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 text-center">
-						<div class="text-xl font-bold text-cyan-300 font-mono">400+</div>
-						<div class="text-[10px] text-white/50 tracking-wider">CREW & USERS</div>
-					</div>
-					<div class="p-3 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 text-center">
-						<div class="text-xl font-bold text-emerald-400 font-mono">50+</div>
-						<div class="text-[10px] text-white/50 tracking-wider">STARSHIPS</div>
-					</div>
-					<div class="p-3 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 text-center">
-						<div class="text-xl font-bold text-amber-300 font-mono">8.1</div>
-						<div class="text-[10px] text-white/50 tracking-wider">BIT CGPA</div>
-					</div>
-					<div class="p-3 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 text-center">
-						<div class="text-xl font-bold text-purple-400 font-mono">24+</div>
-						<div class="text-[10px] text-white/50 tracking-wider">WARP MODULES</div>
-					</div>
+				<div class="p-3 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 text-center">
+					<div class="text-xl font-bold text-emerald-400 font-mono">50+</div>
+					<div class="text-[10px] text-white/50 tracking-wider">MISSIONS</div>
 				</div>
-
-				<div class="pt-3 border-t border-cyan-500/20 flex items-center justify-between">
-					<div class="text-[10px] text-white/50">Sub-Space Clearance: Level 5</div>
-
-					<a
-						href={PORTFOLIO_DATA.profile.resumeUrl}
-						target="_blank"
-						onclick={() => audioManager.play('click')}
-						class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-bold text-xs tracking-wider uppercase transition-colors cursor-pointer flex items-center gap-2"
-					>
-						<span class="nf text-xs">{'\uf15c'}</span>
-						<span>Download Flight Dossier</span>
-					</a>
+				<div class="p-3 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 text-center">
+					<div class="text-xl font-bold text-amber-400 font-mono">8.1</div>
+					<div class="text-[10px] text-white/50 tracking-wider">BIT CGPA</div>
 				</div>
+				<div class="p-3 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 text-center">
+					<div class="text-xl font-bold text-purple-400 font-mono">24+</div>
+					<div class="text-[10px] text-white/50 tracking-wider">WARP MODULES</div>
+				</div>
+			</div>
+
+			<div class="pt-3 border-t border-cyan-500/20 flex items-center justify-between">
+				<div class="text-[10px] text-white/50">Sub-Space Clearance: Level 5</div>
+
+				<button
+					type="button"
+					onclick={openDossier}
+					class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-bold text-xs tracking-wider uppercase transition-colors cursor-pointer flex items-center gap-2 border-0"
+				>
+					<span class="nf text-xs">{'\uf15c'}</span>
+					<span>View Flight Dossier</span>
+				</button>
 			</div>
 		</div>
 	</div>

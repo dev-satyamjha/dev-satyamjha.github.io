@@ -104,6 +104,17 @@ export const INITIAL_WINDOWS: Record<WindowId, WindowState> = {
 		zIndex: 5,
 		position: { x: 100, y: 70 },
 		size: { width: 740, height: 490 }
+	},
+	resume: {
+		id: 'resume',
+		title: 'zathura: ~/documents/resume.pdf',
+		icon: '\uf15c',
+		isOpen: false,
+		isMinimized: false,
+		isMaximized: false,
+		zIndex: 5,
+		position: { x: 130, y: 75 },
+		size: { width: 760, height: 520 }
 	}
 };
 

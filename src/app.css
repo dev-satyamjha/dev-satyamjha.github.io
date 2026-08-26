@@ -17,8 +17,10 @@
 }
 
 @theme {
-	--font-sans: 'Inter', 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-	--font-mono: 'JetBrains Mono', 'Fira Code', 'SymbolsNerdFontMono', monospace;
+	--font-sans:
+		'Space Grotesk', 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	--font-display: 'Clash Display', 'Space Grotesk', sans-serif;
+	--font-mono: 'Geist Mono', 'JetBrains Mono', 'Fira Code', 'SymbolsNerdFontMono', monospace;
 	--font-nerd: 'SymbolsNerdFont', 'SymbolsNerdFontMono', monospace;
 
 	--color-catppuccin-base: #1e1e2e;
