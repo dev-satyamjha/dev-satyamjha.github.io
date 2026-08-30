@@ -3,7 +3,7 @@
 # 🌌 Multi-Dimensional Developer Portfolio
 
 <p align="center">
-  <strong>An immersive, multi-thematic portfolio crafted with SvelteKit 5, Svelte Runes, and Tailwind CSS v4.</strong>
+  <strong>An immersive, multi-thematic portfolio crafted with Svelte 5, Svelte Runes, and Tailwind CSS v4.</strong>
 </p>
 
 <p align="center">
@@ -49,24 +49,24 @@ This portfolio is architected as an interactive gateway to **5 distinct spatial 
 
 ```text
 src/
-├── app.css                   # Global styles & Tailwind v4 @theme design tokens
-├── app.html                  # HTML template with font preloads & Web3Forms preconnect
-├── content/blog/             # Markdown (.md) blog articles processed via mdsvex
+├── app.css
+├── app.html
+├── content/blog/
 ├── lib/
-│   ├── components/
-│   │   ├── clean/            # Clean minimalist theme components & sections
-│   │   ├── gaming/           # Arcade cabinet & interactive game engines
-│   │   ├── linux/            # Hyprland WM, Waybar, Rofi, Terminal & apps
-│   │   ├── macos/            # macOS Menubar, Dock, Spotlight, Finder & apps
-│   │   ├── portal/           # Main gateway portal scene & transitions
-│   │   ├── shared/           # Audio toggles, theme switcher, SEO, modals
-│   │   └── space/            # Starship sectors (Bridge, Hangar, Comms, Vault)
-│   ├── data/                 # Portfolio profile, experience, skills, & site config
-│   ├── stores/               # Svelte 5 audio, theme, locale, & notification stores
-│   ├── themes/               # Window manager controllers & Linux command parser
-│   ├── types/                # Strict TypeScript interfaces & schemas
-│   └── utils/                # Contact form manager, base window manager, blog parser
-└── routes/                   # SvelteKit static filesystem-based routes
+│   ├── components
+│   │   ├── clean/
+│   │   ├── gaming/
+│   │   ├── linux/
+│   │   ├── macos/
+│   │   ├── portal/
+│   │   ├── shared/
+│   │   └── space/
+│   ├── data/
+│   ├── stores/
+│   ├── themes/
+│   ├── types/
+│   └── utils/
+└── routes/
 ```
 
 ---

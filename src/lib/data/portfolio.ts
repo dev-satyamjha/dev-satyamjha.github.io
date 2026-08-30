@@ -12,18 +12,19 @@ import { SOCIAL_LINKS } from './social-links';
 
 export const PROFILE: Profile = {
 	name: SITE_CONFIG.name,
-	title: 'Full Stack Developer & Open Source Contributor',
+	title: 'Software Engineer & Open Source Advocate',
 	summary:
-		'Full Stack engineer and Computer Science undergraduate specializing in scalable web and desktop applications using React, SvelteKit, Python, Go, and C#.NET. Proficient in backend API design, system automation, RAG frameworks, and CI/CD pipelines to deliver cross-platform software across Web, Windows, Linux, and Android.',
+		'Software Engineer and Full Stack Developer building cross-platform applications across Web, Desktop, Linux, and Mobile. Passionate about open source software, data privacy advocacy, and cybersecurity. Proficient in React, SvelteKit, Python, Go, and C#.NET with expertise in UI/UX design, CI/CD pipelines, and system automation. An Arch Linux power user who loves ricing Hyprland more than anything else.',
 	email: SITE_CONFIG.email,
 	location: SITE_CONFIG.location,
 	avatar: '/images/profile_picture.jpeg',
 	resumeUrl: 'https://drive.google.com/file/d/1igqMMGKn7GXNGfDmDonmNQNoBZMoFEKI',
 	bio: [
-		'4th-year Computer Science and Engineering undergraduate at Birla Institute of Technology, Mesra (2023-2027), building across Linux, Windows, Web, and Mobile platforms.',
-		'Arch Linux enthusiast and dedicated desktop customization explorer with a strong foundation in systems architecture and automation.',
-		'Experienced in building end-to-end full-stack applications, client-side RAG models, desktop utilities, and visual novels.',
-		'Originating from Jamshedpur, Jharkhand — completed schooling from D.A.V Public School, N.I.T Campus.'
+		'4th-year Computer Science and Engineering undergraduate at Birla Institute of Technology, Mesra (2023-2027), building software across Linux, Windows, Web, and Mobile platforms.',
+		'Arch Linux power user passionate about ricing Hyprland and crafting bespoke desktop environments, systems architecture, and workflow automation.',
+		'Open source contributor and privacy advocate committed to building tools that solve real-world problems — for myself and for others.',
+		'Endlessly curious — always learning new technologies, never backing down from a challenge, and constantly sharpening skills across cybersecurity, UI/UX, and full-stack engineering.',
+		'Beyond code: socio-political commentary, cinema aficionado, spirited debater, and storyteller at heart.'
 	]
 };
 

@@ -2,10 +2,10 @@ import type { TranslationDictionary } from '$lib/types/i18n';
 
 export const en: TranslationDictionary = {
 	meta: {
-		siteTitle: 'Satyam Kumar | Full Stack Developer',
+		siteTitle: 'Satyam Kumar | Software Engineer',
 		siteDescription:
-			'Portfolio of Satyam Kumar, a Full Stack Developer & Open Source Contributor specializing in Web, Desktop, AI, and Systems Architecture.',
-		authorRole: 'Full Stack Developer & Open Source Contributor'
+			'Portfolio of Satyam Kumar — Software Engineer, Full Stack Developer & Open Source Advocate specializing in Web, Desktop, Cybersecurity, and Systems Architecture.',
+		authorRole: 'Portfolio'
 	},
 	common: {
 		backToPortal: 'Back to Dimension Portal',
@@ -26,10 +26,10 @@ export const en: TranslationDictionary = {
 	},
 	portal: {
 		headline: 'Satyam Kumar',
-		subtitle: 'Full Stack Developer & Systems Explorer',
+		subtitle: 'Software Engineer · Full Stack Developer · Open Source Contributor',
 		chooseDimension: 'Select an experience dimension to enter the portfolio',
 		cleanTitle: 'Clean Modern',
-		cleanDesc: 'Minimalist, typography-driven presentation with dark/light mode',
+		cleanDesc: 'Minimalist, typography-driven presentation in matte dark aesthetics',
 		linuxTitle: 'Linux Hyprland',
 		linuxDesc: 'Simulated Wayland compositor with floating windows & real CLI',
 		gamingTitle: 'Arcade Realm',

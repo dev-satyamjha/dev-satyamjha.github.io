@@ -10,42 +10,25 @@
 	let isDark = $state(true);
 
 	onMount(() => {
-		const saved = localStorage.getItem('clean_theme_mode');
-		if (saved) {
-			isDark = saved === 'dark';
-		} else {
-			isDark = true;
-		}
-		applyMode(isDark);
-	});
-
-	function applyMode(dark: boolean) {
 		if (typeof document !== 'undefined') {
-			if (dark) {
-				document.documentElement.classList.add('dark');
-				document.documentElement.classList.remove('light');
-			} else {
-				document.documentElement.classList.add('light');
-				document.documentElement.classList.remove('dark');
-			}
+			document.documentElement.classList.add('dark');
+			document.documentElement.classList.remove('light');
 		}
-	}
-
+	});
 	function toggleMode() {
 		audioManager.play('toggle');
-		isDark = !isDark;
-		localStorage.setItem('clean_theme_mode', isDark ? 'dark' : 'light');
-		applyMode(isDark);
+		if (typeof document !== 'undefined') {
+			document.documentElement.classList.add('dark');
+			document.documentElement.classList.remove('light');
+		}
 	}
 </script>
 
-<button
-	type="button"
-	onclick={toggleMode}
-	aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-	class={`inline-flex items-center justify-center w-9 h-9 rounded-xl border border-[#313244] bg-[#181825]/90 hover:border-[#89b4fa] hover:bg-[#313244] text-[#cdd6f4] transition-all cursor-pointer ${customClass}`}
+<div
+	class={`inline-flex items-center justify-center w-9 h-9 rounded-xl border border-[#313244] bg-[#181825]/90 text-[#f9e2af] ${customClass}`}
+	title="Matte Dark Theme"
 >
 	<span class="nf text-xs text-[#f9e2af]">
-		{isDark ? '\uf185' : '\uf186'}
+		{'\uf186'}
 	</span>
-</button>
+</div>
