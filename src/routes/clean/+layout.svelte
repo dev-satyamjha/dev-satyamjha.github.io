@@ -1,16 +1,21 @@
 <script lang="ts">
 	import CleanNav from '$lib/components/clean/CleanNav.svelte';
 	import VisitorCounter from '$lib/components/clean/VisitorCounter.svelte';
-	import CleanThemeToggle from '$lib/components/clean/CleanThemeToggle.svelte';
 	import { PORTFOLIO_DATA } from '$lib/data/portfolio';
 	import { localeStore } from '$lib/stores/locale.svelte';
 	import { audioManager } from '$lib/stores/audio.svelte';
+	import { colorModeStore } from '$lib/stores/colorMode.svelte';
 
 	let { children } = $props();
+	let isLight = $derived(colorModeStore.current === 'light');
 </script>
 
 <div
-	class="min-h-screen bg-[#09090b] text-[#f4f4f5] font-sans flex flex-col justify-between selection:bg-[#89b4fa] selection:text-[#11111b]"
+	class="min-h-screen font-sans flex flex-col justify-between selection:bg-[#89b4fa] selection:text-[#11111b] transition-colors duration-300"
+	class:bg-[#09090b]={!isLight}
+	class:text-[#f4f4f5]={!isLight}
+	class:bg-[#eaedf2]={isLight}
+	class:text-[#0f172a]={isLight}
 >
 	<CleanNav />
 
@@ -19,7 +24,13 @@
 	</div>
 
 	<footer
-		class="w-full border-t border-[#27272a] bg-[#09090b] py-8 text-xs font-mono text-[#a6adc8]"
+		class="w-full border-t py-8 text-xs font-mono transition-colors duration-300"
+		class:border-[#27272a]={!isLight}
+		class:bg-[#09090b]={!isLight}
+		class:text-[#a6adc8]={!isLight}
+		class:border-slate-300={isLight}
+		class:bg-[#ffffff]={isLight}
+		class:text-slate-600={isLight}
 	>
 		<div
 			class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4"
@@ -30,11 +41,12 @@
 			</div>
 
 			<div class="flex items-center gap-4">
-				<CleanThemeToggle />
 				<a
 					href="/"
 					onclick={() => audioManager.play('warp')}
-					class="hover:text-white transition-colors flex items-center gap-1.5"
+					class="transition-colors flex items-center gap-1.5"
+					class:hover:text-white={!isLight}
+					class:hover:text-blue-600={isLight}
 				>
 					<span class="nf text-xs text-[#89b4fa]">{'\uf14e'}</span>
 					<span>{localeStore.dict.common.backToPortal}</span>

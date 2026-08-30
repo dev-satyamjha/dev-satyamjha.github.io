@@ -53,6 +53,18 @@
 	color-scheme: dark light;
 }
 
+html.dark {
+	color-scheme: dark;
+	background-color: #09090b;
+	color: #cdd6f4;
+}
+
+html.light {
+	color-scheme: light;
+	background-color: #eaedf2;
+	color: #0f172a;
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -60,6 +72,98 @@ body {
 	font-family: var(--font-sans);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark body {
+	background-color: #09090b;
+	color: var(--color-catppuccin-text, #cdd6f4);
+}
+
+html.light body {
+	background-color: #eaedf2;
+	color: #0f172a;
+}
+
+html.light .bg-\[\#09090b\] {
+	background-color: #eaedf2 !important;
+}
+
+html.light .bg-\[\#181825\],
+html.light .bg-\[\#181825\]\/90,
+html.light .bg-\[\#181825\]\/80 {
+	background-color: #ffffff !important;
+	box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04) !important;
+}
+
+html.light .bg-\[\#11111b\],
+html.light .bg-\[\#1e1e2e\],
+html.light .bg-\[\#313244\] {
+	background-color: #f1f5f9 !important;
+	border-color: #cbd5e1 !important;
+}
+
+html.light .border-\[\#27272a\],
+html.light .border-\[\#313244\],
+html.light .border-\[\#45475a\],
+html.light .border-\[\#27272a\]\/60,
+html.light .border-\[\#27272a\]\/80,
+html.light .border-\[\#313244\]\/60 {
+	border-color: #cbd5e1 !important;
+}
+
+html.light .text-white {
+	color: #0f172a !important;
+}
+
+html.light .text-\[\#cdd6f4\] {
+	color: #334155 !important;
+}
+
+html.light .text-\[\#a6adc8\] {
+	color: #475569 !important;
+}
+
+html.light .text-\[\#89b4fa\] {
+	color: #1d4ed8 !important;
+}
+
+html.light .text-\[\#a6e3a1\] {
+	color: #047857 !important;
+}
+
+html.light .text-\[\#f9e2af\] {
+	color: #b45309 !important;
+}
+
+html.light .text-\[\#fab387\] {
+	color: #c2410c !important;
+}
+
+html.light .text-\[\#cba6f7\] {
+	color: #6d28d9 !important;
+}
+
+html.light .text-\[\#f38ba8\] {
+	color: #be123c !important;
+}
+
+html.light .text-\[\#74c7ec\],
+html.light .text-\[\#22d3ee\] {
+	color: #0e7490 !important;
+}
+
+html.light .hover\:bg-\[\#313244\]:hover,
+html.light .hover\:bg-\[\#181825\]:hover {
+	background-color: #e2e8f0 !important;
+}
+
+html.light .hover\:text-white:hover {
+	color: #0f172a !important;
+}
+
+html.light .bg-\[\#27272a\] {
+	background-color: #cbd5e1 !important;
 }
 
 :focus-visible {

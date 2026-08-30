@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { colorModeStore } from '$lib/stores/colorMode.svelte';
 
 	interface Particle {
 		x: number;
@@ -48,7 +49,23 @@
 		let time = 0;
 		function render() {
 			if (!ctx) return;
-			ctx.clearRect(0, 0, width, height);
+
+			const isLight = colorModeStore.current === 'light';
+
+			if (isLight) {
+				ctx.fillStyle = '#eaedf2';
+				ctx.fillRect(0, 0, width, height);
+
+				const grad = ctx.createRadialGradient(width / 2, height * 0.2, 50, width / 2, height * 0.2, width * 0.75);
+				grad.addColorStop(0, 'rgba(219, 234, 254, 0.45)');
+				grad.addColorStop(0.5, 'rgba(226, 232, 240, 0.25)');
+				grad.addColorStop(1, 'rgba(234, 237, 242, 0)');
+				ctx.fillStyle = grad;
+				ctx.fillRect(0, 0, width, height);
+			} else {
+				ctx.fillStyle = '#09090b';
+				ctx.fillRect(0, 0, width, height);
+			}
 
 			time += 0.02;
 
@@ -67,7 +84,11 @@
 
 				ctx.beginPath();
 				ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-				ctx.fillStyle = `rgba(180, 190, 254, ${clampedAlpha})`;
+				if (isLight) {
+					ctx.fillStyle = `rgba(79, 70, 229, ${clampedAlpha * 0.45})`;
+				} else {
+					ctx.fillStyle = `rgba(180, 190, 254, ${clampedAlpha})`;
+				}
 				ctx.fill();
 			}
 
@@ -85,6 +106,6 @@
 
 <canvas
 	bind:this={canvas}
-	class="fixed inset-0 pointer-events-none z-0 w-full h-full opacity-60"
+	class="fixed inset-0 pointer-events-none z-0 w-full h-full"
 	aria-hidden="true"
 ></canvas>

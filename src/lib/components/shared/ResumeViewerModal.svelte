@@ -11,8 +11,6 @@
 	let { isOpen, onclose, themeStyle = 'clean' }: Props = $props();
 
 	let isExpanded = $state(false);
-
-	// Convert Google Drive view URL to embeddable preview URL
 	let embedUrl = $derived(() => {
 		const url = PORTFOLIO_DATA.profile.resumeUrl;
 		const match = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
