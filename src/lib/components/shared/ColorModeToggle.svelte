@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { colorModeStore } from '$lib/stores/colorMode.svelte';
 	import { audioManager } from '$lib/stores/audio.svelte';
-	import { localeStore } from '$lib/stores/locale.svelte';
 
 	interface Props {
 		variant?: 'compact' | 'pill' | 'icon';

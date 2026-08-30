@@ -1,8 +1,24 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark" data-color-mode="dark" style="color-scheme: dark;">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			try {
+				const m = localStorage.getItem('portfolio_color_mode');
+				if (m === 'light') {
+					document.documentElement.classList.remove('dark');
+					document.documentElement.classList.add('light');
+					document.documentElement.setAttribute('data-color-mode', 'light');
+					document.documentElement.style.colorScheme = 'light';
+				} else {
+					document.documentElement.classList.add('dark');
+					document.documentElement.classList.remove('light');
+					document.documentElement.setAttribute('data-color-mode', 'dark');
+					document.documentElement.style.colorScheme = 'dark';
+				}
+			} catch (e) {}
+		</script>
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<link rel="apple-touch-icon" href="/favicon.png" />
 		<link
