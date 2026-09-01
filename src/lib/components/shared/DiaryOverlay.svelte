@@ -13,8 +13,10 @@
 	let currentPage = $state(0);
 	let displayedText = $state<string[]>([]);
 	let isTyping = $state(false);
+	let isManualMode = $state(false);
 	let cursorPosition = $state<{ paragraph: number; char: number }>({ paragraph: 0, char: 0 });
 	let typingInterval: ReturnType<typeof setInterval> | null = null;
+	let autoFlipTimer: ReturnType<typeof setTimeout> | null = null;
 	let isFlipping = $state(false);
 	let flipDirection = $state<'next' | 'prev'>('next');
 	let showContent = $state(true);
@@ -22,8 +24,37 @@
 	const page = $derived(DIARY_PAGES[currentPage]);
 	const totalPages = DIARY_PAGES.length;
 
+	function formatDiaryText(raw: string): string {
+		if (!raw) return '';
+		let html = raw.replace(
+			/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+			'<a href="$2" target="_blank" rel="noopener noreferrer" class="diary-link">$1</a>'
+		);
+		html = html.replace(/\[([^\]]*)$/, '$1');
+		html = html.replace(/\[([^\]]+)\]\([^)]*$/, '<span class="diary-link">$1</span>');
+		return html;
+	}
+
+	function getChapterPageIndex(indexItemIdx: number): number {
+		if (indexItemIdx === 0) {
+			const foundIdx = DIARY_PAGES.findIndex((p) => p.type === 'intro');
+			return foundIdx !== -1 ? foundIdx : 1;
+		}
+		const targetSemesterNum = indexItemIdx;
+		const foundIdx = DIARY_PAGES.findIndex((p) => p.type === 'semester' && p.semesterNumber === targetSemesterNum);
+		return foundIdx !== -1 ? foundIdx : indexItemIdx + 2;
+	}
+
+	function clearAutoFlipTimer() {
+		if (autoFlipTimer) {
+			clearTimeout(autoFlipTimer);
+			autoFlipTimer = null;
+		}
+	}
+
 	function startTyping(pageData: DiaryPage) {
 		stopTyping();
+		clearAutoFlipTimer();
 		displayedText = pageData.content.map(() => '');
 		cursorPosition = { paragraph: 0, char: 0 };
 		isTyping = true;
@@ -35,6 +66,14 @@
 		typingInterval = setInterval(() => {
 			if (pIdx >= pageData.content.length) {
 				stopTyping();
+				// Auto-flip to next page if not in manual mode and not on index
+				if (!isManualMode && currentPage < totalPages - 1 && pageData.type !== 'index') {
+					autoFlipTimer = setTimeout(() => {
+						if (!isManualMode && isOpen && !isFlipping) {
+							nextPage();
+						}
+					}, 2200);
+				}
 				return;
 			}
 
@@ -65,14 +104,20 @@
 
 	function skipTyping() {
 		stopTyping();
+		clearAutoFlipTimer();
+		isManualMode = true;
 		displayedText = page.content.map((p) => p);
 		cursorPosition = { paragraph: page.content.length - 1, char: page.content[page.content.length - 1].length };
 	}
 
-	function goToPage(pageIndex: number) {
+	function goToPage(pageIndex: number, triggeredManually = false) {
 		if (pageIndex < 0 || pageIndex >= totalPages || pageIndex === currentPage || isFlipping) return;
 
 		stopTyping();
+		clearAutoFlipTimer();
+		if (triggeredManually) {
+			isManualMode = true;
+		}
 		flipDirection = pageIndex > currentPage ? 'next' : 'prev';
 		isFlipping = true;
 		showContent = false;
@@ -90,12 +135,12 @@
 		}, 380);
 	}
 
-	function nextPage() {
-		goToPage(currentPage + 1);
+	function nextPage(manual = false) {
+		goToPage(currentPage + 1, manual);
 	}
 
-	function prevPage() {
-		goToPage(currentPage - 1);
+	function prevPage(manual = false) {
+		goToPage(currentPage - 1, manual);
 	}
 
 	function handleKeydown(e: KeyboardEvent) {
@@ -105,10 +150,10 @@
 			close();
 		} else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
 			e.preventDefault();
-			nextPage();
+			nextPage(true);
 		} else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
 			e.preventDefault();
-			prevPage();
+			prevPage(true);
 		} else if (e.key === ' ' && isTyping) {
 			e.preventDefault();
 			skipTyping();
@@ -117,6 +162,7 @@
 
 	function close() {
 		stopTyping();
+		clearAutoFlipTimer();
 		audioManager.play('window_close');
 		onclose();
 	}
@@ -124,9 +170,11 @@
 	$effect(() => {
 		if (isOpen) {
 			currentPage = 0;
+			isManualMode = false;
 			startTyping(DIARY_PAGES[0]);
 		} else {
 			stopTyping();
+			clearAutoFlipTimer();
 		}
 	});
 
@@ -136,6 +184,7 @@
 
 	onDestroy(() => {
 		stopTyping();
+		clearAutoFlipTimer();
 		if (typeof window !== 'undefined') {
 			window.removeEventListener('keydown', handleKeydown);
 		}
@@ -157,9 +206,6 @@
 			<div class="diary-spine"></div>
 
 			<div class="diary-page" class:flip-next={isFlipping && flipDirection === 'next'} class:flip-prev={isFlipping && flipDirection === 'prev'}>
-				<div class="diary-margin"></div>
-				<div class="diary-lines"></div>
-
 				<button
 					type="button"
 					class="diary-close"
@@ -169,116 +215,118 @@
 					✕
 				</button>
 
+				{#if isTyping}
+					<button type="button" class="diary-skip" onclick={skipTyping}>
+						Press Space to skip ▸
+					</button>
+				{/if}
+
 				{#if showContent}
 					<div class="diary-content" class:diary-content-intro={page.type === 'intro'}>
-						<div class="diary-header">
-							<div class="diary-header-badge">
-								{page.type === 'semester' ? `SEMESTER ${page.semesterNumber}` : page.type === 'index' ? 'DIRECTORY' : 'PROLOGUE'}
-							</div>
-							<h2 class="diary-title">
-								{page.title}
-							</h2>
-							{#if page.subtitle}
-								<p class="diary-subtitle">{page.subtitle}</p>
-							{/if}
-						</div>
-
-						<div class="diary-body">
-							{#each displayedText as text, i}
-								{#if page.type === 'index'}
-									<button
-										type="button"
-										class="diary-index-item"
-										class:diary-index-active={text.length > 0}
-										onclick={() => goToPage(i + 2)}
-										disabled={text.length === 0}
-									>
-										<span class="diary-index-number">{i + 1}.</span>
-										<span class="diary-index-label">{text}</span>
-										{#if text.length > 0}
-											<span class="diary-index-dots"></span>
-											<span class="diary-index-page">pg. {i + 3}</span>
-										{/if}
-										{#if isTyping && cursorPosition.paragraph === i}
-											<span class="diary-pen-anchor">
-												<span class="diary-ink-splat"></span>
-												<svg class="diary-fountain-pen" viewBox="0 0 80 140" width="40" height="70">
-													<defs>
-														<linearGradient id="penBarrelGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-															<stop offset="0%" stop-color="#0f172a" />
-															<stop offset="35%" stop-color="#1e3a8a" />
-															<stop offset="65%" stop-color="#2563eb" />
-															<stop offset="90%" stop-color="#172554" />
-															<stop offset="100%" stop-color="#020617" />
-														</linearGradient>
-														<linearGradient id="penGoldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-															<stop offset="0%" stop-color="#b45309" />
-															<stop offset="30%" stop-color="#fbbf24" />
-															<stop offset="60%" stop-color="#fef08a" />
-															<stop offset="100%" stop-color="#92400e" />
-														</linearGradient>
-													</defs>
-													<path d="M40 134 L32 108 L48 108 Z" fill="url(#penGoldGrad)" stroke="#78350f" stroke-width="0.7" />
-													<path d="M40 134 L36 114 L44 114 Z" fill="#fef08a" />
-													<line x1="40" y1="134" x2="40" y2="116" stroke="#172554" stroke-width="0.8" />
-													<circle cx="40" cy="116" r="1.3" fill="#172554" />
-													<rect x="33" y="88" width="14" height="20" rx="1.5" fill="#1e293b" stroke="#0f172a" stroke-width="0.8" />
-													<rect x="32" y="86" width="16" height="3" rx="0.5" fill="url(#penGoldGrad)" />
-													<path d="M31 16 L49 16 L47 86 L33 86 Z" fill="url(#penBarrelGrad)" stroke="#0f172a" stroke-width="0.8" />
-													<rect x="30.5" y="42" width="19" height="3" fill="url(#penGoldGrad)" />
-													<rect x="31" y="83" width="18" height="2.5" fill="url(#penGoldGrad)" />
-													<rect x="33" y="10" width="14" height="6" rx="2" fill="url(#penGoldGrad)" />
-													<path d="M45 16 L46 56 L43.5 58 L43.5 16 Z" fill="url(#penGoldGrad)" stroke="#78350f" stroke-width="0.5" />
-												</svg>
-											</span>
-										{/if}
-									</button>
-								{:else}
-									<p class="diary-paragraph">
-										<span>{text}</span>
-										{#if isTyping && cursorPosition.paragraph === i}
-											<span class="diary-pen-anchor">
-												<span class="diary-ink-splat"></span>
-												<svg class="diary-fountain-pen" viewBox="0 0 80 140" width="40" height="70">
-													<defs>
-														<linearGradient id="penBarrelGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
-															<stop offset="0%" stop-color="#0f172a" />
-															<stop offset="35%" stop-color="#1e3a8a" />
-															<stop offset="65%" stop-color="#2563eb" />
-															<stop offset="90%" stop-color="#172554" />
-															<stop offset="100%" stop-color="#020617" />
-														</linearGradient>
-														<linearGradient id="penGoldGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
-															<stop offset="0%" stop-color="#b45309" />
-															<stop offset="30%" stop-color="#fbbf24" />
-															<stop offset="60%" stop-color="#fef08a" />
-															<stop offset="100%" stop-color="#92400e" />
-														</linearGradient>
-													</defs>
-													<path d="M40 134 L32 108 L48 108 Z" fill="url(#penGoldGrad2)" stroke="#78350f" stroke-width="0.7" />
-													<path d="M40 134 L36 114 L44 114 Z" fill="#fef08a" />
-													<line x1="40" y1="134" x2="40" y2="116" stroke="#172554" stroke-width="0.8" />
-													<circle cx="40" cy="116" r="1.3" fill="#172554" />
-													<rect x="33" y="88" width="14" height="20" rx="1.5" fill="#1e293b" stroke="#0f172a" stroke-width="0.8" />
-													<rect x="32" y="86" width="16" height="3" rx="0.5" fill="url(#penGoldGrad2)" />
-													<path d="M31 16 L49 16 L47 86 L33 86 Z" fill="url(#penBarrelGrad2)" stroke="#0f172a" stroke-width="0.8" />
-													<rect x="30.5" y="42" width="19" height="3" fill="url(#penGoldGrad2)" />
-													<rect x="31" y="83" width="18" height="2.5" fill="url(#penGoldGrad2)" />
-													<rect x="33" y="10" width="14" height="6" rx="2" fill="url(#penGoldGrad2)" />
-													<path d="M45 16 L46 56 L43.5 58 L43.5 16 Z" fill="url(#penGoldGrad2)" stroke="#78350f" stroke-width="0.5" />
-												</svg>
-											</span>
-										{/if}
-									</p>
+						<div class="diary-sheet">
+							<div class="diary-header">
+								<div class="diary-header-badge">
+									{page.type === 'semester' ? `SEMESTER ${page.semesterNumber}` : page.type === 'index' ? 'DIRECTORY' : 'PROLOGUE'}
+								</div>
+								<h2 class="diary-title">
+									{page.title}
+								</h2>
+								{#if page.subtitle}
+									<p class="diary-subtitle">{page.subtitle}</p>
 								{/if}
-							{/each}
-						</div>
+							</div>
 
-						{#if isTyping}
-							<button type="button" class="diary-skip" onclick={skipTyping}>
-								Press Space to skip ▸
-							</button>
-						{/if}
+							<div class="diary-body">
+								{#each displayedText as text, i}
+									{#if page.type === 'index'}
+										<button
+											type="button"
+											class="diary-index-item"
+											class:diary-index-active={text.length > 0}
+											onclick={() => goToPage(getChapterPageIndex(i), true)}
+											disabled={text.length === 0}
+										>
+											<span class="diary-index-number">{i + 1}.</span>
+											<span class="diary-index-label">{text}</span>
+											{#if text.length > 0}
+												<span class="diary-index-dots"></span>
+												<span class="diary-index-page">pg. {getChapterPageIndex(i) + 1}</span>
+											{/if}
+											{#if isTyping && cursorPosition.paragraph === i}
+												<span class="diary-pen-anchor">
+													<span class="diary-ink-splat"></span>
+													<svg class="diary-fountain-pen" viewBox="0 0 80 140" width="40" height="70">
+														<defs>
+															<linearGradient id="penBarrelGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+																<stop offset="0%" stop-color="#0f172a" />
+																<stop offset="35%" stop-color="#1e3a8a" />
+																<stop offset="65%" stop-color="#2563eb" />
+																<stop offset="90%" stop-color="#172554" />
+																<stop offset="100%" stop-color="#020617" />
+															</linearGradient>
+															<linearGradient id="penGoldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+																<stop offset="0%" stop-color="#b45309" />
+																<stop offset="30%" stop-color="#fbbf24" />
+																<stop offset="60%" stop-color="#fef08a" />
+																<stop offset="100%" stop-color="#92400e" />
+															</linearGradient>
+														</defs>
+														<path d="M40 134 L32 108 L48 108 Z" fill="url(#penGoldGrad)" stroke="#78350f" stroke-width="0.7" />
+														<path d="M40 134 L36 114 L44 114 Z" fill="#fef08a" />
+														<line x1="40" y1="134" x2="40" y2="116" stroke="#172554" stroke-width="0.8" />
+														<circle cx="40" cy="116" r="1.3" fill="#172554" />
+														<rect x="33" y="88" width="14" height="20" rx="1.5" fill="#1e293b" stroke="#0f172a" stroke-width="0.8" />
+														<rect x="32" y="86" width="16" height="3" rx="0.5" fill="url(#penGoldGrad)" />
+														<path d="M31 16 L49 16 L47 86 L33 86 Z" fill="url(#penBarrelGrad)" stroke="#0f172a" stroke-width="0.8" />
+														<rect x="30.5" y="42" width="19" height="3" fill="url(#penGoldGrad)" />
+														<rect x="31" y="83" width="18" height="2.5" fill="url(#penGoldGrad)" />
+														<rect x="33" y="10" width="14" height="6" rx="2" fill="url(#penGoldGrad)" />
+														<path d="M45 16 L46 56 L43.5 58 L43.5 16 Z" fill="url(#penGoldGrad)" stroke="#78350f" stroke-width="0.5" />
+													</svg>
+												</span>
+											{/if}
+										</button>
+									{:else}
+										<p class="diary-paragraph" class:diary-signature={text.startsWith('—') || text.startsWith('--')}>
+											<span>{@html formatDiaryText(text)}</span>
+											{#if isTyping && cursorPosition.paragraph === i}
+												<span class="diary-pen-anchor">
+													<span class="diary-ink-splat"></span>
+													<svg class="diary-fountain-pen" viewBox="0 0 80 140" width="40" height="70">
+														<defs>
+															<linearGradient id="penBarrelGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+																<stop offset="0%" stop-color="#0f172a" />
+																<stop offset="35%" stop-color="#1e3a8a" />
+																<stop offset="65%" stop-color="#2563eb" />
+																<stop offset="90%" stop-color="#172554" />
+																<stop offset="100%" stop-color="#020617" />
+															</linearGradient>
+															<linearGradient id="penGoldGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+																<stop offset="0%" stop-color="#b45309" />
+																<stop offset="30%" stop-color="#fbbf24" />
+																<stop offset="60%" stop-color="#fef08a" />
+																<stop offset="100%" stop-color="#92400e" />
+															</linearGradient>
+														</defs>
+														<path d="M40 134 L32 108 L48 108 Z" fill="url(#penGoldGrad2)" stroke="#78350f" stroke-width="0.7" />
+														<path d="M40 134 L36 114 L44 114 Z" fill="#fef08a" />
+														<line x1="40" y1="134" x2="40" y2="116" stroke="#172554" stroke-width="0.8" />
+														<circle cx="40" cy="116" r="1.3" fill="#172554" />
+														<rect x="33" y="88" width="14" height="20" rx="1.5" fill="#1e293b" stroke="#0f172a" stroke-width="0.8" />
+														<rect x="32" y="86" width="16" height="3" rx="0.5" fill="url(#penGoldGrad2)" />
+														<path d="M31 16 L49 16 L47 86 L33 86 Z" fill="url(#penBarrelGrad2)" stroke="#0f172a" stroke-width="0.8" />
+														<rect x="30.5" y="42" width="19" height="3" fill="url(#penGoldGrad2)" />
+														<rect x="31" y="83" width="18" height="2.5" fill="url(#penGoldGrad2)" />
+														<rect x="33" y="10" width="14" height="6" rx="2" fill="url(#penGoldGrad2)" />
+														<path d="M45 16 L46 56 L43.5 58 L43.5 16 Z" fill="url(#penGoldGrad2)" stroke="#78350f" stroke-width="0.5" />
+													</svg>
+												</span>
+											{/if}
+										</p>
+									{/if}
+								{/each}
+							</div>
+						</div>
 					</div>
 				{/if}
 
@@ -286,7 +334,7 @@
 					<button
 						type="button"
 						class="diary-nav-btn"
-						onclick={prevPage}
+						onclick={() => prevPage(true)}
 						disabled={currentPage === 0 || isFlipping}
 						aria-label="Previous page"
 					>
@@ -300,7 +348,7 @@
 					<button
 						type="button"
 						class="diary-nav-btn"
-						onclick={nextPage}
+						onclick={() => nextPage(true)}
 						disabled={currentPage === totalPages - 1 || isFlipping}
 						aria-label="Next page"
 					>
@@ -315,7 +363,7 @@
 <style>
 	:global(:root) {
 		--diary-line-height: 36px;
-		--diary-header-height: 104px;
+		--diary-header-height: 108px;
 	}
 
 	.diary-backdrop {
@@ -333,7 +381,7 @@
 	.diary-book {
 		position: relative;
 		width: min(94vw, 720px);
-		height: min(88vh, 840px);
+		height: min(88vh, 780px);
 		display: flex;
 		filter: drop-shadow(0 25px 60px rgba(0, 0, 0, 0.7));
 		animation: bookOpen 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -379,6 +427,8 @@
 		box-shadow:
 			4px 4px 20px rgba(0, 0, 0, 0.25),
 			inset 0 0 80px rgba(139, 94, 60, 0.08);
+		display: flex;
+		flex-direction: column;
 	}
 
 	.diary-page.flip-next {
@@ -389,31 +439,35 @@
 		animation: flipPrev 0.38s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 
-	.diary-margin {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 64px;
-		width: 2px;
-		background: rgba(220, 68, 68, 0.4);
-		box-shadow: 0 0 1px rgba(220, 68, 68, 0.2);
-		z-index: 1;
-		pointer-events: none;
-	}
-
-	.diary-lines {
-		position: absolute;
-		inset: 0;
-		background: repeating-linear-gradient(
-			to bottom,
-			transparent,
-			transparent calc(var(--diary-line-height) - 1px),
-			rgba(59, 130, 246, 0.18) calc(var(--diary-line-height) - 1px),
-			rgba(59, 130, 246, 0.18) var(--diary-line-height)
-		);
-		background-position-y: var(--diary-header-height);
-		pointer-events: none;
-		z-index: 0;
+	.diary-sheet {
+		position: relative;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		overflow: hidden;
+		box-sizing: border-box;
+		background-image:
+			linear-gradient(
+				to right,
+				transparent 63px,
+				rgba(220, 68, 68, 0.4) 63px,
+				rgba(220, 68, 68, 0.4) 65px,
+				transparent 65px
+			),
+			repeating-linear-gradient(
+				to bottom,
+				transparent,
+				transparent calc(var(--diary-line-height) - 1px),
+				rgba(59, 130, 246, 0.2) calc(var(--diary-line-height) - 1px),
+				rgba(59, 130, 246, 0.2) var(--diary-line-height)
+			);
+		background-position:
+			0 0,
+			0 var(--diary-header-height);
+		background-repeat:
+			repeat-y,
+			repeat;
 	}
 
 	.diary-close {
@@ -445,37 +499,20 @@
 		position: relative;
 		z-index: 2;
 		height: calc(100% - 50px);
-		overflow-y: auto;
+		overflow: hidden;
 		animation: contentFadeIn 0.3s ease-out;
 		display: flex;
 		flex-direction: column;
 	}
 
-	.diary-content::-webkit-scrollbar {
-		width: 6px;
-	}
-
-	.diary-content::-webkit-scrollbar-track {
-		background: transparent;
-	}
-
-	.diary-content::-webkit-scrollbar-thumb {
-		background: rgba(30, 58, 138, 0.18);
-		border-radius: 3px;
-	}
-
-	.diary-content::-webkit-scrollbar-thumb:hover {
-		background: rgba(30, 58, 138, 0.35);
-	}
-
 	.diary-header {
 		height: var(--diary-header-height);
-		padding: 24px 32px 0 78px;
-		border-bottom: 2px solid rgba(220, 68, 68, 0.35);
+		padding: 20px 32px 10px 78px;
+		border-bottom: 2px solid rgba(220, 68, 68, 0.4);
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
-		padding-bottom: 10px;
+		box-sizing: border-box;
 		position: relative;
 		flex-shrink: 0;
 	}
@@ -510,15 +547,17 @@
 	}
 
 	.diary-body {
-		padding: 0 32px 40px 78px;
+		padding: 0 32px 0 78px;
 		display: flex;
 		flex-direction: column;
 		flex: 1;
+		overflow: hidden;
+		box-sizing: border-box;
 	}
 
 	.diary-paragraph {
 		font-family: 'Caveat', 'Kalam', cursive;
-		font-size: 1.42rem;
+		font-size: 1.34rem;
 		font-weight: 600;
 		line-height: var(--diary-line-height);
 		color: #1e3a8a;
@@ -528,20 +567,39 @@
 		position: relative;
 		letter-spacing: 0.015em;
 		word-spacing: 0.08em;
+		box-sizing: border-box;
 	}
 
 	.diary-content-intro .diary-paragraph:first-child {
 		font-weight: 700;
 		color: #0f294a;
-		font-size: 1.55rem;
+		font-size: 1.36rem;
 	}
 
-	.diary-content-intro .diary-paragraph:last-child {
+	.diary-paragraph.diary-signature {
 		text-align: right;
 		font-weight: 700;
 		color: #0f294a;
-		font-size: 1.45rem;
-		margin-top: 10px;
+		font-size: 1.38rem;
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	:global(.diary-link) {
+		color: #9333ea;
+		font-weight: 700;
+		text-decoration: underline;
+		text-decoration-style: wavy;
+		text-decoration-thickness: 1.5px;
+		text-underline-offset: 4px;
+		cursor: pointer;
+		transition: all 0.2s ease;
+		display: inline;
+	}
+
+	:global(.diary-link:hover) {
+		color: #7e22ce;
+		text-shadow: 0 0 8px rgba(147, 51, 234, 0.4);
 	}
 
 	.diary-index-item {
@@ -554,13 +612,14 @@
 		background: transparent;
 		cursor: pointer;
 		font-family: 'Caveat', 'Kalam', cursive;
-		font-size: 1.38rem;
+		font-size: 1.34rem;
 		font-weight: 600;
 		color: #1e3a8a;
 		text-align: left;
 		transition: all 0.2s;
 		opacity: 0.25;
 		position: relative;
+		margin: 0;
 	}
 
 	.diary-index-item.diary-index-active {
@@ -581,7 +640,7 @@
 		font-weight: 700;
 		color: #b45309;
 		min-width: 24px;
-		font-size: 1.25rem;
+		font-size: 1.22rem;
 	}
 
 	.diary-index-label {
@@ -800,8 +859,22 @@
 			width: 20px;
 		}
 
-		.diary-margin {
-			left: 44px;
+		.diary-sheet {
+			background-image:
+				linear-gradient(
+					to right,
+					transparent 43px,
+					rgba(220, 68, 68, 0.4) 43px,
+					rgba(220, 68, 68, 0.4) 45px,
+					transparent 45px
+				),
+				repeating-linear-gradient(
+					to bottom,
+					transparent,
+					transparent calc(var(--diary-line-height) - 1px),
+					rgba(59, 130, 246, 0.18) calc(var(--diary-line-height) - 1px),
+					rgba(59, 130, 246, 0.18) var(--diary-line-height)
+				);
 		}
 
 		.diary-header {

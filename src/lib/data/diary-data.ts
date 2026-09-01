@@ -9,25 +9,12 @@ export interface DiaryPage {
 
 export const DIARY_PAGES: DiaryPage[] = [
 	{
-		id: 'introduction',
-		type: 'intro',
-		title: 'My College Journey',
-		subtitle: 'A personal chronicle from BIT Mesra — 2023 to 2027',
-		content: [
-			'Dear Diary,',
-			'This is where it all begins. Four years of late-night coding sessions, unexpected friendships, countless cups of chai, and a relentless pursuit of becoming the engineer I always dreamed of being.',
-			'In August 2023, I stepped onto the campus of Birla Institute of Technology, Mesra — far from home in Jamshedpur, yet somehow exactly where I was meant to be. Armed with an old laptop, an unhealthy obsession with Arch Linux, and more ambition than experience, I started a journey that would reshape everything I knew.',
-			'These pages document each semester — the struggles, the breakthroughs, the projects that consumed my nights, and the people who made the journey worth it.',
-			'This is not just an academic record. This is my story.',
-			'— Satyam Kumar'
-		]
-	},
-	{
 		id: 'index',
 		type: 'index',
 		title: 'Table of Contents',
-		subtitle: 'Navigate through the semesters',
+		subtitle: 'Navigate through the chapters',
 		content: [
+			'Prologue — The Rollercoaster Begins',
 			'Chapter I — Semester 1: The Genesis',
 			'Chapter II — Semester 2: Finding My Footing',
 			'Chapter III — Semester 3: The Deep Dive',
@@ -38,18 +25,106 @@ export const DIARY_PAGES: DiaryPage[] = [
 		]
 	},
 	{
-		id: 'semester-1',
+		id: 'intro-1',
+		type: 'intro',
+		title: 'The Rollercoaster Begins',
+		subtitle: 'Prologue — Part 1: Four Years in a Flash',
+		content: [
+			'Dear Diary — Where It All Began,',
+			'Four years of pure joy, intense pressure, silly fights, endless debugging, day-and-night Linux ricing, and brutal sleepless exam nights. Throw in some unexpected friendships and a roommate who was somehow way more invested in my career than his own — and you get one hell of an emotional rollercoaster ride!',
+			'There were days when others doubted me and humiliated me, and honestly, plenty of days where I was my own biggest skeptic. But now, standing here as this chapter comes to an end, all those struggles and gritty determination have finally paid off. This is the story of Satyam Jha (legally Satyam Kumar) — a guy who never in a million years imagined stepping into Computer Science, but is now having the time of his life enjoying every single shade of it.'
+		]
+	},
+	{
+		id: 'intro-2',
+		type: 'intro',
+		title: 'August 17, 2023',
+		subtitle: 'Prologue — Part 2: Shaking Legs at 5 AM',
+		content: [
+			'So, let’s take it back to where it all kicked off: August 17, 2023.',
+			'I arrived at the admission office with trembling legs at 5:00 AM sharp — even though the gates didn’t even open until 9:00 AM! While waiting anxiously in the seminar hall for my turn, I ended up meeting the guy who was destined to become my best friend and roommate throughout this entire college ride.',
+			'He was literally seconds away from submitting his admission form before me, but a small mistake from his side, and I slipped in first. They say destiny always has quirky plans for you — never ignore the hints!'
+		]
+	},
+	{
+		id: 'intro-3',
+		type: 'intro',
+		title: 'Destiny in Motion',
+		subtitle: 'Prologue — Part 3: The Kickoff',
+		content: [
+			'If he had submitted first, our entire hostel allocation and this four-year adventure wouldn’t be anything like what it became (more on that in the upcoming bonus track!).',
+			'After checking out our new hostel rooms with wide eyes, we parted ways to head back home. Then came August 31st — the day the real college journey was officially about to begin.',
+			'Turn the page to see what happened next ➔',
+			'— Satyam Jha'
+		]
+	},
+	{
+		id: 'semester-1-p1',
 		type: 'semester',
-		title: 'Chapter I',
-		subtitle: 'The Genesis',
+		title: 'The Genesis: 2 AM Secrets',
+		subtitle: 'Chapter I — Part 1: Unpacking, Achu & 3 AM Blessings',
 		semesterNumber: 1,
 		content: [
-			'August 2023. The first day at BIT Mesra.',
-			'Everything felt overwhelming — the sprawling campus, the unfamiliar faces, the sudden independence. I remember unpacking my bag in the hostel room, setting up my laptop, and immediately installing Arch Linux. Some habits never change.',
-			'The first semester was about survival. Data Structures, Mathematics, Physics — the fundamentals that would become the foundation for everything that followed. I spent more time in the computer lab than anywhere else.',
-			'I joined the coding club within the first week. That single decision would change the trajectory of my entire college experience. The late-night hackathons, the whiteboard problem-solving sessions, the camaraderie of debugging at 3 AM.',
-			'By the end of Semester 1, I had written my first complete project, made lifelong friends, and discovered that college was not just about grades — it was about becoming someone.',
-			'The genesis was complete. The real journey was just beginning.'
+			'August 31, 2023. I arrived at the hostel in the afternoon, claimed my bed, and unpacked in the quiet room — the very first occupant of our new den.',
+			'Later that evening, my roommate arrived: Achu Agarwal. A name I’d never heard in my life! We bonded instantly, spilling secrets and laughing till 2:00 AM. After barely an hour of sleep, I woke at 3:00 AM to visit Baba Baidyanath Mandir with my parents to seek blessings for this new chapter.'
+		]
+	},
+	{
+		id: 'semester-1-p2',
+		type: 'semester',
+		title: 'Goodbyes & The New World',
+		subtitle: 'Chapter I — Part 2: Teary Goodbyes & Roommate X',
+		semesterNumber: 1,
+		content: [
+			'By 8:00 AM, the hardest moment arrived — teary goodbyes with my parents after 18 years together. But college waited for no one: by afternoon, Achu and I were in the Student Induction Programme (SIP), touring campus, making friends, and playing weekend cricket.',
+			'By Sunday night, our third roommate hadn’t shown up. Just as I declared we had a luxury double, in walked roommate number three — let’s just call him "X". Better left unsaid, as there are zero fond memories to recount there!'
+		]
+	},
+	{
+		id: 'semester-1-p3',
+		type: 'semester',
+		title: 'Stage Lights & Stardom',
+		subtitle: 'Chapter I — Part 3: Singing Stardom & The Omegle Era',
+		semesterNumber: 1,
+		content: [
+			'Then came an iconic core memory: a campus singing competition. My friends literally dragged me onto the stage. I had never sung in public in my life, but I took the mic, sang my heart out, and the crowd went wild cheering!',
+			'My friend circle exploded overnight. Our hostel nights were filled with endless banter, late-night snacks, and chaotic Omegle sessions. Life felt like a dream — until reality came knocking.'
+		]
+	},
+	{
+		id: 'semester-1-p4',
+		type: 'semester',
+		title: 'The Great Fracturing',
+		subtitle: 'Chapter I — Part 4: Quiz 1 Panic & The Politics Era',
+		semesterNumber: 1,
+		content: [
+			'Three weeks in, Quiz 1 arrived. In a panic to study, I distanced myself from friends, which backfired: homesickness hit hard, and the friend circle shattered into rival factions with petty politics.',
+			'Ironically, while I found a new core gang that felt like genuine family, the time I used to waste with the old group was now being wasted with the new one! Not a single page was being studied.'
+		]
+	},
+	{
+		id: 'semester-1-p5',
+		type: 'semester',
+		title: 'The Fresher Canon Event',
+		subtitle: 'Chapter I — Part 5: Nightmare Subjects & The Survival Pass',
+		semesterNumber: 1,
+		content: [
+			'Academics was a complete disaster. Special shoutout to the two greatest headaches of freshman year: Basics of Machine Learning and Basics of Electronic Communication. CSE freshers: pay attention from day one!',
+			'Against all odds, I passed every subject through last-minute cramming. But I carried deep guilt for wasting time while my parents had sent me here with high hopes. Yet, I refused to stay down and gathered crucial lessons. Did I actually learn? Let’s find out in Chapter II ➔',
+			'— Satyam Jha'
+		]
+	},
+	{
+		id: 'semester-1-bonus',
+		type: 'semester',
+		title: 'The Destiny Twist',
+		subtitle: 'Chapter I — Bonus Track: The Room Next Door',
+		semesterNumber: 1,
+		content: [
+			'Bonus Track: Remember the guy at the admission counter on August 17 who missed submitting the form right before me by a single second? That was [Harsh Narayan Jha](http://harshnj.is-a.dev/). Because of that tiny delay, he was allocated the room right next door to mine.',
+			'Now here is the destiny twist: the rival groups that caused so much hostel drama ended up living in his room! Because of constant noise there, Harsh practically lived in mine — mentoring me in programming, computers, and college subjects.',
+			'If he had been in my room and I in his, the future waiting for me would have turned out completely different. I will spill the full tea on why in the upcoming chapters. Stay tuned! ➔',
+			'— Satyam Jha'
 		]
 	},
 	{
@@ -58,14 +133,7 @@ export const DIARY_PAGES: DiaryPage[] = [
 		title: 'Chapter II',
 		subtitle: 'Finding My Footing',
 		semesterNumber: 2,
-		content: [
-			'January 2024. Second semester, second wind.',
-			'With the initial overwhelm behind me, I started to find my rhythm. Object-Oriented Programming became my playground, and I fell in love with the elegance of clean architecture. I started contributing to open source — nervously submitting my first pull request to a project I admired.',
-			'This was the semester I discovered web development. HTML, CSS, JavaScript — the trinity that would become my primary craft. I built my first portfolio (a far cry from this one), and felt the magic of seeing code transform into something visual and interactive.',
-			'The Hyprland ricing obsession also began here. I spent entire weekends ricing my desktop, learning about Wayland compositors, and diving deep into the Linux ecosystem. My dotfiles repository became my most carefully maintained project.',
-			'I started attending tech meetups online, engaging with developer communities, and slowly building the confidence to call myself a developer.',
-			'Finding my footing meant learning that the journey matters more than the destination.'
-		]
+		content: ['Updating soon...']
 	},
 	{
 		id: 'semester-3',
@@ -73,14 +141,7 @@ export const DIARY_PAGES: DiaryPage[] = [
 		title: 'Chapter III',
 		subtitle: 'The Deep Dive',
 		semesterNumber: 3,
-		content: [
-			'August 2024. Time to go deeper.',
-			'Semester 3 was when everything accelerated. Database Management Systems, Computer Networks, Operating Systems — the courses that lifted the veil on how technology actually works under the hood.',
-			'I built my first full-stack application from scratch. React on the frontend, Node.js on the backend, PostgreSQL for the database. It was messy, it was beautiful, and it taught me more than any tutorial ever could.',
-			'This was also when I started taking cybersecurity seriously. CTF competitions, vulnerability research, and the sobering realization that security is not optional — it is fundamental. I began advocating for data privacy in every project I touched.',
-			'The deep dive was exhausting but transformative. I emerged with a clearer vision of who I wanted to be as an engineer and what kind of software I wanted to build.',
-			'Some semesters teach you skills. This one taught me purpose.'
-		]
+		content: ['Updating soon...']
 	},
 	{
 		id: 'semester-4',
@@ -88,14 +149,7 @@ export const DIARY_PAGES: DiaryPage[] = [
 		title: 'Chapter IV',
 		subtitle: 'Building Momentum',
 		semesterNumber: 4,
-		content: [
-			'January 2025. The momentum was undeniable.',
-			'By now, I had a growing portfolio, a solid understanding of multiple tech stacks, and the confidence to tackle complex problems. SvelteKit entered my life this semester, and it was love at first compile. The reactivity model, the elegance, the performance — it felt like the framework was built for how I think.',
-			'I started building tools that actually helped people. Utilities for students, automation scripts for workflows, and open-source contributions that received genuine appreciation from the community.',
-			'CI/CD pipelines became second nature. Docker, GitHub Actions, automated testing — the infrastructure that separates hobby projects from production-ready software.',
-			'This semester also brought my first internship opportunity. The interview process was nerve-wracking, but every rejected application and every failed round was a lesson in resilience.',
-			'Building momentum is not about moving fast — it is about moving with intention.'
-		]
+		content: ['Updating soon...']
 	},
 	{
 		id: 'semester-5',
@@ -103,14 +157,7 @@ export const DIARY_PAGES: DiaryPage[] = [
 		title: 'Chapter V',
 		subtitle: 'The Turning Point',
 		semesterNumber: 5,
-		content: [
-			'August 2025. Everything changed.',
-			'Semester 5 was the inflection point — the moment where theoretical knowledge met real-world application. Advanced algorithms, machine learning fundamentals, and software engineering practices that bridged the gap between student and professional.',
-			'I led my first team project. Managing people, setting deadlines, resolving conflicts — skills that no programming language can teach. The project was ambitious: a cross-platform application that worked on Web, Desktop, and Mobile.',
-			'My open-source contributions gained traction. Pull requests to established projects, bug reports that were actually acknowledged, and the incredible feeling of seeing my code used by strangers across the world.',
-			'This was also when I started this very portfolio — the multi-dimensional experience you are navigating right now. Every theme, every animation, every interaction was crafted during late nights this semester.',
-			'The turning point was not a single moment. It was the accumulation of every late night, every failed build, and every breakthrough that came before.'
-		]
+		content: ['Updating soon...']
 	},
 	{
 		id: 'semester-6',
@@ -118,14 +165,7 @@ export const DIARY_PAGES: DiaryPage[] = [
 		title: 'Chapter VI',
 		subtitle: 'Into the Real World',
 		semesterNumber: 6,
-		content: [
-			'January 2026. The real world beckoned.',
-			'This semester was a bridge — between the safety of academia and the uncertainty of industry. Internships, projects with real stakeholders, and the pressure of delivering software that people actually depend on.',
-			'I deepened my expertise in Go and Python for backend services, mastered system design concepts, and started thinking in architectures rather than individual features.',
-			'The cybersecurity interest evolved into practical application. Security audits, penetration testing concepts, and the sobering responsibility of protecting user data in every application I build.',
-			'Beyond the technical growth, this semester taught me the importance of communication. Writing documentation, presenting ideas, debating architectural decisions — the soft skills that multiply everything else.',
-			'Stepping into the real world was not about leaving college behind. It was about carrying forward everything it taught me.'
-		]
+		content: ['Updating soon...']
 	},
 	{
 		id: 'semester-7',
@@ -133,14 +173,6 @@ export const DIARY_PAGES: DiaryPage[] = [
 		title: 'Chapter VII',
 		subtitle: 'The Final Stretch',
 		semesterNumber: 7,
-		content: [
-			'August 2026. The final chapter begins.',
-			'Seven semesters. Thousands of lines of code. Countless debugging sessions. And somehow, it still feels like the beginning.',
-			'This semester is about refinement — polishing the skills, completing the portfolio, and preparing for what comes after. The capstone project brings together everything I have learned: full-stack development, system design, security, automation, and user experience.',
-			'I look back at the nervous freshman who installed Arch Linux on day one and barely recognize him. But I also see the thread that connects every version of myself — the relentless curiosity, the refusal to settle, and the belief that software can genuinely improve lives.',
-			'The final stretch is not about crossing a finish line. It is about standing at the starting line of everything that comes next.',
-			'This diary will continue. The story is far from over.',
-			'— Satyam Kumar, BIT Mesra, Class of 2027'
-		]
+		content: ['Updating soon...']
 	}
 ];
