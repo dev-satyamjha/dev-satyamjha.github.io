@@ -24,6 +24,17 @@
 	const page = $derived(DIARY_PAGES[currentPage]);
 	const totalPages = DIARY_PAGES.length;
 
+	function formatDiaryText(raw: string): string {
+		if (!raw) return '';
+		let html = raw.replace(
+			/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+			'<a href="$2" target="_blank" rel="noopener noreferrer" class="diary-link">$1</a>'
+		);
+		html = html.replace(/\[([^\]]*)$/, '$1');
+		html = html.replace(/\[([^\]]+)\]\([^)]*$/, '<span class="diary-link">$1</span>');
+		return html;
+	}
+
 	function getChapterPageIndex(indexItemIdx: number): number {
 		if (indexItemIdx === 0) {
 			const foundIdx = DIARY_PAGES.findIndex((p) => p.type === 'intro');
@@ -277,7 +288,7 @@
 										</button>
 									{:else}
 										<p class="diary-paragraph" class:diary-signature={text.startsWith('—') || text.startsWith('--')}>
-											<span>{text}</span>
+											<span>{@html formatDiaryText(text)}</span>
 											{#if isTyping && cursorPosition.paragraph === i}
 												<span class="diary-pen-anchor">
 													<span class="diary-ink-splat"></span>
@@ -352,7 +363,7 @@
 <style>
 	:global(:root) {
 		--diary-line-height: 36px;
-		--diary-header-height: 104px;
+		--diary-header-height: 108px;
 	}
 
 	.diary-backdrop {
@@ -448,8 +459,8 @@
 				to bottom,
 				transparent,
 				transparent calc(var(--diary-line-height) - 1px),
-				rgba(59, 130, 246, 0.18) calc(var(--diary-line-height) - 1px),
-				rgba(59, 130, 246, 0.18) var(--diary-line-height)
+				rgba(59, 130, 246, 0.2) calc(var(--diary-line-height) - 1px),
+				rgba(59, 130, 246, 0.2) var(--diary-line-height)
 			);
 		background-position:
 			0 0,
@@ -496,12 +507,12 @@
 
 	.diary-header {
 		height: var(--diary-header-height);
-		padding: 20px 32px 0 78px;
-		border-bottom: 2px solid rgba(220, 68, 68, 0.35);
+		padding: 20px 32px 10px 78px;
+		border-bottom: 2px solid rgba(220, 68, 68, 0.4);
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
-		padding-bottom: 8px;
+		box-sizing: border-box;
 		position: relative;
 		flex-shrink: 0;
 	}
@@ -541,6 +552,7 @@
 		flex-direction: column;
 		flex: 1;
 		overflow: hidden;
+		box-sizing: border-box;
 	}
 
 	.diary-paragraph {
@@ -555,21 +567,39 @@
 		position: relative;
 		letter-spacing: 0.015em;
 		word-spacing: 0.08em;
+		box-sizing: border-box;
 	}
 
 	.diary-content-intro .diary-paragraph:first-child {
 		font-weight: 700;
 		color: #0f294a;
-		font-size: 1.48rem;
+		font-size: 1.36rem;
 	}
 
 	.diary-paragraph.diary-signature {
 		text-align: right;
 		font-weight: 700;
 		color: #0f294a;
-		font-size: 1.42rem;
+		font-size: 1.38rem;
 		margin-top: 0;
 		margin-bottom: 0;
+	}
+
+	:global(.diary-link) {
+		color: #9333ea;
+		font-weight: 700;
+		text-decoration: underline;
+		text-decoration-style: wavy;
+		text-decoration-thickness: 1.5px;
+		text-underline-offset: 4px;
+		cursor: pointer;
+		transition: all 0.2s ease;
+		display: inline;
+	}
+
+	:global(.diary-link:hover) {
+		color: #7e22ce;
+		text-shadow: 0 0 8px rgba(147, 51, 234, 0.4);
 	}
 
 	.diary-index-item {
