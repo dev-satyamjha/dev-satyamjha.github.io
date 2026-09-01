@@ -11,15 +11,17 @@ export const DIARY_PAGES: DiaryPage[] = [
 	{
 		id: 'introduction',
 		type: 'intro',
-		title: 'My College Journey',
-		subtitle: 'A personal chronicle from BIT Mesra — 2023 to 2027',
+		title: 'The Rollercoaster Begins',
+		subtitle: 'From shaking legs at 5 AM to falling in love with CSE — The Prologue',
 		content: [
-			'Dear Diary,',
-			'This is where it all begins. Four years of late-night coding sessions, unexpected friendships, countless cups of chai, and a relentless pursuit of becoming the engineer I always dreamed of being.',
-			'In August 2023, I stepped onto the campus of Birla Institute of Technology, Mesra — far from home in Jamshedpur, yet somehow exactly where I was meant to be. Armed with an old laptop, an unhealthy obsession with Arch Linux, and more ambition than experience, I started a journey that would reshape everything I knew.',
-			'These pages document each semester — the struggles, the breakthroughs, the projects that consumed my nights, and the people who made the journey worth it.',
-			'This is not just an academic record. This is my story.',
-			'— Satyam Kumar'
+			'Dear Diary — Where It All Began,',
+			'Four years of pure joy, intense pressure, silly fights, endless debugging, day-and-night Linux ricing, and brutal sleepless exam nights. Throw in some totally unexpected friendships along the way and a roommate who was somehow way more invested in my career than his own — and you get one hell of an emotional rollercoaster ride!',
+			'There were days when others doubted me and humiliated me, and honestly, plenty of days where I was my own biggest skeptic. But now, standing here as this chapter comes to an end, all those struggles and gritty determination have finally paid off. This is the story of Satyam Jha (legally Satyam Kumar) — a guy who never in a million years imagined stepping into Computer Science, but is now having the time of his life enjoying every single shade of it.',
+			'So, let’s take it back to where it all kicked off: August 17, 2023.',
+			'I arrived at the admission office with trembling legs at 5:00 AM sharp — even though the gates didn’t even open until 9:00 AM! While waiting anxiously in the seminar hall for my turn, I ended up meeting the guy who was destined to become my best friend and roommate throughout this entire college ride.',
+			'He was literally seconds away from submitting his admission form before me, but a small mistake from his side, and I slipped in first. They say destiny always has quirky plans for you — never ignore the hints! If he had submitted first, our hostel allocation and this entire journey wouldn’t be anything like what it became (I’ll spill the tea on why in the upcoming chapters).',
+			'After checking out our new hostel rooms with wide eyes, we parted ways to head back home. Then came August 31st — the day the real college journey was officially about to begin. Turn the page to see what happened next ➔',
+			'— Satyam Jha'
 		]
 	},
 	{
